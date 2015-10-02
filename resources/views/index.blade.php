@@ -10,7 +10,7 @@
             <div class = "col-md-4">
                 <form class="form-horizontal login" action="/" method="post">
                     <h2 class="sign">
-                        <b>Sign in</b>
+                        <h1 class="text-center">Sign in</h1>
                     </h2>
                     <br/>
                     <div class="form-group">

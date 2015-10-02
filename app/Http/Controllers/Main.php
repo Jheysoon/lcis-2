@@ -8,5 +8,8 @@ use App\Http\Controllers\Controller;
 
 class Main extends Controller
 {
-    //
+    function index()
+    {
+        return view('index');
+    }
 }
