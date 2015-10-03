@@ -12,6 +12,7 @@ use DB;
 use App\Api;
 use App\Option;
 use Session;
+use App\Party;
 
 class Main extends Controller
 {
