@@ -13,6 +13,7 @@
                         <h1 class="text-center">Sign in</h1>
                     </h2>
                     <br/>
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                         <div class="col-sm-12">
                             <input type="text" class="form-control floating-label" name="username" id="username" autofocus placeholder="Username" value="" required>

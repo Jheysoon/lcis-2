@@ -11,4 +11,4 @@
 |
 */
 
-Route::get('/', 'Main@index');
+Route::any('/', 'Main@index');

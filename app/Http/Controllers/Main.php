@@ -21,6 +21,11 @@ class Main extends Controller
         {
             return view('index');
         }
+        else
+        {
+            $username = $request->username;
+            $password = $request->password;
+        }
 
     }
 }
