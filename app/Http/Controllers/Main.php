@@ -13,29 +13,37 @@ class Main extends Controller
 {
     function index(Request $request)
     {
-        $validation = Validator::make($request->all(), [
-            'username'  => 'required',
-            'password'  => 'required'
-            ]);
-
-        if($validation->fails())
+        if($request->session()->has('uid'))
         {
-            return view('index');
+            return 'ok';
         }
         else
         {
-            $username   = $request->username;
-            $password   = $request->password;
-            $id         = $this->checkLogin($username, $password);
-            if( is_numeric($id) )
+            // TODO: put it to a function
+            $validation = Validator::make($request->all(), [
+                'username'  => 'required',
+                'password'  => 'required'
+                ]);
+
+            if($validation->fails())
             {
-                $request->session->put('uid', $id);
-                return redirect();
+                return view('index', ['error' => '']);
             }
             else
             {
-                $error = '<div class="alert alert-danger text-center">Authenctication Failed</div>';
-                return view('index', ['error' => $error]);
+                $username   = $request->username;
+                $password   = $request->password;
+                $id         = $this->checkLogin($username, $password);
+                if( is_numeric($id) )
+                {
+                    $request->session()->put('uid', $id);
+                    return redirect();
+                }
+                else
+                {
+                    $error = '<div class="alert alert-danger text-center">Authenctication Failed</div>';
+                    return view('index', ['error' => $error]);
+                }
             }
         }
 
