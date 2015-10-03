@@ -43,7 +43,7 @@ class Main extends Controller
             if( is_numeric($id) )
             {
                 $request->session()->put('uid', $id);
-                return redirect();
+                return redirect('/');
             }
             else
             {
@@ -67,6 +67,6 @@ class Main extends Controller
     function logout(Request $request)
     {
         $request->session()->forget('uid');
-        return redirect();
+        return redirect('/');
     }
 }
