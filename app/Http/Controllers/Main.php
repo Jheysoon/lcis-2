@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Tbl_party;
 use Validator;
 
 class Main extends Controller
@@ -23,9 +24,31 @@ class Main extends Controller
         }
         else
         {
-            $username = $request->username;
-            $password = $request->password;
+            $username   = $request->username;
+            $password   = $request->password;
+            $id         = $this->checkLogin($username, $password);
+            if( is_numeric($id) )
+            {
+                $request->session->put('uid', $id);
+                return redirect();
+            }
+            else
+            {
+                $error = '<div class="alert alert-danger text-center">Authenctication Failed</div>';
+                return view('index', ['error' => $error]);
+            }
         }
 
+    }
+
+    function checkLogin($username, $password)
+    {
+        $u = Tbl_party::where('username', $username)->get();
+        foreach ($u as $user)
+        {
+            if(password_verify($password, $user->password) AND $user->username == $username)
+                return $user->id;
+        }
+        return FALSE;
     }
 }
