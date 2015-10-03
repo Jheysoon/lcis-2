@@ -58,7 +58,7 @@ class Main extends Controller
         $u = User_access::where('username', $username)->get();
         foreach ($u as $user)
         {
-            if(password_verify($password, $user->password))
+            if(password_verify($password, $user->password) AND $username == $user->username)
                 return $user->partyid;
         }
         return FALSE;
