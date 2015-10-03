@@ -14,7 +14,7 @@ class Main extends Controller
     {
         $validation = Validator::make($request->all(), [
             'username'  => 'required',
-            'body'      => 'required'
+            'password'  => 'required'
             ]);
 
         if($validation->fails())
