@@ -4,21 +4,22 @@
           <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1 ">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <div>
-                <img class="img-logo" src="<?php echo asset('assets/images/LC Logo.jpg'); ?>"><h2 class="hd-title"><a class="title" href="/">LEYTE COLLEGES Information System</a></h2>
-              </div>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1 ">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div>
+                    <img class="img-logo" src="<?php echo asset('assets/images/LC Logo.jpg'); ?>">
+                    <h2 class="hd-title"><a class="title" href="/"> &nbsp;LEYTE COLLEGES Information System</a></h2>
+                </div>
             </div>
 
-            <div class="collapse navbar-collapse pull-right">
-              <ul class="nav navbar-nav top-sign navbar-right">
-                <li class="logout"><a href="/logout">Logout</a></li>
-              </ul>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav top-sign navbar-right">
+                    <li class="logout"><a href="/logout">Logout</a></li>
+                </ul>
 
                 <p class="navbar-text top-sign2 navbar-right">SY:&nbsp;&nbsp;&nbsp;&nbsp; Term:</p>
             	<p class="navbar-text top-sign2 navbar-right">Signed in as
@@ -29,11 +30,6 @@
 	            </p>
             </div>
           </div>
-              <div class="collapse navbar-collapse panel menu-hide" id="bs-example-navbar-collapse-1">
-                <div class="visible-xs">
-
-                </div>
-              </div>
         </nav>
 
         <div class="row">
@@ -49,8 +45,7 @@
                                 <span class="glyphicon glyphicon-th-list"></span>&nbsp;
                                 &nbsp;
                                 <?php
-                                    $ii = $option->header;
-                                    $opt = DB::select("SELECT * FROM tbl_option_header WHERE id = $ii");
+                                    $opt = DB::select("SELECT * FROM tbl_option_header WHERE id = $option->header");
                                     echo $opt[0]->name;
                                  ?>
                             </a>
@@ -58,25 +53,14 @@
                                 $o = DB::select("SELECT * FROM tbl_useroption WHERE header = $option->header AND userid = $user");
                                 foreach($o as $oo)
                                 {
-                                    $ooo = DB::select("SELECT * FROM tbl_option WHERE id = $oo->optionid");
-                                    $str = explode('/', $ooo[0]->link);
-                                    $str = '';
-                                    if(count($str) > 1)
-                                    {
-                                        $str = str_replace('/', '-', $ooo->link);
-                                        $str = 'menu/'.$str;
-                                    }
-                                    else
-                                        $str = '';
+                                    $options = App\Option::find($oo->optionid);
                             ?>
                             <ul class="sub-menu">
                                 <li class="li-sub-menu">
-                                    <a class="menu" href="{{ $str }}">
+                                    <a class="menu" href="{{ $options->link }}">
                                         <span class="glyphicon glyphicon-chevron-right"></span>&nbsp;
                                         &nbsp;
-                                        <?php
-                                            echo $ooo[0]->desc;
-                                         ?>
+                                        {{ $options->desc }}
                                     </a>
                                 </li>
                             </ul>

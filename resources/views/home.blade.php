@@ -1,6 +1,6 @@
-@include('includes/header', ['title' => ''])
+@include('includes/header', ['title' => 'LCIS - Home'])
 <body>
-    @include('includes/menu', ['menu' => $menu, 'user' => $user])
+    @include('includes/menu', ['user' => $user])
 
     @include('includes/footer')
 </body>

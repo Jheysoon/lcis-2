@@ -10,6 +10,7 @@ use App\User_access;
 use Validator;
 use DB;
 use App\Api;
+use App\Option;
 
 class Main extends Controller
 {
@@ -19,9 +20,7 @@ class Main extends Controller
         {
             // TODO: get all menus
             $user = $request->session()->get('uid');
-            $api  = new Api();
-            $menu = $api->user_menu($user);
-            return view('home', ['menu' => $menu, 'user' => $user]);
+            return view('home', ['user' => $user,]);
         }
         else
         {
