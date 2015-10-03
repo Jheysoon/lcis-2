@@ -12,3 +12,4 @@
 */
 
 Route::any('/', 'Main@index');
+Route::get('/logout', 'Main@logout');
