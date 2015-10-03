@@ -15,7 +15,8 @@ class Main extends Controller
     {
         if($request->session()->has('uid'))
         {
-            return 'ok';
+            // TODO: get all menus
+            return view('home');
         }
         else
         {
@@ -54,8 +55,8 @@ class Main extends Controller
         $u = User_access::where('username', $username)->get();
         foreach ($u as $user)
         {
-            if(password_verify($password, $user->password) AND $user->username == $username)
-                return $user->id;
+            if(password_verify($password, $user->password))
+                return $user->partyid;
         }
         return FALSE;
     }

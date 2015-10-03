@@ -1,4 +1,4 @@
-@include('includes/header')
+@include('includes/header', ['title' => ''])
 <body>
 
     @include('includes/footer')
