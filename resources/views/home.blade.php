@@ -1,6 +1,6 @@
 @include('includes.header', ['title' => 'LCIS - Home'])
 <body>
-    @include('includes.menu', ['user' => $user])
+    @include('includes.menu')
 
     <?php $user = App\Party::find(Session::get('uid')) ?>
 	<div class="col-md-9 col-md-offset-3">

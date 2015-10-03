@@ -37,34 +37,30 @@
                 <div class="collapse navbar-collapse">
                     <div class="panel-heading"><h2></h2></div>
                     <?php
-                        $menu1 = DB::select("SELECT * FROM tbl_useroption WHERE userid = $user GROUP BY header ORDER BY priors");
+                        $user   = Session::get('uid');
+                        $menu1  = DB::table('tbl_useroption')->where('userid', $user)->groupBy('header')->orderBy('priors')->get();
                      ?>
                     @foreach ($menu1 as $option)
                         <li class="list-group-item">
                             <a class="menu">
                                 <span class="glyphicon glyphicon-th-list"></span>&nbsp;
                                 &nbsp;
-                                <?php
-                                    $opt = DB::select("SELECT * FROM tbl_option_header WHERE id = $option->header");
-                                    echo $opt[0]->name;
-                                 ?>
+                                <?php $opt = DB::table('tbl_option_header')->where('id', $option->header)->first(); ?>
+                                {{ $opt->name }}
                             </a>
-                            <?php
-                                $o = DB::select("SELECT * FROM tbl_useroption WHERE header = $option->header AND userid = $user");
-                                foreach($o as $oo)
-                                {
-                                    $options = App\Option::find($oo->optionid);
-                            ?>
-                            <ul class="sub-menu">
-                                <li class="li-sub-menu">
-                                    <a class="menu" href="{{ $options->link }}">
-                                        <span class="glyphicon glyphicon-chevron-right"></span>&nbsp;
-                                        &nbsp;
-                                        {{ $options->desc }}
-                                    </a>
-                                </li>
-                            </ul>
-                            <?php } ?>
+                            <?php $o = DB::table('tbl_useroption')->where('header', $option->header)->where('userid', $user)->orderBY('optionid', 'ASC')->get(); ?>
+                            @foreach($o as $oo)
+                                <?php $options = App\Option::find($oo->optionid); ?>
+                                <ul class="sub-menu">
+                                    <li class="li-sub-menu">
+                                        <a class="menu" href="{{ $options->link }}">
+                                            <span class="glyphicon glyphicon-chevron-right"></span>&nbsp;
+                                            &nbsp;
+                                            {{ $options->desc }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            @endforeach
                         </li>
                     @endforeach
 

@@ -13,3 +13,4 @@
 
 Route::any('/', 'Main@index');
 Route::get('/logout', 'Main@logout');
+Route::get('/stat','Edp\Stat@index');
