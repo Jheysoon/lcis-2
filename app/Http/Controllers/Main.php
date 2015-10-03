@@ -11,6 +11,7 @@ use Validator;
 use DB;
 use App\Api;
 use App\Option;
+use Session;
 
 class Main extends Controller
 {
@@ -46,7 +47,8 @@ class Main extends Controller
             $id         = $this->checkLogin($username, $password);
             if( is_numeric($id) )
             {
-                $request->session()->put('uid', $id);
+                Session::put('uid', $id);
+                Session::put('username', $username);
                 return redirect('/');
             }
             else
@@ -68,9 +70,9 @@ class Main extends Controller
         return FALSE;
     }
 
-    function logout(Request $request)
+    function logout()
     {
-        $request->session()->forget('uid');
+        Session::forget('uid');
         return redirect('/');
     }
 }

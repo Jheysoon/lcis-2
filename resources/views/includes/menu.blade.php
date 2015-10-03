@@ -1,6 +1,6 @@
 <div class="container-fluid main-body">
     <div class="row">
-        <nav class="navbar navbar-inverse nav-head" role="navigation">
+        <nav class="navbar navbar-default nav-head" role="navigation">
           <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -22,7 +22,7 @@
                 </ul>
 
                 <p class="navbar-text top-sign2 navbar-right">SY:&nbsp;&nbsp;&nbsp;&nbsp; Term:</p>
-            	<p class="navbar-text top-sign2 navbar-right">Signed in as
+            	<p class="navbar-text top-sign2 navbar-right">Signed in as {{ Session::get('username') }}
 	            	<a href="index.php?page=home" class="navbar-link"></a>
 	            </p>
             	<p class="navbar-text navbar-right">
