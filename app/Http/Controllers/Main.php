@@ -6,10 +6,21 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Validator;
+
 class Main extends Controller
 {
-    function index()
+    function index(Request $request)
     {
-        return view('index');
+        $validation = Validator::make($request->all(), [
+            'username'  => 'required',
+            'body'      => 'required'
+            ]);
+
+        if($validation->fails())
+        {
+            return view('index');
+        }
+
     }
 }
