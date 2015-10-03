@@ -63,4 +63,10 @@ class Main extends Controller
         }
         return FALSE;
     }
+
+    function logout(Request $request)
+    {
+        $request->session()->forget('uid');
+        return redirect();
+    }
 }
