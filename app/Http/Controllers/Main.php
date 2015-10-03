@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Tbl_party;
+use App\User_access;
 use Validator;
 
 class Main extends Controller
@@ -51,7 +51,7 @@ class Main extends Controller
 
     function checkLogin($username, $password)
     {
-        $u = Tbl_party::where('username', $username)->get();
+        $u = User_access::where('username', $username)->get();
         foreach ($u as $user)
         {
             if(password_verify($password, $user->password) AND $user->username == $username)
