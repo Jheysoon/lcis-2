@@ -39,7 +39,7 @@ class Main extends Controller
 
         if($validation->fails())
         {
-            return view('index', ['error' => '']);
+            return view('index', ['error' => '', 'username' => '']);
         }
         else
         {
@@ -55,7 +55,7 @@ class Main extends Controller
             else
             {
                 $error = '<div class="alert alert-danger text-center">Authenctication Failed</div>';
-                return view('index', ['error' => $error]);
+                return view('index', ['error' => $error, 'username' => $username]);
             }
         }
     }
