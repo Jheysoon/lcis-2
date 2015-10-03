@@ -20,34 +20,37 @@ class Main extends Controller
         }
         else
         {
-            // TODO: put it to a function
-            $validation = Validator::make($request->all(), [
-                'username'  => 'required',
-                'password'  => 'required'
-                ]);
+            return $this->login($request);
+        }
+    }
 
-            if($validation->fails())
+    function login($request)
+    {
+        $validation = Validator::make($request->all(), [
+            'username'  => 'required',
+            'password'  => 'required'
+            ]);
+
+        if($validation->fails())
+        {
+            return view('index', ['error' => '']);
+        }
+        else
+        {
+            $username   = $request->username;
+            $password   = $request->password;
+            $id         = $this->checkLogin($username, $password);
+            if( is_numeric($id) )
             {
-                return view('index', ['error' => '']);
+                $request->session()->put('uid', $id);
+                return redirect();
             }
             else
             {
-                $username   = $request->username;
-                $password   = $request->password;
-                $id         = $this->checkLogin($username, $password);
-                if( is_numeric($id) )
-                {
-                    $request->session()->put('uid', $id);
-                    return redirect();
-                }
-                else
-                {
-                    $error = '<div class="alert alert-danger text-center">Authenctication Failed</div>';
-                    return view('index', ['error' => $error]);
-                }
+                $error = '<div class="alert alert-danger text-center">Authenctication Failed</div>';
+                return view('index', ['error' => $error]);
             }
         }
-
     }
 
     function checkLogin($username, $password)
