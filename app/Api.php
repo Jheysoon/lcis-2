@@ -143,15 +143,15 @@ class Api
         $to_compare 	= strtotime($to_compare);
         $intersect 		= min($to, $to_compare) - max($from, $from_compare);
 
-            if ( $intersect < 0 ) $intersect = 0;
-            $overlap = $intersect / 3600;
-            if ( $overlap <= 0 ):
-                // There are no time conflicts
-                return FALSE;
-                else:
-                // There is a time conflict
-                // echo '<p>There is a time conflict where the times overlap by ' , $overlap , ' hours.</p>';
-                return TRUE;
-            endif;
+        if ( $intersect < 0 ) $intersect = 0;
+        $overlap = $intersect / 3600;
+        if ( $overlap <= 0 ):
+            // There are no time conflicts
+            return FALSE;
+            else:
+            // There is a time conflict
+            // echo '<p>There is a time conflict where the times overlap by ' , $overlap , ' hours.</p>';
+            return TRUE;
+        endif;
     }
 }
