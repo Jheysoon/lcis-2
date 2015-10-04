@@ -48,8 +48,15 @@ class Main extends Controller
             $id         = $this->checkLogin($username, $password);
             if( is_numeric($id) )
             {
-                Session::put('uid', $id);
-                Session::put('username', $username);
+                $api        = new Api();
+                $system     = $api->systemValue();
+                $current_sy = $api->get_academicterm($system->currentacademicterm);
+                $data = ['uid'          => $id,
+                         'username'     => $username,
+                         'current_sy'   => $current_sy->systart.'-'.$current_sy->syend,
+                         'term'         => $current_sy->term
+                ];
+                Session::put($data);
                 return redirect('/');
             }
             else
@@ -73,7 +80,7 @@ class Main extends Controller
 
     function logout()
     {
-        Session::forget('uid');
+        Session::flush();
         return redirect('/');
     }
 }

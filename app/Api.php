@@ -12,6 +12,11 @@ class Api
         return DB::table('tbl_systemvalues')->first();
     }
 
+    function get_academicterm($id)
+    {
+        return DB::table('tbl_academicterm')->where('id', $id)->first();
+    }
+
     function yearLevel($partyid)
     {
         $system     = $this->systemValue();

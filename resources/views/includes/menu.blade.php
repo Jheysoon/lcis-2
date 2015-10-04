@@ -21,7 +21,7 @@
                     <li class="logout"><a href="/logout">Logout</a></li>
                 </ul>
 
-                <p class="navbar-text top-sign2 navbar-right">SY:&nbsp;&nbsp;&nbsp;&nbsp; Term:</p>
+                <p class="navbar-text top-sign2 navbar-right">SY:{{ Session::get('current_sy') }}&nbsp;&nbsp;&nbsp;&nbsp; Term: {{ Session::get('term') }}</p>
             	<p class="navbar-text top-sign2 navbar-right">Signed in as {{ Session::get('username') }}
 	            	<a href="index.php?page=home" class="navbar-link"></a>
 	            </p>
