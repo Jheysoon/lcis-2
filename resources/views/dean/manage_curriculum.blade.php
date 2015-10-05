@@ -56,6 +56,31 @@
         			    <button type="submit" class="btn btn-primary btn-raised pull-right">Save</button>
         			</div>
                 </form>
+
+                <strong class="strong">LIST OF Curriculum</strong>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <tr>
+    						<th>Course</th>
+    						<th class="text-center">Remarks</th>
+    						<th class="text-center">Effective Year</th>
+    						<th class="text-center">Action</th>
+    					</tr>
+                        @foreach($cur as $curriculum)
+                        <tr>
+                            <td> {{ $curriculum->c_description }} </td>
+                            <td class="text-center"> {{ $curriculum->cur_description }} </td>
+                            <td class="text-center">
+                                <?php $c = App\Academicterm::find($curriculum->cur_academicterm) ?>
+                                {{ $c->systart.'-'.$c->syend }}
+                            </td>
+                            <td>
+                                <a href="/view_curriculum/{{ $curriculum->cur_id }}" class="btn btn-primary btn-raised btn-xs btn-block">View Curriculum</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </table>
+                </div>
             </div>
         </div>
     </div>
