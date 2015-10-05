@@ -10,5 +10,4 @@ class User_access extends Model
     protected $table = 'tbl_useraccess';
 
     public $timestamps = false;
-    
 }
