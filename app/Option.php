@@ -8,4 +8,6 @@ class Option extends Model
 {
     //
     protected $table = 'tbl_option';
+
+    public $timestamps = false;
 }

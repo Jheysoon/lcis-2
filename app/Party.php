@@ -8,4 +8,6 @@ class Party extends Model
 {
     //
     protected $table = 'tbl_party';
+
+    public $timestamps = false;
 }
