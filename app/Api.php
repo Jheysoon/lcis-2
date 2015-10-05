@@ -4,6 +4,7 @@ namespace App;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
+use Session;
 
 class Api
 {
@@ -15,6 +16,22 @@ class Api
     function get_academicterm($id)
     {
         return DB::table('tbl_academicterm')->where('id', $id)->first();
+    }
+
+    function get_college()
+    {
+        $o      = DB::table('tbl_academic')->where('id', Session::get('uid'));
+        if($o->count() > 0)
+        {
+            $own = $i->first();
+            return $own->college;
+        }
+        else
+        {
+            $a      = DB::table('tbl_administration')->where('id', Session::get('uid'))->first();
+            $ofs    = DB::table('tbl_office')->where('id', $a->office)->first();
+            return $ofs->college;
+        }
     }
 
     function yearLevel($partyid)

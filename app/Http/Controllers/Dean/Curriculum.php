@@ -20,18 +20,8 @@ class Curriculum extends Controller
     {
         $c      = DB::table('tbl_coursemajor')->get();
         $acam   = Academicterm::all();
-        $o      = DB::table('tbl_academic')->where('id', Session::get('uid'));
-        if($o->count() > 0)
-        {
-            $own = $i->first();
-            $owner = $own->college;
-        }
-        else
-        {
-            $a      = DB::table('tbl_administration')->where('id', Session::get('uid'))->first();
-            $ofs    = DB::table('tbl_office')->where('id', $a->office)->first();
-            $owner  = $ofs->college;
-        }
+        $api    = new Api();
+        $owner  = $api->get_college();
         $cur    = DB::select("SELECT a.id as cur_id, a.description as cur_description, a.academicterm as cur_academicterm,
                 b.description as c_description
                 FROM tbl_curriculum a, tbl_course b, tbl_coursemajor c
