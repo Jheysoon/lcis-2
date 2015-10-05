@@ -17,6 +17,8 @@ class Curriculum extends Controller
 {
     function manage_curriculum()
     {
-        return view('dean.manage_curriculum');
+        $c = DB::table('tbl_coursemajor')->get();
+        $acam = App\Academicterm::all();
+        return view('dean.manage_curriculum', ['c' => $c, 'acam' => $acam]);
     }
 }

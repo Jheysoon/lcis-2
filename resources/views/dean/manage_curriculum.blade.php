@@ -15,7 +15,6 @@
                         <label class="lbl-data">EFFECTIVE SCHOOLAR YEAR</label>
                         <select class="form-control" name="acad_id">
                             <option value="0">Select Effectivity</option>
-                                <?php $acam = App\Academicterm::all() ?>
                                 @foreach($acam as $academic)
                                 <option value="{{ $academic->id }}">{{ $academic->systart.'-'.$academic->syend }}</option>
                                 @endforeach
@@ -29,7 +28,6 @@
                         <label class="lbl-data">COURSE</label>
         				<select class="form-control" name = "coursemajor">
         				    <option value="0">Select Course</option>
-                            <?php $c = DB::table('tbl_coursemajor')->get() ?>
                             @foreach($c as $coursemajor)
                                 <?php
                                     $course = DB::table('tbl_course')->where('id', $coursemajor->course)->first();
