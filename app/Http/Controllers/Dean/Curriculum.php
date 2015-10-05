@@ -7,7 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Session;
-use App\Api;
+use App\Library\Api;
 use App\Option;
 use App\Party;
 use App\User_access;
@@ -20,8 +20,7 @@ class Curriculum extends Controller
     {
         $c      = DB::table('tbl_coursemajor')->get();
         $acam   = Academicterm::all();
-        $api    = new Api();
-        $owner  = $api->get_college();
+        $owner  = Api::get_college();
         $cur    = DB::select("SELECT a.id as cur_id, a.description as cur_description, a.academicterm as cur_academicterm,
                 b.description as c_description
                 FROM tbl_curriculum a, tbl_course b, tbl_coursemajor c

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Edp;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Api;
+use App\Library\Api;
 
 class Stat extends Controller
 {

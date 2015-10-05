@@ -1,5 +1,5 @@
 <?php
-namespace App;
+namespace App\Library;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -18,7 +18,7 @@ class Api
         return DB::table('tbl_academicterm')->where('id', $id)->first();
     }
 
-    function get_college()
+    public static function get_college()
     {
         $o      = DB::table('tbl_academic')->where('id', Session::get('uid'));
         if($o->count() > 0)
