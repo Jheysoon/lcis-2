@@ -34,7 +34,7 @@ class Api
         }
     }
 
-    function yearLevel($partyid)
+    public static function yearLevel($partyid)
     {
         $system     = $this->systemValue();
         $sy         = $system->nextacademicterm;
@@ -152,7 +152,7 @@ class Api
 
 	//$from = 1:00,	$from_compare 	= 2:00
 	//$to 	= 3:00,	$to_compare 	= 5:00
-    function intersectCheck($from, $from_compare, $to, $to_compare)
+    public static function intersectCheck($from, $from_compare, $to, $to_compare)
 	{
         $from 			= strtotime($from);
         $from_compare 	= strtotime($from_compare);
