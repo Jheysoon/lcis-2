@@ -20,7 +20,6 @@ class Main extends Controller
     {
         if($request->session()->has('uid'))
         {
-            // TODO: get all menus
             $user = $request->session()->get('uid');
             return view('home', ['user' => $user,]);
         }
