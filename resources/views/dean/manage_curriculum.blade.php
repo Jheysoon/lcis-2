@@ -1,14 +1,17 @@
-@include('includes.header', ['title' => 'Manage Curriculum'])
-<body>
-    @include('includes.menu')
+@extends('master')
 
+@section('title')
+    Manage Curriculum
+@stop
+
+@section('body')
     <div class="col-md-9 col-md-offset-3 body-container">
         <div class="panel panel-success p-body">
             <div class="panel-heading search">
-    			<div class="col-md-6">
-    			    <h4>System Parameter: Add Subject To Curriculum</h4>
-    			</div>
-    		</div>
+                <div class="col-md-6">
+                    <h4>System Parameter: Add Subject To Curriculum</h4>
+                </div>
+            </div>
             <div class="panel-body">
                 <form action="/insert_cur" method="post">
                     <div class="col-md-6">
@@ -21,13 +24,13 @@
                         </select>
                     </div>
                     <div class="col-md-6 ">
-        				<label class="lbl-data">REMARKS</label>
-        				<input class="form-control" type="text" name="remarks" value="">
-        			</div>
+                        <label class="lbl-data">REMARKS</label>
+                        <input class="form-control" type="text" name="remarks" value="">
+                    </div>
                     <div class="col-md-6">
                         <label class="lbl-data">COURSE</label>
-        				<select class="form-control" name = "coursemajor">
-        				    <option value="0">Select Course</option>
+                        <select class="form-control" name = "coursemajor">
+                            <option value="0">Select Course</option>
                             @foreach($c as $coursemajor)
                                 <?php
                                     $course = DB::table('tbl_course')->where('id', $coursemajor->course)->first();
@@ -43,29 +46,29 @@
                         </select>
                     </div>
                     <div class="col-md-6 ">
-        				<label class="lbl-data">Year Level</label>
-        				<select class="form-control" name="yearlevel">
-    						<option value="0">Select Year Level</option>
+                        <label class="lbl-data">Year Level</label>
+                        <select class="form-control" name="yearlevel">
+                            <option value="0">Select Year Level</option>
                             @for( $i = 1; $i < 6; $i++)
                             <option value="{{ $i }}">{{ $i }}</option>
                             @endfor
-        				</select>
-        			</div>
+                        </select>
+                    </div>
                     <div class="col-md-12">
-        			    <br/>
-        			    <button type="submit" class="btn btn-primary btn-raised pull-right">Save</button>
-        			</div>
+                        <br/>
+                        <button type="submit" class="btn btn-primary btn-raised pull-right">Save</button>
+                    </div>
                 </form>
 
                 <strong class="strong">LIST OF Curriculum</strong>
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover">
                         <tr>
-    						<th>Course</th>
-    						<th class="text-center">Remarks</th>
-    						<th class="text-center">Effective Year</th>
-    						<th class="text-center">Action</th>
-    					</tr>
+                            <th>Course</th>
+                            <th class="text-center">Remarks</th>
+                            <th class="text-center">Effective Year</th>
+                            <th class="text-center">Action</th>
+                        </tr>
                         @foreach($cur as $curriculum)
                         <tr>
                             <td> {{ $curriculum->c_description }} </td>
@@ -84,7 +87,4 @@
             </div>
         </div>
     </div>
-
-    @include('includes.footer')
-</body>
-</html>
+@stop
