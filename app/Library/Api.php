@@ -8,7 +8,7 @@ use Session;
 
 class Api
 {
-    function systemValue()
+    public static function systemValue()
     {
         return DB::table('tbl_systemvalues')->first();
     }

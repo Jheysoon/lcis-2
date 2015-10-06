@@ -47,8 +47,7 @@ class Main extends Controller
             $id         = $this->checkLogin($username, $password);
             if( is_numeric($id) )
             {
-                $api        = new Api();
-                $system     = $api->systemValue();
+                $system     = App::systemValue();
                 $current_sy = $api->get_academicterm($system->currentacademicterm);
                 $data = ['uid'          => $id,
                          'username'     => $username,
