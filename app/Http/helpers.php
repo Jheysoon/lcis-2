@@ -44,7 +44,7 @@ if ( ! function_exists('set_select'))
 // for testing
 if ( ! function_exists('set_checkbox'))
 {
-	function set_select($field, $value = '', $default = FALSE)
+	function set_checkbox($field, $value = '', $default = FALSE)
 	{
         $input = \Request::get($field);
 		if ($input === NULL)
