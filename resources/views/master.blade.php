@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="<?php echo asset('assets/css/bootstrap.css') ?>">
         <link rel="stylesheet" href="<?php echo asset('assets/css/material.css') ?>">
         <link rel="stylesheet" href="<?php echo asset('assets/css/style.css') ?>">
+        <link rel="shortcut icon" type="image/jpg" href="<?php echo asset('assets/images/LC logo.jpg'); ?>">
         @yield('header')
     </head>
     <body>
