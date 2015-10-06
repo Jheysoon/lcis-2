@@ -13,6 +13,7 @@ use App\Library\Api;
 use App\Option;
 use Session;
 use App\Party;
+use App\Academicterm;
 
 class Main extends Controller
 {
@@ -47,8 +48,8 @@ class Main extends Controller
             $id         = $this->checkLogin($username, $password);
             if( is_numeric($id) )
             {
-                $system     = App::systemValue();
-                $current_sy = $api->get_academicterm($system->currentacademicterm);
+                $system     = Api::systemValue();
+                $current_sy = Academicterm::find($system->currentacademicterm);
                 $data = ['uid'          => $id,
                          'username'     => $username,
                          'current_sy'   => $current_sy->systart.'-'.$current_sy->syend,
