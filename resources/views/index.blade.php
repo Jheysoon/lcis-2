@@ -1,4 +1,4 @@
-@extends('master')
+@extends('simple')
 
 @section('title')
     Login
