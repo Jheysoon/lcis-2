@@ -13,6 +13,7 @@ use App\Party;
 use App\User_access;
 use App\Academicterm;
 use DB;
+use App\Subject;
 
 class Curriculum extends Controller
 {
@@ -36,8 +37,19 @@ class Curriculum extends Controller
         $cur_detail = DB::table('tbl_curriculumdetail')
                         ->where('curriculum', $id)
                         ->orderBy('yearlevel', 'ASC')
-                        ->orderBy('term', 'ASC')->get();
+                        ->orderBy('term', 'ASC')
+                        ->groupBy('yearlevel')
+                        ->groupBy('term')->get();
         $cur        = DB::table('tbl_curriculum')->where('id', $id)->first();
-        return view('dean.view_curriculum', compact('get_cur', 'cur_detail', 'cur', 'id'));
+        $cm         = DB::table('tbl_coursemajor')->where('id', $cur->coursemajor)->first();
+        $c          = DB::table('tbl_course')->where('id', $cm->course)->first();
+        $m          = '';
+        if($cm->major != 0)
+        {
+            $m      = DB::table('tbl_major')->where('id', $cm->major)->first();
+            $major  = $m->description;
+        }
+        $course = $c->description.' '.$m;
+        return view('dean.view_curriculum', compact('get_cur', 'cur_detail', 'cur', 'id', 'course'));
     }
 }

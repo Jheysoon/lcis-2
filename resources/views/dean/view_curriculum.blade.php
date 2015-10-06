@@ -59,15 +59,41 @@
                     <table class="table table-bordered no-space">
                         <tr>
                             <th>Course</th>
-                            <th></th>
+                            <th>{{ $course }}</th>
                             <th>Effectivity</th>
-                            <th colspan="2">
-
+                            <th colspan="2" class="text-center">
+                                <?php $acam = App\Academicterm::find($cur->academicterm) ?>
+                                {{ $acam->systart.'-'.$acam->syend }}
                             </th>
                         </tr>
-                        <tr>
-                            <td class="tbl-header-main" colspan="5">Year Level : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Term : </td>
-                        </tr>
+                        @foreach($cur_detail as $curriculum_detail)
+                            <tr>
+                                <td class="tbl-header-main" colspan="5">Year Level : {{ $curriculum_detail->yearlevel }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Term : {{ $curriculum_detail->term }}</td>
+                            </tr>
+                            <tr>
+                                <td class="tbl-header">Code</td>
+                                <td class="tbl-header">Descriptive Title</td>
+                                <td class="tbl-header" colspan="2">Units</th>
+                                <td class="tbl-header">Action</th>
+                        	</tr>
+                            <?php $cur_d = DB::table('tbl_curriculumdetail')->whereCurriculumAndYearlevelAndTerm($id, $curriculum_detail->yearlevel, $curriculum_detail->term )->get() ?>
+                            @foreach($cur_d as $detail)
+                                <?php $subject1 = App\Subject::where('id', $detail->subject); ?>
+                                @if($subject1->count() > 0)
+                                    <?php $subject = $subject1->first() ?>
+                                    <tr>
+                                        <td>{{ $subject->code }}</td>
+                                        <td>{{ $subject->descriptivetitle }}</td>
+                                        <td colspan="2">{{ $subject->units }}</td>
+                                        <td>
+                                            <a class="a-table label label-danger" href="/lc_curriculum/deletesub/" onclick="return confirm('Are you sure?')">Delete<span class="glyphicon glyphicon-trash"></span></a>
+                                            <a class="a-table label label-info" href="/dean/ident_subj/" target="_blank">Edit/View<span class="glyphicon glyphicon-pen"></span></a>
+                                            <a class="a-table label label-info" href="/menu/dean-subject_list" target="_blank">Add<span class="glyphicon glyphicon-pen"></span></a>
+                                        </td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                        @endforeach
                     </table>
                 </div>
             </div>
