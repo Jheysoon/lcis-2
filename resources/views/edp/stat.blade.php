@@ -1,7 +1,9 @@
-@include('includes.header', ['title' => 'Student Statistics'])
-<body>
-    @include('includes.menu')
-    
-    @include('includes.footer')
-</body>
-</html>
+@extends('master')
+
+@section('title')
+    Student Statistics
+@stop
+
+@section('body')
+
+@stop
