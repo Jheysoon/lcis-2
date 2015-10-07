@@ -48,7 +48,7 @@
         					</select>
         				</div>
                         </br />
-                        <button type="submit" class="btn btn-primary pull-right">Save</button>
+                        <button type="submit" class="btn btn-primary pull-right btn-raised">Save</button>
                     </div>
                 </div>
             </form>
@@ -86,9 +86,7 @@
                                         <td>{{ $subject->descriptivetitle }}</td>
                                         <td colspan="2">{{ $subject->units }}</td>
                                         <td>
-                                            <a class="a-table label label-danger" href="/delete_curriculum/{{ $curriculum_detail->id }}" onclick="return confirm('Are you sure?')">Delete<span class="glyphicon glyphicon-trash"></span></a>
-                                            <a class="a-table label label-info" href="/dean/ident_subj/" target="_blank">Edit/View<span class="glyphicon glyphicon-pen"></span></a>
-                                            <a class="a-table label label-info" href="/menu/dean-subject_list" target="_blank">Add<span class="glyphicon glyphicon-pen"></span></a>
+                                            <a class="a-table label label-danger" href="/delete_curriculum/{{ $curriculum_detail->id }}" onclick="return confirm('Are you sure?')">Delete &nbsp;<span class="glyphicon glyphicon-trash"></span></a>
                                         </td>
                                     </tr>
                                 @endif
