@@ -85,8 +85,8 @@ class Curriculum extends Controller
 
     function delete($id)
     {
-        DB::table('tbl_curriculumdetail')->where('curriculum', $id)->destroy();
-        DB::table('tbl_curriculum')->where('id', $id)->destroy();
+        DB::table('tbl_curriculumdetail')->where('curriculum', $id)->delete();
+        DB::table('tbl_curriculum')->where('id', $id)->delete();
         return back();
     }
 }
