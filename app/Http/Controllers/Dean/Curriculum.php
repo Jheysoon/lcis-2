@@ -82,4 +82,11 @@ class Curriculum extends Controller
             return back()->with('message', '<div class="alert alert-success">Successfully Added</div>');
         }
     }
+
+    function delete($id)
+    {
+        DB::table('tbl_curriculumdetail')->where('curriculum', $id)->destroy();
+        DB::table('tbl_curriculum')->where('id', $id)->destroy();
+        return back();
+    }
 }

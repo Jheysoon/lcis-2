@@ -78,7 +78,8 @@
                                 {{ $c->systart.'-'.$c->syend }}
                             </td>
                             <td>
-                                <a href="/view_curriculum/{{ $curriculum->cur_id }}" class="btn btn-primary btn-raised btn-xs">View Curriculum</a>
+                                <a href="/view_curriculum/{{ $curriculum->cur_id }}" class="label label-primary">View Curriculum</a>
+                                <a href="/delete_curriculum/{{ $curriculum->cur_id }}" onclick="return confirm('Are you sure you want to delete ?')" class="label label-danger">Delete Curriculum</a>
                             </td>
                         </tr>
                         @endforeach

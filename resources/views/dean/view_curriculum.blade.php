@@ -88,7 +88,7 @@
                                         <td>{{ $subject->descriptivetitle }}</td>
                                         <td colspan="2">{{ $subject->units }}</td>
                                         <td>
-                                            <a class="a-table label label-danger" href="/delete_curriculum/{{ $curriculum_detail->id }}" onclick="return confirm('Are you sure?')">Delete &nbsp;<span class="glyphicon glyphicon-trash"></span></a>
+                                            <a class="a-table label label-danger" href="/delete_subject_cur/{{ $curriculum_detail->id }}" onclick="return confirm('Are you sure?')">Delete &nbsp;<span class="glyphicon glyphicon-trash"></span></a>
                                         </td>
                                     </tr>
                                 @endif
