@@ -52,4 +52,11 @@ class Curriculum extends Controller
         $course = $c->description.' '.$m;
         return view('dean.view_curriculum', compact('get_cur', 'cur_detail', 'cur', 'id', 'course'));
     }
+
+    // delete a subject in curriculum
+    function destroy($id)
+    {
+        DB::table('tbl_curriculumdetail')->where('id', $id)->delete();
+        return back();
+    }
 }
