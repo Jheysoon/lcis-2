@@ -53,7 +53,7 @@
                                 <?php $options = App\Option::find($oo->optionid); ?>
                                 <ul class="sub-menu">
                                     <li class="li-sub-menu">
-                                        <a class="menu" href="{{ $options->link }}">
+                                        <a class="menu" href="{{ url($options->link) }}">
                                             <span class="glyphicon glyphicon-chevron-right"></span>&nbsp;
                                             &nbsp;
                                             {{ $options->desc }}
