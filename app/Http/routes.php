@@ -18,3 +18,4 @@ Route::get('/stat','Edp\Stat@index');
 Route::get('manage_curriculum', 'Dean\Curriculum@manage_curriculum');
 Route::get('view_curriculum/{id}', 'Dean\Curriculum@view_curriculum');
 Route::get('delete_curriculum/{id}', 'Dean\Curriculum@destroy');
+Route::post('curriculum/insert_subject', 'Dean\Curriculum@insert');

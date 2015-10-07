@@ -13,15 +13,17 @@
     				<h4>System Parameter: Add Subject To Curriculum</h4>
     			</div>
     		</div>
-            <form action="/insert_subject" method="post">
+            {{ $message or '' }}
+            <form action="/curriculum/insert_subject" method="post">
                 <div class="panel-body">
                     <div class="col-md-6 col-md-offset-3">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="cur_id" value="{{ $id }}">
 
                         <div class="col-md-12 ">
         					<label class="lbl-data">Subject</label>
-        					<select class="form-control" name="subid">
-        						<option value="0">Select Subject</option>
+        					<select class="form-control" name="subid" required>
+        						<option value="">Select Subject</option>
                                 @foreach($get_cur as $subject)
                                     <option value="{{ $subject->id }}">{{ $subject->code.' '.$subject->descriptivetitle }}</option>
                                 @endforeach
@@ -30,8 +32,8 @@
 
                         <div class="col-md-12 ">
         					<label class="lbl-data">Year Level</label>
-        					<select class="form-control" name = "yearlevel">
-        					<option value="0">Select Year Level</option>
+        					<select class="form-control" name = "yearlevel" required>
+        					<option value="">Select Year Level</option>
                             @for( $i = 1; $i <= 5; $i++)
                                 <option value="{{ $i }}">{{ $i }}</option>
                             @endfor
@@ -40,8 +42,8 @@
 
                         <div class="col-md-12 ">
         					<label class="lbl-data">Term</label>
-        					<select class="form-control" name = "term">
-        					<option value="0" selected>Select Term</option>
+        					<select class="form-control" name = "term" required>
+        					<option value="" selected>Select Term</option>
                             @for( $i = 1; $i <= 3; $i++)
                                 <option value="{{ $i }}">{{ $i == 3 ? 'Summer' : $i }}</option>
                             @endfor

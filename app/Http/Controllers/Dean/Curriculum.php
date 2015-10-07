@@ -14,6 +14,7 @@ use App\User_access;
 use App\Academicterm;
 use DB;
 use App\Subject;
+use Validator;
 
 class Curriculum extends Controller
 {
@@ -58,5 +59,27 @@ class Curriculum extends Controller
     {
         DB::table('tbl_curriculumdetail')->where('id', $id)->delete();
         return back();
+    }
+
+    function insert(Request $request)
+    {
+        $validation = Validator::make($request->all(), [
+            'subid'         => 'required',
+            'yearlevel'     => 'required',
+            'term'          => 'required'
+            ]);
+        if($validation->fails())
+        {
+            return back()->with('message', '<div class="alert alert-danger">All Fields Are Required</div>');
+        }
+        else
+        {
+            $data['curriculum'] = $request->cur_id;
+            $data['subject']    = $request->subid;
+            $data['yearlevel']  = $request->yearlevel;
+            $data['term']       = $request->term;
+            DB::table('curriculumdetail')->insert($data);
+            return back()->with('message', '<div class="alert alert-success">Successfully Added</div>');
+        }
     }
 }

@@ -7,7 +7,7 @@
 @section('body')
     <?php $user = App\Party::find(Session::get('uid')) ?>
     <div class="col-md-9 col-md-offset-3">
-        <div class="panel panel-success">
+        <div class="panel">
             <div class="panel-heading"><h4>Personal Information</h4></div>
             <div class="panel-body">
                 <div class="col-md-12 pic-con">
