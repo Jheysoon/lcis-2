@@ -6,7 +6,7 @@
 
 @section('body')
     <div class="col-md-9 col-md-offset-3 body-container">
-        <div class="panel p-body">
+        <div class="panel panel-success p-body">
             <div class="panel-heading search">
                 <div class="col-md-6">
                     <h4>System Parameter: Add Subject To Curriculum</h4>
@@ -78,7 +78,7 @@
                                 {{ $c->systart.'-'.$c->syend }}
                             </td>
                             <td>
-                                <a href="/view_curriculum/{{ $curriculum->cur_id }}" class="btn btn-primary btn-raised btn-xs btn-block">View Curriculum</a>
+                                <a href="/view_curriculum/{{ $curriculum->cur_id }}" class="btn btn-primary btn-raised btn-xs">View Curriculum</a>
                             </td>
                         </tr>
                         @endforeach
