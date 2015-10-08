@@ -11,6 +11,7 @@ class Stat extends Controller
 {
     function index()
     {
-        return view('edp.stat');
+        $nxt = Api::systemValue();
+        return view('edp.stat', ['nxt' => $nxt]);
     }
 }
