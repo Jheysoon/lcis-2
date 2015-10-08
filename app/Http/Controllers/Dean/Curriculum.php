@@ -70,7 +70,7 @@ class Curriculum extends Controller
             ]);
         if($validation->fails())
         {
-            return back()->with('message', '<div class="alert alert-danger">All Fields Are Required</div>');
+            Session::flash('message', '<div class="alert alert-danger">All Fields Are Required</div>');
         }
         else
         {
@@ -79,8 +79,9 @@ class Curriculum extends Controller
             $data['yearlevel']  = $request->yearlevel;
             $data['term']       = $request->term;
             DB::table('curriculumdetail')->insert($data);
-            return back()->with('message', '<div class="alert alert-success">Successfully Added</div>');
+            Session::flash('message', '<div class="alert alert-success">Successfully Added</div>');
         }
+        return back();
     }
 
     function delete($id)
