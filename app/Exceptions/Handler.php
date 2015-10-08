@@ -48,4 +48,22 @@ class Handler extends ExceptionHandler
 
         return parent::render($request, $e);
     }
+
+    /**
+     * Render the given HttpException.
+     *
+     * @param  \Symfony\Component\HttpKernel\Exception\HttpException  $e
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function renderHttpException(HttpException $e)
+    {
+        if (view()->exists('errors.'.$e->getStatusCode()))
+        {
+            return response()->view('errors.'.$e->getStatusCode(), [], $e->getStatusCode());
+        }
+        else
+        {
+            return (new SymfonyDisplayer(config('app.debug')))->createResponse($e);
+        }
+    }
 }
