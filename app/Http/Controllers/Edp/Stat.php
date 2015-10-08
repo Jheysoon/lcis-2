@@ -9,9 +9,15 @@ use App\Library\Api;
 
 class Stat extends Controller
 {
+    public $system_value;
+
+    function __construct()
+    {
+        $this->system_value = Api::systemValue();
+    }
+
     function index()
     {
-        $nxt = Api::systemValue();
-        return view('edp.stat', ['nxt' => $nxt]);
+        return view('edp.stat', ['nxt' => $this->system_value]);
     }
 }
