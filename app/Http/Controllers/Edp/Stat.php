@@ -11,7 +11,6 @@ class Stat extends Controller
 {
     function index()
     {
-        $api = new Api();
-        return view('edp.stat', ['api' => $api]);
+        return view('edp.stat');
     }
 }
