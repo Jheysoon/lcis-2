@@ -89,4 +89,33 @@ class Curriculum extends Controller
         DB::table('tbl_curriculum')->where('id', $id)->delete();
         return back();
     }
+
+    function copy(Request $request)
+    {
+        // academicterm must be not equal from the source
+        $past_cur = DB::table('tbl_curriculum')->where('id', $request->curriculum_id)->first();
+        if($past_cur->academicterm == $request->sy_id)
+        {
+            Session::flash('message', '<div class="alert alert-danger">The Same Academicterm</div>');
+        }
+        else
+        {
+            $cur['coursemajor']     = $past_cur->coursemajor;
+            $cur['academicterm']    = $past_cur->academicterm;
+            $cur['yearlevel']       = $past_cur->yearlevel;
+            $cur['description']     = $past_cur->description;
+            $id                     = DB::table('tbl_curriculum')->insertGetId($cur);
+            $past_detail            = DB::table('tbl_curriculumdetail')->where('curriculum', $request->curriculum_id)
+                                    ->orderBy('yearlevel')->orderBy('term')->get();
+            foreach($past_detail as $detail)
+            {
+                $data['curriculum'] = $id;
+                $data['subject']    = $detail->subject;
+                $data['term']       = $detail->term;
+                $data['yearlevel']  = $detail->yearlevel;
+                DB::table('tbl_curriculumdetail')->insert($data);
+            }
+        }
+        return back();
+    }
 }

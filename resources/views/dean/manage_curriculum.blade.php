@@ -80,6 +80,7 @@
                             <td>
                                 <a href="/view_curriculum/{{ $curriculum->cur_id }}" class="label label-primary">View Curriculum</a>
                                 <a href="/delete_cur/{{ $curriculum->cur_id }}" onclick="return confirm('Are you sure you want to delete ?')" class="label label-danger">Delete Curriculum</a>
+                                <a href="/copy" data-curriculum="{{ $curriculum->cur_id }}" class="copy_cur label label-primary">Copy Curriculum</a>
                             </td>
                         </tr>
                         @endforeach
@@ -88,4 +89,43 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title" id="myModalLabel">Copy Curriculum</h3>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ url('copy_curriculum') }}" method="post">
+                        <input type="hidden" name="curriculum_id" value="">
+                        <label>Copy To : </label>
+                        <select class="form-control" name="sy_id">
+                            <?php $acam = App\Academicterm::all() ?>
+                            @foreach($acam as $ac)
+                                <option value="{{ $ac->id }}">{{ $ac->systart.'-'.$ac->syend }}</option>
+                            @endforeach
+                        </select>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
+
+@section('footer')
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.copy_cur').click(function(e) {
+                $('input[name=curriculum_id]').val($(this).data('curriculum'));
+                $('#myModal').modal();
+                e.preventDefault();
+            });
+        });
+    </script>
+@endsection

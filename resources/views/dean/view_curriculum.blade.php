@@ -13,7 +13,9 @@
     				<h4>System Parameter: Add Subject To Curriculum</h4>
     			</div>
     		</div>
-            {{ $message or '' }}
+            @if(Session::has('message'))
+                {{ Session::get('message') }}
+            @endif
             <form action="/curriculum/insert_subject" method="post">
                 <div class="panel-body">
                     <div class="col-md-6 col-md-offset-3">
