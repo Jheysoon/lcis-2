@@ -21,3 +21,5 @@ Route::get('delete_subject_cur/{id}', 'Dean\Curriculum@destroy');
 Route::post('curriculum/insert_subject', 'Dean\Curriculum@insert');
 Route::get('delete_cur/{id}', 'Dean\Curriculum@delete');
 Route::post('copy_curriculum', 'Dean\Curriculum@copy');
+
+Route::post('load_stat', 'Edp\Stat@load_stat');

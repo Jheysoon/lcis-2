@@ -8,6 +8,6 @@ class Academicterm extends Model
 {
     //
     protected $table = 'tbl_academicterm';
-    
+
     public $timestamps = false;
 }

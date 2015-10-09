@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Edp;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
 use App\Library\Api;
+use App\Academicterm;
 
 class Stat extends Controller
 {
@@ -19,5 +21,14 @@ class Stat extends Controller
     function index()
     {
         return view('edp.stat', ['nxt' => $this->system_value]);
+    }
+
+    function load_stat()
+    {
+        if ($this->system_value->phase == env('FIN')) {
+            echo view('edp.ajax.student_count', ['system' => $this->system]);
+        } else {
+            echo 'Not final';
+        }
     }
 }
