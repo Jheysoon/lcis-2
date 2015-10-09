@@ -19,13 +19,10 @@ class Main extends Controller
 {
     function index(Request $request)
     {
-        if($request->session()->has('uid'))
-        {
+        if ($request->session()->has('uid')) {
             $user = $request->session()->get('uid');
             return view('home', ['user' => $user,]);
-        }
-        else
-        {
+        } else {
             return $this->login($request);
         }
     }
@@ -37,17 +34,14 @@ class Main extends Controller
             'password'  => 'required'
             ]);
 
-        if($validation->fails())
-        {
+        if ($validation->fails()) {
             return view('index', ['error' => '', 'username' => '']);
-        }
-        else
-        {
+        } else {
             $username   = $request->username;
             $password   = $request->password;
             $id         = $this->checkLogin($username, $password);
-            if( is_numeric($id) )
-            {
+
+            if( is_numeric($id) ) {
                 $system     = Api::systemValue();
                 $current_sy = Academicterm::find($system->currentacademicterm);
                 $data = ['uid'          => $id,
@@ -57,9 +51,7 @@ class Main extends Controller
                 ];
                 Session::put($data);
                 return redirect('/');
-            }
-            else
-            {
+            } else {
                 $error = '<div class="alert alert-danger text-center">Authentication Failed</div>';
                 return view('index', ['error' => $error, 'username' => $username]);
             }
@@ -69,9 +61,8 @@ class Main extends Controller
     function checkLogin($username, $password)
     {
         $u = User_access::where('username', $username)->get();
-        foreach ($u as $user)
-        {
-            if(password_verify($password, $user->password) AND $username == $user->username)
+        foreach ($u as $user) {
+            if (password_verify($password, $user->password) AND $username == $user->username)
                 return $user->partyid;
         }
         return FALSE;

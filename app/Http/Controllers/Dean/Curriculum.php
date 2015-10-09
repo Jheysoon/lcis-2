@@ -45,8 +45,7 @@ class Curriculum extends Controller
         $cm         = DB::table('tbl_coursemajor')->where('id', $cur->coursemajor)->first();
         $c          = DB::table('tbl_course')->where('id', $cm->course)->first();
         $m          = '';
-        if($cm->major != 0)
-        {
+        if ($cm->major != 0) {
             $m      = DB::table('tbl_major')->where('id', $cm->major)->first();
             $major  = $m->description;
         }
@@ -68,12 +67,9 @@ class Curriculum extends Controller
             'yearlevel'     => 'required',
             'term'          => 'required'
             ]);
-        if($validation->fails())
-        {
+        if ($validation->fails()) {
             Session::flash('message', '<div class="alert alert-danger">All Fields Are Required</div>');
-        }
-        else
-        {
+        } else {
             $data['curriculum'] = $request->cur_id;
             $data['subject']    = $request->subid;
             $data['yearlevel']  = $request->yearlevel;
@@ -95,12 +91,9 @@ class Curriculum extends Controller
     {
         // academicterm must be not equal from the source
         $past_cur = DB::table('tbl_curriculum')->where('id', $request->curriculum_id)->first();
-        if($past_cur->academicterm == $request->sy_id)
-        {
+        if ($past_cur->academicterm == $request->sy_id) {
             Session::flash('message', '<div class="alert alert-danger">The Same Academicterm</div>');
-        }
-        else
-        {
+        } else {
             $cur['coursemajor']     = $past_cur->coursemajor;
             $cur['academicterm']    = $past_cur->academicterm;
             $cur['yearlevel']       = $past_cur->yearlevel;
@@ -108,8 +101,7 @@ class Curriculum extends Controller
             $id                     = DB::table('tbl_curriculum')->insertGetId($cur);
             $past_detail            = DB::table('tbl_curriculumdetail')->where('curriculum', $request->curriculum_id)
                                     ->orderBy('yearlevel')->orderBy('term')->get();
-            foreach($past_detail as $detail)
-            {
+            foreach ($past_detail as $detail) {
                 $data['curriculum'] = $id;
                 $data['subject']    = $detail->subject;
                 $data['term']       = $detail->term;
