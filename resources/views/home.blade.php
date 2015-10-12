@@ -2,7 +2,7 @@
 
 @section('title')
     Home
-@stop
+@endsection
 
 @section('body')
     <?php $user = App\Party::find(Session::get('uid')) ?>
@@ -29,4 +29,4 @@
             </div>
         </div>
     </div>
-@stop
+@endsection

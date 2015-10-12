@@ -2,7 +2,7 @@
 
 @section('title')
     Student Statistics
-@stop
+@endsection
 
 @section('body')
     <div class="col-md-3"></div>
@@ -50,7 +50,7 @@
             </div>
         </div>
     </div>
-@stop
+@endsection
 
 @section('footer')
     <script type="text/javascript">
@@ -73,4 +73,4 @@
             });
         });
     </script>
-@stop
+@endsection

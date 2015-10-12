@@ -2,7 +2,7 @@
 
 @section('title')
     Manage Curriculum
-@stop
+@endsection
 
 @section('body')
     <div class="col-md-9 col-md-offset-3 body-container">
@@ -116,7 +116,7 @@
             </div>
         </div>
     </div>
-@stop
+@endsection
 
 @section('footer')
     <script type="text/javascript">
