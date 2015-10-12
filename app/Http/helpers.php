@@ -2,8 +2,7 @@
 
 use Illuminate\Http\Request;
 
-if(! function_exists('set_value'))
-{
+if (! function_exists('set_value')) {
     // for testing
     function set_value($field, $default = '')
 	{
@@ -12,24 +11,21 @@ if(! function_exists('set_value'))
 }
 
 // for testing
-if ( ! function_exists('set_select'))
-{
+if ( ! function_exists('set_select')) {
+
 	function set_select($field, $value = '', $default = FALSE)
 	{
         $input = \Request::get($field);
-		if ($input === NULL)
-		{
+		if ($input === NULL) {
 			return ($default === TRUE) ? ' selected="selected"' : '';
 		}
 
 		$value = (string) $value;
-		if (is_array($input))
-		{
+		if (is_array($input)) {
 			// Note: in_array('', array(0)) returns TRUE, do not use it
-			foreach ($input as &$v)
-			{
-				if ($value === $v)
-				{
+			foreach ($input as &$v) {
+
+				if ($value === $v) {
 					return ' selected="selected"';
 				}
 			}
@@ -42,24 +38,21 @@ if ( ! function_exists('set_select'))
 }
 
 // for testing
-if ( ! function_exists('set_checkbox'))
-{
+if ( ! function_exists('set_checkbox')) {
+
 	function set_checkbox($field, $value = '', $default = FALSE)
 	{
         $input = \Request::get($field);
-		if ($input === NULL)
-		{
+		if ($input === NULL) {
 			return ($default === TRUE) ? ' checked="checked"' : '';
 		}
 
 		$value = (string) $value;
-		if (is_array($input))
-		{
+		if (is_array($input)) {
 			// Note: in_array('', array(0)) returns TRUE, do not use it
-			foreach ($input as &$v)
-			{
-				if ($value === $v)
-				{
+			foreach ($input as &$v) {
+
+				if ($value === $v) {
 					return ' checked="checked"';
 				}
 			}
