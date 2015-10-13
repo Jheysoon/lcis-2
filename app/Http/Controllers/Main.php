@@ -10,9 +10,7 @@ use App\User_access;
 use Validator;
 use DB;
 use App\Library\Api;
-use App\Option;
 use Session;
-use App\Party;
 use App\Academicterm;
 
 class Main extends Controller
