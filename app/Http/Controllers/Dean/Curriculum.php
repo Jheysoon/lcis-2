@@ -8,9 +8,6 @@ use App\Http\Controllers\Controller;
 
 use Session;
 use App\Library\Api;
-use App\Option;
-use App\Party;
-use App\User_access;
 use App\Academicterm;
 use DB;
 use App\Subject;
