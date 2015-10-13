@@ -31,4 +31,32 @@ class Stat extends Controller
             echo 'Not final';
         }
     }
+
+    function studentcount(Request $request)
+    {
+        $yearlevel  = $request->yearlevel;
+        $count      = $request->count;
+        //truncate table before inserting
+        DB::table('out_studentcount')->truncate();
+
+        foreach ($request->coursemajor as $key => $value) {
+            $data                   = array();
+            $data['course']         = $value;
+            $data['yearlevel']      = $year_level[$key];
+            $data['studentcount']   = $count[$key];
+            $data['academicterm']   = $acam;
+            DB::table('out_studentcount')->insert($data);
+        }
+
+        $this->out_section();
+    }
+
+    function out_section()
+    {
+        DB::table('out_section')->truncate();
+        $tt     = Academicterm::find($this->system->phaseterm);
+        $term   = $tt->term;
+        $acamd  = Academicterm::where('systart', '<=', $tt->systart)
+                ->orderBy('systart', 'DESC')->orderBy('term', 'ASC')->get();
+    }
 }

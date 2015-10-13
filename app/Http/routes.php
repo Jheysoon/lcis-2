@@ -23,3 +23,4 @@ Route::post('copy_curriculum',          'Dean\Curriculum@copy');
 
 Route::get('/stat','Edp\Stat@index');
 Route::post('load_stat', 'Edp\Stat@load_stat');
+Route::post('studentcount', 'Edp\Stat@studentcount');
