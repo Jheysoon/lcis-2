@@ -18,6 +18,7 @@ class Main extends Controller
     {
         if ($request->session()->has('uid')) {
             $user = $request->session()->get('uid');
+
             return view('home', ['user' => $user,]);
         } else {
             return $this->login($request);
@@ -47,9 +48,11 @@ class Main extends Controller
                          'term'         => $current_sy->term
                 ];
                 Session::put($data);
+
                 return redirect('/');
             } else {
                 $error = '<div class="alert alert-danger text-center">Authentication Failed</div>';
+
                 return view('index', ['error' => $error, 'username' => $username]);
             }
         }
@@ -58,16 +61,19 @@ class Main extends Controller
     function checkLogin($username, $password)
     {
         $u = User_access::where('username', $username)->get();
+
         foreach ($u as $user) {
             if (password_verify($password, $user->password) AND $username == $user->username)
                 return $user->partyid;
         }
+        
         return FALSE;
     }
 
     function logout()
     {
         Session::flush();
+
         return redirect('/');
     }
 }

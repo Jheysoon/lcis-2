@@ -116,7 +116,7 @@ class Curriculum extends Controller
             }
 
         }
-        
+
         return back();
     }
 }
