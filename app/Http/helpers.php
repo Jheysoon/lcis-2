@@ -16,11 +16,13 @@ if ( ! function_exists('set_select')) {
 	function set_select($field, $value = '', $default = FALSE)
 	{
         $input = \Request::get($field);
+        
 		if ($input === NULL) {
 			return ($default === TRUE) ? ' selected="selected"' : '';
 		}
 
 		$value = (string) $value;
+
 		if (is_array($input)) {
 			// Note: in_array('', array(0)) returns TRUE, do not use it
 			foreach ($input as &$v) {
@@ -43,11 +45,13 @@ if ( ! function_exists('set_checkbox')) {
 	function set_checkbox($field, $value = '', $default = FALSE)
 	{
         $input = \Request::get($field);
+
 		if ($input === NULL) {
 			return ($default === TRUE) ? ' checked="checked"' : '';
 		}
 
 		$value = (string) $value;
+
 		if (is_array($input)) {
 			// Note: in_array('', array(0)) returns TRUE, do not use it
 			foreach ($input as &$v) {
