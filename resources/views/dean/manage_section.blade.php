@@ -61,7 +61,7 @@
 										<td> {{ round($subj->section) }} </td>
 										<form class="addClassAllocation">
 											<td>
-												<input type="number" min="1" data-param="{{ round($subj->section) }}" class="form-control input-sm section" name="sections" value="<?php echo $subj['section']; ?>" required>
+												<input type="number" min="1" data-param="{{ round($subj->section) }}" class="form-control input-sm section" name="sections" value="{{ $subj->section }}" required>
 												<input type="hidden" name="out_section_id" value="{{ $subj->id }}">
 											</td>
 											<td>
@@ -119,7 +119,7 @@
                 } else {
                     $(this).parent().parent().removeClass('danger');
                 }
-                
+
             });
         });
     </script>
