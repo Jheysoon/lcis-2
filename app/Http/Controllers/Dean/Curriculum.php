@@ -19,7 +19,7 @@ class Curriculum extends Controller
     {
         $c      = DB::table('tbl_coursemajor')->get();
         $acam   = Academicterm::all();
-        $owner  = Api::get_college();
+        $owner  = Api::getCollege();
         $cur    = DB::select("SELECT a.id as cur_id, a.description as cur_description, a.academicterm as cur_academicterm,
                 b.description as c_description
                 FROM tbl_curriculum a, tbl_course b, tbl_coursemajor c

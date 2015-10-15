@@ -13,7 +13,7 @@ class Api
         return DB::table('tbl_systemvalues')->first();
     }
 
-    public static function get_college()
+    public static function getCollege()
     {
         $o      = DB::table('tbl_academic')->where('id', Session::get('uid'));
         if($o->count() > 0)
