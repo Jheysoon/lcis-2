@@ -16,7 +16,7 @@
 			<div class="panel-body">
 				<div class="form-group">
 					<div class="col-sm-12">
-						@include('edp.cl_status')
+						@include('edp.cl_status', ['system' => $system])
 
 						@if ($system->classallocationstatus == 1)
 
