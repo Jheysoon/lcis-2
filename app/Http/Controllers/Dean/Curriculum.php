@@ -24,8 +24,8 @@ class Curriculum extends Controller
                 b.description as c_description
                 FROM tbl_curriculum a, tbl_course b, tbl_coursemajor c
                 WHERE a.coursemajor = c.id AND b.id = c.course AND b.college = $owner");
-
-        return view('dean.manage_curriculum', ['c' => $c, 'acam' => $acam, 'cur' => $cur]);
+        
+        return view(Api::getView(), ['c' => $c, 'acam' => $acam, 'cur' => $cur]);
     }
 
     function view_curriculum($id)
