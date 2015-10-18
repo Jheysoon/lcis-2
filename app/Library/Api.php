@@ -8,6 +8,30 @@ use Session;
 
 class Api
 {
+    public static function getView()
+    {
+        $route  = ltrim($_SERVER['REQUEST_URI'], '/');
+        $op     = DB::table('tbl_option')->where('link', $route);
+
+        if ($op->count() > 0) {
+            $option = $op->first();
+            $isUserMenu = DB::table('tbl_useroption')
+                        ->where('userid', Session::get('uid'))
+                        ->where('optionid', $option->id)
+                        ->count();
+
+            if ($isUserMenu > 0) {
+                return str_replace('/', '.', $option->file);    
+            } else {
+                return view('errors.unathorized');
+            }
+            
+        } else {
+            return view('error.404');
+        }
+
+    }
+
     public static function systemValue()
     {
         return DB::table('tbl_systemvalues')->first();
