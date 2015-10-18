@@ -14,6 +14,7 @@ use App\Subject;
 class Manage_section extends Controller
 {
     public $system;
+    
     public $owner;
 
     function __construct()

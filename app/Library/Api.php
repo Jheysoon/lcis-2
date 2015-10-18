@@ -16,15 +16,14 @@ class Api
     public static function getCollege()
     {
         $o      = DB::table('tbl_academic')->where('id', Session::get('uid'));
-        if($o->count() > 0)
-        {
+        if ($o->count() > 0) {
             $own = $i->first();
+
             return $own->college;
-        }
-        else
-        {
+        } else {
             $a      = DB::table('tbl_administration')->where('id', Session::get('uid'))->first();
             $ofs    = DB::table('tbl_office')->where('id', $a->office)->first();
+
             return $ofs->college;
         }
     }
@@ -102,7 +101,9 @@ class Api
                     if ($cur_detail->count() > 0) {
                         $student_units += $stu[0]->units;
                     }
+
                 }
+
             }
 
             $h['comment']       = 'OK';
@@ -123,8 +124,10 @@ class Api
 						else
 							return $u;
 					}
+
 					return $q + 1;
 				}
+
 			}
 
 			return 'end if function';
@@ -135,6 +138,7 @@ class Api
             
 			return 'Curriculum not fount';
         }
+
     }
 
     // 1:00-3:00 / 2:00-5:00
@@ -153,11 +157,11 @@ class Api
         $overlap = $intersect / 3600;
         if ( $overlap <= 0 ):
             // There are no time conflicts
-            return FALSE;
+            return false;
             else:
             // There is a time conflict
             // echo '<p>There is a time conflict where the times overlap by ' , $overlap , ' hours.</p>';
-            return TRUE;
+            return true;
         endif;
     }
 }
