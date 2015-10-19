@@ -1,8 +1,6 @@
 @extends('master')
 
-@section('title')
-	Manage Section
-@endsection
+@section('title' ,'Manage Section')
 
 @section('body')
 	<div class="col-md-3"></div>
