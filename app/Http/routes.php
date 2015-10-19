@@ -25,3 +25,4 @@ Route::get('manage_section', 'Dean\Manage_section@index');
 Route::get('/stat','Edp\Stat@index');
 Route::post('load_stat', 'Edp\Stat@load_stat');
 Route::post('studentcount', 'Edp\Stat@studentcount');
+Route::get('initClassallocation', 'Edp\ClassAlloc@init');
