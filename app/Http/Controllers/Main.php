@@ -54,7 +54,7 @@ class Main extends Controller
             } else {
                 $error = '<div class="alert alert-danger text-center">Authentication Failed</div>';
 
-                return view('index', ['error' => $error, 'username' => $username]);
+                return view('index', ['error' => $error]);
             }
         }
     }

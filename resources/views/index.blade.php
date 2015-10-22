@@ -21,7 +21,7 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <input type="text" class="form-control floating-label" name="username" id="username" autofocus placeholder="Username" value="{{ $username }}" required>
+                                <input type="text" class="form-control floating-label" name="username" id="username" autofocus placeholder="Username" value="{{ request('username') }}" required>
                             </div>
                         </div>
                         <div class="form-group">
