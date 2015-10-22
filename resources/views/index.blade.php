@@ -1,8 +1,6 @@
 @extends('simple')
 
-@section('title')
-    Login
-@stop
+@section('title', 'Login')
 
 @section('body')
     <div class="container-fluid">
