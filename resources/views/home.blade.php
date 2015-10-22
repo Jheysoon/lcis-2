@@ -1,8 +1,6 @@
 @extends('master')
 
-@section('title')
-    Home
-@endsection
+@section('title' ,'Home')
 
 @section('body')
     <?php $user = App\Party::find(Session::get('uid')) ?>
