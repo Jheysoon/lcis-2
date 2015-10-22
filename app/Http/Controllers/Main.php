@@ -12,14 +12,15 @@ use App\Library\Api;
 use Session;
 use App\Academicterm;
 use App\User_access;
+use App\Party;
 
 class Main extends Controller
 {
     function index(Request $request)
     {
         if ($request->session()->has('uid')) {
-            $user = $request->session()->get('uid');
-
+            $user = Party::find($request->session()->get('uid'));
+            
             return view('home', ['user' => $user,]);
         } else {
             return $this->login($request);

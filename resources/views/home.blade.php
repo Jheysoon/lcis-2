@@ -3,7 +3,7 @@
 @section('title' ,'Home')
 
 @section('body')
-    <?php $user = App\Party::find(Session::get('uid')) ?>
+    
     <div class="col-md-9 col-md-offset-3">
         <div class="panel panel-success">
             <div class="panel-heading"><h4>Personal Information</h4></div>
