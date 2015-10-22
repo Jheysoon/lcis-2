@@ -1,8 +1,6 @@
 @extends('master')
 
-@section('title')
-    View Curriculum
-@endsection
+@section('title' ,'View Curriculum')
 
 @section('body')
     <div class="col-md-3"></div>

@@ -8,9 +8,6 @@ use App\Http\Controllers\Controller;
 
 use Session;
 use App\Library\Api;
-use App\Option;
-use App\Party;
-use App\User_access;
 use App\Academicterm;
 use DB;
 use App\Subject;
@@ -22,12 +19,13 @@ class Curriculum extends Controller
     {
         $c      = DB::table('tbl_coursemajor')->get();
         $acam   = Academicterm::all();
-        $owner  = Api::get_college();
+        $owner  = Api::getCollege();
         $cur    = DB::select("SELECT a.id as cur_id, a.description as cur_description, a.academicterm as cur_academicterm,
                 b.description as c_description
                 FROM tbl_curriculum a, tbl_course b, tbl_coursemajor c
                 WHERE a.coursemajor = c.id AND b.id = c.course AND b.college = $owner");
-        return view('dean.manage_curriculum', ['c' => $c, 'acam' => $acam, 'cur' => $cur]);
+        
+        return view(Api::getView(), ['c' => $c, 'acam' => $acam, 'cur' => $cur]);
     }
 
     function view_curriculum($id)
@@ -45,11 +43,13 @@ class Curriculum extends Controller
         $cm         = DB::table('tbl_coursemajor')->where('id', $cur->coursemajor)->first();
         $c          = DB::table('tbl_course')->where('id', $cm->course)->first();
         $m          = '';
+
         if ($cm->major != 0) {
             $m      = DB::table('tbl_major')->where('id', $cm->major)->first();
             $major  = $m->description;
         }
         $course = $c->description.' '.$m;
+
         return view('dean.view_curriculum', compact('get_cur', 'cur_detail', 'cur', 'id', 'course'));
     }
 
@@ -57,6 +57,7 @@ class Curriculum extends Controller
     function destroy($id)
     {
         DB::table('tbl_curriculumdetail')->where('id', $id)->delete();
+
         return back();
     }
 
@@ -67,6 +68,7 @@ class Curriculum extends Controller
             'yearlevel'     => 'required',
             'term'          => 'required'
             ]);
+
         if ($validation->fails()) {
             Session::flash('message', '<div class="alert alert-danger">All Fields Are Required</div>');
         } else {
@@ -77,6 +79,7 @@ class Curriculum extends Controller
             DB::table('curriculumdetail')->insert($data);
             Session::flash('message', '<div class="alert alert-success">Successfully Added</div>');
         }
+
         return back();
     }
 
@@ -84,6 +87,7 @@ class Curriculum extends Controller
     {
         DB::table('tbl_curriculumdetail')->where('curriculum', $id)->delete();
         DB::table('tbl_curriculum')->where('id', $id)->delete();
+
         return back();
     }
 
@@ -91,6 +95,7 @@ class Curriculum extends Controller
     {
         // academicterm must be not equal from the source
         $past_cur = DB::table('tbl_curriculum')->where('id', $request->curriculum_id)->first();
+
         if ($past_cur->academicterm == $request->sy_id) {
             Session::flash('message', '<div class="alert alert-danger">The Same Academicterm</div>');
         } else {
@@ -101,6 +106,7 @@ class Curriculum extends Controller
             $id                     = DB::table('tbl_curriculum')->insertGetId($cur);
             $past_detail            = DB::table('tbl_curriculumdetail')->where('curriculum', $request->curriculum_id)
                                     ->orderBy('yearlevel')->orderBy('term')->get();
+
             foreach ($past_detail as $detail) {
                 $data['curriculum'] = $id;
                 $data['subject']    = $detail->subject;
@@ -108,7 +114,9 @@ class Curriculum extends Controller
                 $data['yearlevel']  = $detail->yearlevel;
                 DB::table('tbl_curriculumdetail')->insert($data);
             }
+
         }
+
         return back();
     }
 }

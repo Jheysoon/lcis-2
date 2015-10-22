@@ -1,8 +1,8 @@
-<form class="form-horizontal add-user" method="post" action="/edp/studentcount" role="form">
+<form class="form-horizontal add-user" method="post" action="{{ url('studentcount') }}" role="form">
 <?php $t = App\Academicterm::find($system->currentacademicterm); ?>
 
 @if($t->term != 2)
-    <input type="hidden" name="acam" value="{{ $system->nextacademicterm }}">
+    <input type="hidden" name="acam" value="{{ $system->phaseterm }}">
     <table class="table">
     	<caption>
     		<strong>

@@ -1,8 +1,6 @@
 @extends('simple')
 
-@section('title')
-    Login
-@stop
+@section('title', 'Login')
 
 @section('body')
     <div class="container-fluid">
@@ -17,11 +15,11 @@
                             <h1 class="text-center">Sign in</h1>
                         </h2>
                         <br/>
-                        <?php echo $error ?>
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        {{ $error }}
+                        {!! csrf_field() !!}
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <input type="text" class="form-control floating-label" name="username" id="username" autofocus placeholder="Username" value="{{ $username }}" required>
+                                <input type="text" class="form-control floating-label" name="username" id="username" autofocus placeholder="Username" value="{{ request('username') }}" required>
                             </div>
                         </div>
                         <div class="form-group">

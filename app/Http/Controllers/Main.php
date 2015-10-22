@@ -6,14 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\User_access;
 use Validator;
 use DB;
 use App\Library\Api;
-use App\Option;
 use Session;
-use App\Party;
 use App\Academicterm;
+use App\User_access;
 
 class Main extends Controller
 {
@@ -21,6 +19,7 @@ class Main extends Controller
     {
         if ($request->session()->has('uid')) {
             $user = $request->session()->get('uid');
+
             return view('home', ['user' => $user,]);
         } else {
             return $this->login($request);
@@ -50,10 +49,12 @@ class Main extends Controller
                          'term'         => $current_sy->term
                 ];
                 Session::put($data);
+
                 return redirect('/');
             } else {
                 $error = '<div class="alert alert-danger text-center">Authentication Failed</div>';
-                return view('index', ['error' => $error, 'username' => $username]);
+
+                return view('index', ['error' => $error]);
             }
         }
     }
@@ -61,16 +62,19 @@ class Main extends Controller
     function checkLogin($username, $password)
     {
         $u = User_access::where('username', $username)->get();
+
         foreach ($u as $user) {
             if (password_verify($password, $user->password) AND $username == $user->username)
                 return $user->partyid;
         }
+        
         return FALSE;
     }
 
     function logout()
     {
         Session::flush();
+
         return redirect('/');
     }
 }

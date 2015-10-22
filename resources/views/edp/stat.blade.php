@@ -1,8 +1,6 @@
 @extends('master')
 
-@section('title')
-    Student Statistics
-@endsection
+@section('title' ,'Student Statistics')
 
 @section('body')
     <div class="col-md-3"></div>
