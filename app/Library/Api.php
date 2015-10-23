@@ -21,7 +21,15 @@ class Api
                         ->count();
 
             if ($isUserMenu > 0) {
-                return str_replace('/', '.', $option->file);    
+                $file = str_replace('/', '.', $option->file);
+
+                // check if the view file exists
+                if (view()->exist($file)) {
+                    return $file;
+                } else {
+                    return view('errors.404');
+                }
+
             } else {
                 return view('errors.unathorized');
             }
