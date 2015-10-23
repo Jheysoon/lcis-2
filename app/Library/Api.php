@@ -48,6 +48,7 @@ class Api
     public static function getCollege()
     {
         $o      = DB::table('tbl_academic')->where('id', Session::get('uid'));
+        
         if ($o->count() > 0) {
             $own = $i->first();
 
