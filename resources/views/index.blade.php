@@ -15,7 +15,7 @@
                             <h1 class="text-center">Sign in</h1>
                         </h2>
                         <br/>
-                        {{ $error }}
+                        {!! $error !!}
                         {!! csrf_field() !!}
                         <div class="form-group">
                             <div class="col-sm-12">
