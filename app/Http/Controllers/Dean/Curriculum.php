@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use DB;
 use Session;
+use Validator;
+use App\Subject;
 use App\Library\Api;
 use App\Academicterm;
-use DB;
-use App\Subject;
-use Validator;
 
 class Curriculum extends Controller
 {

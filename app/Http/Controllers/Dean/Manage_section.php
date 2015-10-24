@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Session;
 use DB;
-use App\Library\Api;
+use Session;
 use App\Subject;
+use App\Library\Api;
 
 class Manage_section extends Controller
 {

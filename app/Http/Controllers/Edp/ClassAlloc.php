@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Session;
 use DB;
+use Session;
 use App\Library\Api;
 
 class ClassAlloc extends Controller
