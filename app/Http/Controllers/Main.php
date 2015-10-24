@@ -53,7 +53,7 @@ class Main extends Controller
 
                 return redirect('/');
             } else {
-                $error = '<div class="alert alert-danger text-center">Authentication Failed</div>';
+                $error = htmlAlert('Authentication Failed');
 
                 return view('index', ['error' => $error]);
             }
