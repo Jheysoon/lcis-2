@@ -69,7 +69,7 @@ class Main extends Controller
                 return $user->partyid;
         }
         
-        return FALSE;
+        return false;
     }
 
     function logout()
