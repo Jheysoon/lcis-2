@@ -67,3 +67,11 @@ if ( ! function_exists('set_checkbox')) {
 		return ($input === $value) ? ' checked="checked"' : '';
 	}
 }
+
+if ( ! function_exists('htmlAlert')) {
+
+	function htmlAlert($message, $type = 'danger')
+	{
+		return '<div class="alert alert-'.$type.' text-center">'.$message.'</div>';
+	}
+}
