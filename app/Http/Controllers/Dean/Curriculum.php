@@ -70,14 +70,14 @@ class Curriculum extends Controller
             ]);
 
         if ($validation->fails()) {
-            Session::flash('message', '<div class="alert alert-danger">All Fields Are Required</div>');
+            Session::flash('message', htmlAlert('All Fields Are Required'));
         } else {
             $data['curriculum'] = $request->cur_id;
             $data['subject']    = $request->subid;
             $data['yearlevel']  = $request->yearlevel;
             $data['term']       = $request->term;
             DB::table('curriculumdetail')->insert($data);
-            Session::flash('message', '<div class="alert alert-success">Successfully Added</div>');
+            Session::flash('message', htmlAlert('Successfully Added', 'success'));
         }
 
         return back();
@@ -97,7 +97,7 @@ class Curriculum extends Controller
         $past_cur = DB::table('tbl_curriculum')->where('id', $request->curriculum_id)->first();
 
         if ($past_cur->academicterm == $request->sy_id) {
-            Session::flash('message', '<div class="alert alert-danger">The Same Academicterm</div>');
+            Session::flash('message', htmlAlert('The Same Academicterm'));
         } else {
             $cur['coursemajor']     = $past_cur->coursemajor;
             $cur['academicterm']    = $past_cur->academicterm;
