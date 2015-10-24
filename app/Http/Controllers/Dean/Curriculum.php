@@ -48,6 +48,7 @@ class Curriculum extends Controller
             $m      = DB::table('tbl_major')->where('id', $cm->major)->first();
             $major  = $m->description;
         }
+        
         $course = $c->description.' '.$m;
 
         return view('dean.view_curriculum', compact('get_cur', 'cur_detail', 'cur', 'id', 'course'));
