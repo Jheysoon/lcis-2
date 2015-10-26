@@ -14,7 +14,7 @@
     <div class="col-md-9 col-md-offset-3">
         <br/>
         <div class="mdl-card mdl-shadow--4dp">
-            <div class="mdl-card__title mdl-card--expand text-center mdl-color--green-500">
+            <div class="mdl-card__title mdl-card--expand text-center mdl-color--green-700">
                 <h1 class="mdl-card__title-text text-center">System Parameter: Add Subject To Curriculum</h1>
             </div>
             <div class="mdl-card__supporting-text">
