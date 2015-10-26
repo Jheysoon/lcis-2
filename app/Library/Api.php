@@ -24,19 +24,16 @@ class Api
                 $file = str_replace('/', '.', $option->file);
 
                 // check if the view file exists
-                if (view()->exist($file)) {
+                if (view()->exists($file))
                     return $file;
-                } else {
+                else 
                     return view('errors.404');
-                }
 
-            } else {
+            } else
                 return view('errors.unathorized');
-            }
             
-        } else {
+        } else
             return view('error.404');
-        }
 
     }
 
