@@ -58,7 +58,7 @@
 						<div class="alert alert-danger center-block" style="max-width:400px;text-align:center">
 							<strong>Class Allocation is not been iniatialized<strong>
 						</div>
-					@elseif($val == 'attested')
+					@elseif ($val == 'attested')
 						<div class="alert alert-danger center-block" style="text-align:center;max-width:400px;">
 							You have attested this..
 						</div>
@@ -103,11 +103,13 @@
 									</td>
 									<td>
 										<?php $cc = DB::table('tbl_dayperiod')->where('classallocation', $subj->cid)->count(); ?>
+										
 										@if ($cc > 0)
 											Added Day Period
 										@else
 											No assigned day/period
 										@endif
+
 									</td>
 								</tr>
 							@endforeach
@@ -115,8 +117,8 @@
 						</table>
 
 						<a href="/dean/add_task_comp/4/O" class="btn btn-primary pull-right">Attest All</a>
-						
 					@endif
+
 				</div>
 			</div>
 		</div>
