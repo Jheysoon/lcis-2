@@ -1,6 +1,6 @@
 <div class="container-fluid main-body">
     <div class="row">
-        <nav class="navbar navbar-default nav-head" role="navigation">
+        <nav class="navbar mdl-color--green-900 nav-head" role="navigation">
           <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -35,7 +35,7 @@
         <div class="row">
             <div class="col-md-3 side-bar-menu hidden-print">
                 <div class="collapse navbar-collapse">
-                    <div class="panel-heading"><h2></h2></div>
+                    <div class="panel-heading mdl-color--green-500"><h2></h2></div>
                     <?php
                         $user   = Session::get('uid');
                         $menu1  = DB::table('tbl_useroption')->where('userid', $user)->groupBy('header')->orderBy('priors')->get();

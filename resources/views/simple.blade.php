@@ -9,7 +9,7 @@
         <link rel="shortcut icon" type="image/jpg" href="<?php echo asset('assets/images/LC logo.jpg'); ?>">
         @yield('header')
     </head>
-    <body>
+    <body class="mdl-color--yellow-200">
         @yield('body')
         <footer>
             <script type="text/javascript" src="<?php echo asset('assets/js/jquery.min.js') ?>"></script>
