@@ -40,6 +40,7 @@
                         $user   = Auth::user()->id;
                         $menu1  = DB::table('tbl_useroption')->where('userid', $user)->groupBy('header')->orderBy('priors')->get();
                      ?>
+
                     @foreach ($menu1 as $option)
                         <li class="list-group-item">
                             <a class="menu">
@@ -49,6 +50,7 @@
                                 {{ $opt->name }}
                             </a>
                             <?php $o = DB::table('tbl_useroption')->where('header', $option->header)->where('userid', $user)->orderBY('optionid', 'ASC')->get(); ?>
+                            
                             @foreach($o as $oo)
                                 <?php $options = App\Option::find($oo->optionid); ?>
                                 <ul class="sub-menu">
@@ -61,6 +63,7 @@
                                     </li>
                                 </ul>
                             @endforeach
+                            
                         </li>
                     @endforeach
 
