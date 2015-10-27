@@ -37,7 +37,7 @@
                 <div class="collapse navbar-collapse">
                     <div class="panel-heading mdl-color--green-700"><h2></h2></div>
                     <?php
-                        $user   = Session::get('uid');
+                        $user   = Auth::user()->id;
                         $menu1  = DB::table('tbl_useroption')->where('userid', $user)->groupBy('header')->orderBy('priors')->get();
                      ?>
                     @foreach ($menu1 as $option)
