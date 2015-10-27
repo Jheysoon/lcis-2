@@ -22,7 +22,7 @@
                 </ul>
 
                 <p class="navbar-text top-sign2 navbar-right">SY:{{ Session::get('current_sy') }}&nbsp;&nbsp;&nbsp;&nbsp; Term: {{ Session::get('term') }}</p>
-            	<p class="navbar-text top-sign2 navbar-right">Signed in as {{ Session::get('username') }}
+            	<p class="navbar-text top-sign2 navbar-right">Signed in as {{ Auth::user()->username }}
 	            	<a href="index.php?page=home" class="navbar-link"></a>
 	            </p>
             	<p class="navbar-text navbar-right">
