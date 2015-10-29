@@ -39,8 +39,14 @@ class Main extends Controller
 
         if ( !$validator->fails()) {
 
-            if (Auth::attempt(['username' => $username, 'password' => $password]))
+            if (Auth::attempt(['username' => $username, 'password' => $password])) {
+                $system = Api::systemValue();
+                $sy     = Academicterm::find($system->currentacademicterm);
+                $ses    = ['current_sy' => $sy->systart.'-'.$sy->syend, 'term' => $sy->term];
+                Session::put($ses);
+                
                 return redirect('/');
+            }
             else 
                 return view('index', ['error' => htmlAlert('Authentication Failed')]);
 
