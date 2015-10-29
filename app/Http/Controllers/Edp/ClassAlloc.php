@@ -24,9 +24,9 @@ class ClassAlloc extends Controller
     {
     	$data['val'] = '';
     	if ($this->system->phaseterm == env('FIN')) {
+            $stat = $this->system->classallocationstatus;
 
-    		if ($this->system->classallocationstatus == 2 OR
-    			$this->system->classallocationstatus == 1) {
+    		if ($stat == 2 OR $stat == 1) {
     			$c		= DB::table('tbl_completion')->where('stage', 2)
 							->where('academicterm', $system->phaseterm)
 							->where('status', 'O');
@@ -54,17 +54,14 @@ class ClassAlloc extends Controller
 					}
 
 					$data['val'] = 'OK';
-    			} else {
+    			} else
     				$data['val'] = 'college count';
-    			}
 
-    		} else {
+    		} else
     			$data['val'] = 'cannot run';
-    		}
 
-    	} else {
+    	} else
     		$data['val'] = 'cannot run in this phase';
-    	}
     	
     	return view('edp.initClass', $data);
     }
