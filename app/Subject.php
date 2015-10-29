@@ -2,10 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-use Session;
 use DB;
+use Session;
+use Illuminate\Database\Eloquent\Model;
 
 class Subject extends Model
 {
