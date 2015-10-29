@@ -39,4 +39,10 @@ class Classallocation extends Model
 				ORDER BY b.code ASC, coursemajor ASC, a.id ASC");
     	}
     }
+
+    public function getSubject()
+    {
+                            // model  foreign_key              
+        return $this->belongsTo('App\Subject', 'subject');
+    }
 }
