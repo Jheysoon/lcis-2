@@ -58,7 +58,7 @@ class AliasLoader
      * Load a class alias if it is registered.
      *
      * @param  string  $alias
-     * @return bool|null
+     * @return void
      */
     public function load($alias)
     {

@@ -76,7 +76,7 @@ class RouteServiceProvider extends ServiceProvider
      * Load the standard routes file for the application.
      *
      * @param  string  $path
-     * @return mixed
+     * @return void
      */
     protected function loadRoutesFrom($path)
     {

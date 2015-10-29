@@ -687,7 +687,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      * Reload a fresh model instance from the database.
      *
      * @param  array  $with
-     * @return $this|null
+     * @return $this
      */
     public function fresh(array $with = [])
     {
@@ -1175,7 +1175,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      *
      * This method protects developers from running forceDelete when trait is missing.
      *
-     * @return bool|null
+     * @return void
      */
     public function forceDelete()
     {
@@ -1542,7 +1542,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  array  $options
-     * @return bool
+     * @return bool|null
      */
     protected function performUpdate(Builder $query, array $options = [])
     {
@@ -1569,7 +1569,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
             $dirty = $this->getDirty();
 
             if (count($dirty) > 0) {
-                $numRows = $this->setKeysForSaveQuery($query)->update($dirty);
+                $this->setKeysForSaveQuery($query)->update($dirty);
 
                 $this->fireModelEvent('updated', false);
             }
@@ -2831,12 +2831,12 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
             case 'boolean':
                 return (bool) $value;
             case 'object':
-                return $this->fromJson($value, true);
+                return json_decode($value);
             case 'array':
             case 'json':
-                return $this->fromJson($value);
+                return json_decode($value, true);
             case 'collection':
-                return new BaseCollection($this->fromJson($value));
+                return new BaseCollection(json_decode($value, true));
             case 'date':
             case 'datetime':
                 return $this->asDateTime($value);
@@ -2871,7 +2871,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
         }
 
         if ($this->isJsonCastable($key) && ! is_null($value)) {
-            $value = $this->asJson($value);
+            $value = json_encode($value);
         }
 
         $this->attributes[$key] = $value;
@@ -2991,29 +2991,6 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
         $this->dateFormat = $format;
 
         return $this;
-    }
-
-    /**
-     * Encode the given value as JSON.
-     *
-     * @param  mixed  $value
-     * @return string
-     */
-    protected function asJson($value)
-    {
-        return json_encode($value);
-    }
-
-    /**
-     * Decode the given JSON back into an array or object.
-     *
-     * @param  string  $value
-     * @param  bool  $asObject
-     * @return mixed
-     */
-    public function fromJson($value, $asObject = false)
-    {
-        return json_decode($value, ! $asObject);
     }
 
     /**

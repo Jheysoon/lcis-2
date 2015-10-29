@@ -139,7 +139,7 @@ class Validator implements ValidatorContract
      *
      * @var array
      */
-    protected $numericRules = ['Numeric', 'Integer'];
+    protected $numericRules = ['Numeric', 'Integer', 'Int'];
 
     /**
      * The validation rules that imply the field is required.
@@ -357,7 +357,9 @@ class Validator implements ValidatorContract
 
         $validatable = $this->isValidatable($rule, $attribute, $value);
 
-        $method = "validate{$rule}";
+        $normalizedRule = $this->normalizeRule($rule);
+
+        $method = "validate{$normalizedRule}";
 
         if ($validatable && ! $this->$method($attribute, $value, $parameters, $this)) {
             $this->addFailure($attribute, $rule, $parameters);
@@ -1584,7 +1586,7 @@ class Validator implements ValidatorContract
      * @param  string  $attribute
      * @param  string  $lowerRule
      * @param  array   $source
-     * @return string|null
+     * @return string
      */
     protected function getInlineMessage($attribute, $lowerRule, $source = null)
     {
@@ -2064,14 +2066,10 @@ class Validator implements ValidatorContract
     protected function parseRule($rules)
     {
         if (is_array($rules)) {
-            $rules = $this->parseArrayRule($rules);
-        } else {
-            $rules = $this->parseStringRule($rules);
+            return $this->parseArrayRule($rules);
         }
 
-        $rules[0] = $this->normalizeRule($rules[0]);
-
-        return $rules;
+        return $this->parseStringRule($rules);
     }
 
     /**
@@ -2121,24 +2119,6 @@ class Validator implements ValidatorContract
         }
 
         return str_getcsv($parameter);
-    }
-
-    /**
-     * Normalizes a rule so that we can accept short types.
-     *
-     * @param  string  $rule
-     * @return string
-     */
-    protected function normalizeRule($rule)
-    {
-        switch ($rule) {
-            case 'Int':
-                return 'Integer';
-            case 'Bool':
-                return 'Boolean';
-            default:
-                return $rule;
-        }
     }
 
     /**
@@ -2537,7 +2517,7 @@ class Validator implements ValidatorContract
      *
      * @param  string  $rule
      * @param  array   $parameters
-     * @return bool|null
+     * @return bool
      */
     protected function callExtension($rule, $parameters)
     {
@@ -2571,7 +2551,7 @@ class Validator implements ValidatorContract
      * @param  string  $attribute
      * @param  string  $rule
      * @param  array   $parameters
-     * @return string|null
+     * @return string
      */
     protected function callReplacer($message, $attribute, $rule, $parameters)
     {
@@ -2614,6 +2594,24 @@ class Validator implements ValidatorContract
     {
         if (count($parameters) < $count) {
             throw new InvalidArgumentException("Validation rule $rule requires at least $count parameters.");
+        }
+    }
+
+    /**
+     * Normalizes a rule so that we can accept short types.
+     *
+     * @param  string  $rule
+     * @return string
+     */
+    protected function normalizeRule($rule)
+    {
+        switch ($rule) {
+            case 'Int':
+                return 'Integer';
+            case 'Bool':
+                return 'Boolean';
+            default:
+                return $rule;
         }
     }
 

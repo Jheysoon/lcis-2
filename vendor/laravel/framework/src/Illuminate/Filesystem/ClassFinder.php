@@ -49,7 +49,7 @@ class ClassFinder
      *
      * @param  int  $key
      * @param  array  $tokens
-     * @return string|null
+     * @return string
      */
     protected function getNamespace($key, array $tokens)
     {
@@ -71,7 +71,7 @@ class ClassFinder
      *
      * @param  int  $key
      * @param  array  $tokens
-     * @return string|null
+     * @return string
      */
     protected function getClass($key, array $tokens)
     {

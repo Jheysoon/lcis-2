@@ -25,7 +25,7 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
      *
      * @var string
      */
-    const VERSION = '5.1.22 (LTS)';
+    const VERSION = '5.1.20 (LTS)';
 
     /**
      * The base path for the Laravel installation.
@@ -726,7 +726,7 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
      * Boot the given service provider.
      *
      * @param  \Illuminate\Support\ServiceProvider  $provider
-     * @return mixed
+     * @return void
      */
     protected function bootProvider(ServiceProvider $provider)
     {

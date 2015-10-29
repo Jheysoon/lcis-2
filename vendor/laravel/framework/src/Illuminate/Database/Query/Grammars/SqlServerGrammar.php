@@ -25,10 +25,6 @@ class SqlServerGrammar extends Grammar
      */
     public function compileSelect(Builder $query)
     {
-        if (is_null($query->columns)) {
-            $query->columns = ['*'];
-        }
-
         $components = $this->compileComponents($query);
 
         // If an offset is present on the query, we will need to wrap the query in
@@ -46,7 +42,7 @@ class SqlServerGrammar extends Grammar
      *
      * @param  \Illuminate\Database\Query\Builder  $query
      * @param  array  $columns
-     * @return string|null
+     * @return string
      */
     protected function compileColumns(Builder $query, $columns)
     {
@@ -201,19 +197,6 @@ class SqlServerGrammar extends Grammar
     public function compileTruncate(Builder $query)
     {
         return ['truncate table '.$this->wrapTable($query->from) => []];
-    }
-
-    /**
-     * Compile an exists statement into SQL.
-     *
-     * @param \Illuminate\Database\Query\Builder $query
-     * @return string
-     */
-    public function compileExists(Builder $query)
-    {
-        $select = $this->compileSelect($query);
-
-        return "select cast(case when exists($select) then 1 else 0 end as bit) as {$this->wrap('exists')}";
     }
 
     /**

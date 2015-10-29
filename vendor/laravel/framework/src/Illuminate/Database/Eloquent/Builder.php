@@ -724,14 +724,14 @@ class Builder
             $relationQuery->wheres, $relationQuery->getBindings()
         );
 
-        $this->query->addBinding($hasQuery->getQuery()->getBindings(), 'where');
+        $this->query->mergeBindings($hasQuery->getQuery());
     }
 
     /**
      * Get the "has relation" base query instance.
      *
      * @param  string  $relation
-     * @return \Illuminate\Database\Eloquent\Relations\Relation
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     protected function getHasRelationQuery($relation)
     {

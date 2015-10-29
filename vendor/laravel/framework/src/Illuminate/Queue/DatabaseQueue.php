@@ -62,7 +62,7 @@ class DatabaseQueue extends Queue implements QueueContract
      * @param  string  $job
      * @param  mixed   $data
      * @param  string  $queue
-     * @return mixed
+     * @return void
      */
     public function push($job, $data = '', $queue = null)
     {
@@ -125,7 +125,7 @@ class DatabaseQueue extends Queue implements QueueContract
      * @param  string  $queue
      * @param  \StdClass  $job
      * @param  int  $delay
-     * @return mixed
+     * @return void
      */
     public function release($queue, $job, $delay)
     {

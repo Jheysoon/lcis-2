@@ -141,7 +141,7 @@ class RedirectResponse extends BaseRedirectResponse
     /**
      * Get the request instance.
      *
-     * @return \Illuminate\Http\Request|null
+     * @return \Illuminate\Http\Request
      */
     public function getRequest()
     {
@@ -162,7 +162,7 @@ class RedirectResponse extends BaseRedirectResponse
     /**
      * Get the session store implementation.
      *
-     * @return \Illuminate\Session\Store|null
+     * @return \Illuminate\Session\Store
      */
     public function getSession()
     {
@@ -185,7 +185,7 @@ class RedirectResponse extends BaseRedirectResponse
      *
      * @param  string  $method
      * @param  array  $parameters
-     * @return $this
+     * @return void
      *
      * @throws \BadMethodCallException
      */

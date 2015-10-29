@@ -59,7 +59,7 @@ class RedisQueue extends Queue implements QueueContract
      * @param  string  $job
      * @param  mixed   $data
      * @param  string  $queue
-     * @return mixed
+     * @return void
      */
     public function push($job, $data = '', $queue = null)
     {
@@ -88,7 +88,7 @@ class RedisQueue extends Queue implements QueueContract
      * @param  string  $job
      * @param  mixed   $data
      * @param  string  $queue
-     * @return mixed
+     * @return void
      */
     public function later($delay, $job, $data = '', $queue = null)
     {

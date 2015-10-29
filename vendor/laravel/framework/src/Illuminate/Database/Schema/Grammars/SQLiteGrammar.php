@@ -563,17 +563,6 @@ class SQLiteGrammar extends Grammar
     }
 
     /**
-     * Create the column definition for a uuid type.
-     *
-     * @param  \Illuminate\Support\Fluent  $column
-     * @return string
-     */
-    protected function typeUuid(Fluent $column)
-    {
-        return 'varchar';
-    }
-
-    /**
      * Get the SQL for a nullable column modifier.
      *
      * @param  \Illuminate\Database\Schema\Blueprint  $blueprint

@@ -167,7 +167,7 @@ class Manager
     /**
      * Get the current event dispatcher instance.
      *
-     * @return \Illuminate\Contracts\Events\Dispatcher|null
+     * @return \Illuminate\Contracts\Events\Dispatcher
      */
     public function getEventDispatcher()
     {

@@ -422,7 +422,7 @@ abstract class Grammar extends BaseGrammar
      * Get the matching Doctrine option for a given Fluent attribute name.
      *
      * @param  string  $attribute
-     * @return string|null
+     * @return string
      */
     protected function mapFluentOptionToDoctrine($attribute)
     {

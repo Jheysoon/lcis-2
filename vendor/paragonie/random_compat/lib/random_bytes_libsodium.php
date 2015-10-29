@@ -58,7 +58,6 @@ function random_bytes($bytes)
      * generated in one invocation.
      */
     if ($bytes > 2147483647) {
-        $buf = '';
         for ($i = 0; $i < $bytes; $i += 1073741824) {
             $n = ($bytes - $i) > 1073741824
                 ? 1073741824

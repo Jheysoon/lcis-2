@@ -92,7 +92,7 @@ class Grammar extends BaseGrammar
      *
      * @param  \Illuminate\Database\Query\Builder  $query
      * @param  array  $columns
-     * @return string|null
+     * @return string
      */
     protected function compileColumns(Builder $query, $columns)
     {
@@ -609,6 +609,7 @@ class Grammar extends BaseGrammar
      * Compile an exists statement into SQL.
      *
      * @param \Illuminate\Database\Query\Builder $query
+     *
      * @return string
      */
     public function compileExists(Builder $query)

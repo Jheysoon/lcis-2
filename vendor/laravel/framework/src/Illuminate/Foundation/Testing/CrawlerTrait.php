@@ -2,6 +2,7 @@
 
 namespace Illuminate\Foundation\Testing;
 
+use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -172,7 +173,7 @@ trait CrawlerTrait
      * Assert that the response contains JSON.
      *
      * @param  array|null  $data
-     * @return $this|null
+     * @return $this
      */
     protected function receiveJson($data = null)
     {
