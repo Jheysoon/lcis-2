@@ -1,10 +1,11 @@
 <?php
 namespace App\Library;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
 use DB;
+use Auth;
 use Session;
+use App\Http\Requests;
+use Illuminate\Http\Request;
 
 class Api
 {
@@ -16,7 +17,7 @@ class Api
         if ($op->count() > 0) {
             $option = $op->first();
             $isUserMenu = DB::table('tbl_useroption')
-                        ->where('userid', Session::get('uid'))
+                        ->where('userid', Auth::user()->id)
                         ->where('optionid', $option->id)
                         ->count();
 
@@ -44,14 +45,14 @@ class Api
 
     public static function getCollege()
     {
-        $o      = DB::table('tbl_academic')->where('id', Session::get('uid'));
+        $o      = DB::table('tbl_academic')->where('id', Auth::user()->id);
 
         if ($o->count() > 0) {
             $own = $i->first();
 
             return $own->college;
         } else {
-            $a      = DB::table('tbl_administration')->where('id', Session::get('uid'))->first();
+            $a      = DB::table('tbl_administration')->where('id', Auth::user()->id)->first();
             $ofs    = DB::table('tbl_office')->where('id', $a->office)->first();
 
             return $ofs->college;
