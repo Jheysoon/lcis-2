@@ -43,9 +43,9 @@ class ClassAlloc extends Controller
 
 						// if the section is zero it will not satisfy this condition
 						for ($i = 1; $i <= $section->section; $i++) {
-							$data['academicterm'] 	= $ssection->academicterm;
-							$data['coursemajor'] 	= $ssection->coursemajor;
-							$data['subject'] 		= $ssection->subject;
+							$data['academicterm'] 	= $section->academicterm;
+							$data['coursemajor'] 	= $section->coursemajor;
+							$data['subject'] 		= $section->subject;
 							$data['instructor']		= 0;
 							$data['reserved']		= 0;
 							$data['enrolled']		= 0;
