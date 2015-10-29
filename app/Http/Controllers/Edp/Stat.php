@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Edp;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
 use App\Library\Api;
 use App\Academicterm;
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class Stat extends Controller
 {

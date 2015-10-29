@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Edp;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
 use DB;
 use Session;
 use App\Library\Api;
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ClassAlloc extends Controller
 {

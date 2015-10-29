@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
 use DB;
 use Auth;
 use Session;
@@ -14,6 +10,9 @@ use App\Party;
 use App\Library\Api;
 use App\User_access;
 use App\Academicterm;
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class Main extends Controller
 {
