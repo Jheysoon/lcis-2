@@ -198,4 +198,21 @@ class Api
             return true;
         endif;
     }
+
+    public static function getCourseMajor($cid)
+    {
+        if ($cid == 0)
+            return;
+        
+        $cm     = DB::table('tbl_coursemajor')->where('id', $cid)->first();
+        $course = DB::table('tbl_course')->where('id', $cm->course)->first();
+        $major  = '';
+
+        if($cm->major != 0) {
+            $major = DB::table('tbl_major')->where('id', $cm->major)->first();
+            $major = '('.$major->description.')';
+        }
+
+        return $course->description.' '.$major;
+    }
 }
