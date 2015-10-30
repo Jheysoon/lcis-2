@@ -12,6 +12,12 @@ class Api
     public static function getView()
     {
         $route  = ltrim($_SERVER['REQUEST_URI'], '/');
+
+        if (strpos($route, '?')) {
+            $r      = explode('?', $route);
+            $route  = $r[0];
+        }
+
         $op     = DB::table('tbl_option')->where('link', $route);
 
         if ($op->count() > 0) {
@@ -34,7 +40,7 @@ class Api
                 return view('errors.unathorized');
             
         } else
-            return view('error.404');
+            return view('errors.404');
 
     }
 
