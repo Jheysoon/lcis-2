@@ -8,7 +8,7 @@
 		<div class="panel p-body">
 
 			<div class="col-md-12" style="background-color: #F0FBF0;">
-				@include ('edp.cl_status')
+				@include ('edp.cl_status', ['system' => $system])
 
 				@if ($val == 'ok')
 					<div style="max-width:200px;">
@@ -22,7 +22,7 @@
 					</div>
 					<div id="tbl_cl">
 
-						@include ('edp.ajax_edp_all')
+						@include ('edp.ajax_edp_all', ['system' => $system, 'class' => $class])
 
 					</div>
 					<form action="/edp/cl_inc" method="post">

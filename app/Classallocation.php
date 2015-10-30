@@ -46,4 +46,58 @@ class Classallocation extends Model
                             // model  foreign_key              
         return $this->belongsTo('App\Subject', 'subject');
     }
+
+    public static function getShortDay($cid)
+    {
+        $c      = DB::table('tbl_dayperiod')->where('classallocation', $cid);
+        $data   = [];
+
+        if ($c->count() > 0) {
+            $cc = $c->get();
+            /*  try to use namespace for day */
+            foreach ($cc as $dp) {
+                $day    = DB::table('tbl_day')->where('id', $dp->day)->first();
+                $data[] = $day->shortname;
+            }
+            
+        }
+
+        return implode(' / ', $data);
+    }
+
+    public static function getPeriod($cid)
+    {
+        $c      = DB::table('tbl_dayperiod')->where('classallocation', $cid);
+        $data   = [];
+
+        if ($c->count() > 0) {
+            $cc = $c->get();
+            /*  try to use namespace for time */
+            foreach ($cc as $per) {
+                $day    = DB::table('tbl_time')->where('id', $per->day)->first();
+                $data[] = $day->time;
+            }
+            
+        }
+
+        return implode(' / ', $data);
+    }
+
+    public static function getRooms($cid)
+    {
+        $c      = DB::table('tbl_dayperiod')->where('classallocation', $cid);
+        $data   = [];
+
+        if ($c->count() > 0) {
+            $cc = $c->get();
+
+            foreach ($cc as $rooms) {
+                $room = DB::table('tbl_classroom')->where('id', $rooms->classroom)->first();
+                $data[] = $room->legacycode;    
+            }
+            
+        }
+
+        return implode(' / ', $data);
+    }
 }

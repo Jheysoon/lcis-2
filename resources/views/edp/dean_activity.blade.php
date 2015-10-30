@@ -39,7 +39,7 @@
                         @if ($c->count() > 0)
                             {{ $cc->statusdate }}
                         @else
-                            Not Available'
+                            Not Available
                         @endif
 
                     </td>
