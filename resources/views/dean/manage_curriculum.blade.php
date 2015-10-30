@@ -7,6 +7,9 @@
         .mdl-card__title-text {
             color: #fff;
         }
+        .mdl-card__supporting-text {
+            width:100%;
+        }
     </style>
 @endsection
 
@@ -60,7 +63,7 @@
                             <option value="0">Select Year Level</option>
 
                             @for( $i = 1; $i < 6; $i++)
-                            <option value="{{ $i }}">{{ $i }}</option>
+                                <option value="{{ $i }}">{{ $i }}</option>
                             @endfor
 
                         </select>
@@ -83,19 +86,19 @@
                         </tr>
 
                         @foreach($cur as $curriculum)
-                        <tr>
-                            <td> {{ $curriculum->c_description }} </td>
-                            <td class="text-center"> {{ $curriculum->cur_description }} </td>
-                            <td class="text-center">
-                                <?php $c = App\Academicterm::find($curriculum->cur_academicterm) ?>
-                                {{ $c->systart.'-'.$c->syend }}
-                            </td>
-                            <td>
-                                <a href="/view_curriculum/{{ $curriculum->cur_id }}" class="label label-primary">View Curriculum</a>
-                                <a href="/delete_cur/{{ $curriculum->cur_id }}" onclick="return confirm('Are you sure you want to delete ?')" class="label label-danger">Delete Curriculum</a>
-                                <a href="/copy" data-curriculum="{{ $curriculum->cur_id }}" class="copy_cur label label-primary">Copy Curriculum</a>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td> {{ $curriculum->c_description }} </td>
+                                <td class="text-center"> {{ $curriculum->cur_description }} </td>
+                                <td class="text-center">
+                                    <?php $c = App\Academicterm::find($curriculum->cur_academicterm) ?>
+                                    {{ $c->systart.'-'.$c->syend }}
+                                </td>
+                                <td>
+                                    <a href="/view_curriculum/{{ $curriculum->cur_id }}" class="label label-primary">View Curriculum</a>
+                                    <a href="/delete_cur/{{ $curriculum->cur_id }}" onclick="return confirm('Are you sure you want to delete ?')" class="label label-danger">Delete Curriculum</a>
+                                    <a href="/copy" data-curriculum="{{ $curriculum->cur_id }}" class="copy_cur label label-primary">Copy Curriculum</a>
+                                </td>
+                            </tr>
                         @endforeach
 
                     </table>

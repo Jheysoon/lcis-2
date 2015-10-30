@@ -25,9 +25,7 @@
 							<th>Course</th>
 						</tr>
 						<tr>
-							<td>
-							{{ $cl->getSubject->code }}
-							</td>
+							<td>{{ $cl->getSubject->code }}</td>
 							<td>
 								<?php $t = DB::table('tbl_course')->where('id', $cl->coursemajor); ?>
 								@if ($t->count() > 0)
