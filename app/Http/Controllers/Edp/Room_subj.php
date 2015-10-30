@@ -29,10 +29,14 @@ class Room_subj extends Controller
                 ->where('academicterm', $this->system->phaseterm)
                 ->where('stage', 4)->where('status', 'O')->count();
 
-            if (true) {
+            if ($c == env('COLLEGE_COUNT')) {
                 $data['val'] = 'ok';
                 $data['class'] = Classallocation::where('academicterm', $this->system->phaseterm)->get();
+            } else {
+                $data['colleges'] = DB::table('tbl_college')->where('id', '!=', 6)->get();
+                $data['val'] = 'you cannot continue';
             }
+
         } elseif($status == 3) {
             $data['colleges'] = DB::table('tbl_college')->where('id', '!=', 6)->get();
             $data['val'] = 'you cannot continue';
