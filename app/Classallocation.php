@@ -46,4 +46,9 @@ class Classallocation extends Model
                             // model  foreign_key              
         return $this->belongsTo('App\Subject', 'subject');
     }
+
+    public function getCourse()
+    {
+        return $this->belongsTo('App\Course', 'coursemajor');
+    }
 }

@@ -17,11 +17,8 @@
 
     @foreach ($class as $cl)
         <tr>
-            <td>
-                <?php $s = App\Subject::find($cl->subject) ?>
-                {{ $s->code }}
-            </td>
-            <td> {{ App\Library\Api::getCourseMajor($cl->coursemajor) }} </td>
+            <td>{{ $cl->getSubject->code }}</td>
+            <td> {{ $cl->getCourse->shortname or '' }} </td>
             <td style="text-align:center;">
                 {{ App\Day::getShortDay($cl->id) }}
             </td>
@@ -29,10 +26,10 @@
                 {{ App\Time::getPeriod($cl->id) }}
             </td>
             <td>
-                <?php $rr = DB::table('tbl_dayperiod')->where('classallocation', $cl->id)->count() ?>
+                <?php $rr = App\Day_period::where('classallocation', $cl->id)->count() ?>
 
                 @if ($rr > 0)
-                    <?php $rr1 = DB::table('tbl_dayperiod')->where('classallocation', $cl->id)->where('classroom', 0)->count() ?>
+                    <?php $rr1 = App\Day_period::where('classallocation', $cl->id)->where('classroom', 0)->count() ?>
 
                     @if ($rr1 < 1)
                         {{ App\Room::getRooms($cl->id) }}
