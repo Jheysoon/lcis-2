@@ -3,6 +3,7 @@
 namespace App;
 
 use DB;
+use Auth;
 use Session;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,7 +19,7 @@ class Classallocation extends Model
 
     public static function getAlloc($owner, $system)
     {
-    	if ($system->employeeid == Session::get('uid')) {
+    	if ($system->employeeid == Auth::user()->id) {
     		return DB::select("SELECT a.id as cid, coursemajor, descriptivetitle, code
 				FROM tbl_classallocation a, tbl_subject b
 				WHERE a.subject = b.id AND academicterm = $system->phaseterm 

@@ -3,6 +3,7 @@
 namespace App;
 
 use DB;
+use Auth;
 use Session;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +15,7 @@ class Subject extends Model
 
     public static function getSubject($owner, $system)
     {
-    	if ($system->employeeid == Session::get('uid')) {
+    	if ($system->employeeid == Auth::user()->id) {
             $sql = DB::select("SELECT a.id as id, code, descriptivetitle, 
                         yearlevel, studentcount, section, coursemajor
                         FROM out_section a,tbl_subject b
