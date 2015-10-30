@@ -84,7 +84,7 @@ class Add_day_period extends Controller
                 return redirect('add_day_period/'.$id);
             }
 
-        } elseif ($request->submit) {
+        } elseif ($request->has('submit')) {
             $this->error = htmlAlert('Please select a day');
         }
 
