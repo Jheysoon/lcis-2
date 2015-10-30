@@ -29,3 +29,4 @@ Route::post('load_stat', 				'Edp\Stat@load_stat');
 Route::post('studentcount', 			'Edp\Stat@studentcount');
 Route::get('initClassallocation', 		'Edp\ClassAlloc@init');
 Route::get('room_subj', 				'Edp\Room_subj@index');
+Route::get('classRooms', 				'Edp\Room@index');
