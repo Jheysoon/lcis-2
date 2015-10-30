@@ -64,14 +64,13 @@ class Add_day_period extends Controller
                 $data['val'] = 'attested';
             else
                 $data['sub'] = Classallocation::getAlloc($this->owner, $this->system);
-            
+
         }
 
         $t              = Academicterm::find($this->system->phaseterm);
         $term           = DB::table('tbl_term')->where('id', $t->term)->first();
         $data['acam']   = $t->systart.' - '.$t->syend.' Term: '.$term->shortname;
 
-        
         return view('dean.add_day_period', $data);
     }
 
@@ -94,6 +93,7 @@ class Add_day_period extends Controller
         $data['cl']     = Classallocation::find($id);
         $data['days']   = DB::table('tbl_day')->where('id', '!=', 8)->get();
         $data['times']  = DB::table('tbl_time')->where('id', '!=', 12)->get();
+
         return view('dean.assigned_subj', $data);
     }
 
