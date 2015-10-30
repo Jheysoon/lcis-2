@@ -89,7 +89,6 @@ class Add_day_period extends Controller
 
         $data['cid']    = $id;
         $data['error']  = $this->error;
-
         $data['cl']     = Classallocation::find($id);
         $data['days']   = DB::table('tbl_day')->where('id', '!=', 8)->get();
         $data['times']  = DB::table('tbl_time')->where('id', '!=', 12)->get();
