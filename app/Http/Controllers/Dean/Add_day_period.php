@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dean;
 
 use DB;
+use Auth;
 use Session;
 use App\Subject;
 use App\Library\Api;
@@ -39,7 +40,7 @@ class Add_day_period extends Controller
                             })
                             ->where('computersubject', 0)
                             ->where('nstp', 0)->get();
-        } elseif ($this->system->employeeid == Session::get('uid')) {
+        } elseif ($this->system->employeeid == Auth::user()->id) {
             $subject_owner = Subject::where('gesubject', 0)
                             ->where(function ($query) {
                                 $query->where('computersubject', 1)
@@ -58,7 +59,7 @@ class Add_day_period extends Controller
             $data['val'] = 'class not init';
         } else {
             $s = DB::table('tbl_completion')->where('stage', 4)
-                ->where('completedby', Session::get('uid'))->count();
+                ->where('completedby', Auth::user()->id)->count();
 
             if ($s > 1)
                 $data['val'] = 'attested';
