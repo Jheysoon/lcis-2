@@ -11,8 +11,8 @@
 |
 */
 
-Route::any('/', 'Main@index');
-Route::get('/logout', 'Main@logout');
+Route::any('/', 						'Main@index');
+Route::get('/logout', 					'Main@logout');
 
 Route::get('manage_curriculum',         'Dean\Curriculum@manage_curriculum');
 Route::get('view_curriculum/{id}',      'Dean\Curriculum@view_curriculum');
@@ -24,7 +24,7 @@ Route::get('manage_section', 			'Dean\Manage_section@index');
 Route::get('add_day_period_list',		'Dean\Add_day_period@dayPeriod_list');
 Route::get('add_day_period/{id}', 		'Dean\Add_day_period@add_day_period');
 
-Route::get('/stat','Edp\Stat@index');
-Route::post('load_stat', 'Edp\Stat@load_stat');
-Route::post('studentcount', 'Edp\Stat@studentcount');
-Route::get('initClassallocation', 'Edp\ClassAlloc@init');
+Route::get('/stat',						'Edp\Stat@index');
+Route::post('load_stat', 				'Edp\Stat@load_stat');
+Route::post('studentcount', 			'Edp\Stat@studentcount');
+Route::get('initClassallocation', 		'Edp\ClassAlloc@init');
