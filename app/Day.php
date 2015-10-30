@@ -3,6 +3,7 @@
 namespace App;
 
 use DB;
+use App\Day_period;
 use Illuminate\Database\Eloquent\Model;
 
 class Day extends Model
@@ -11,8 +12,21 @@ class Day extends Model
 
     public $timestamps = false;
 
-    public static function getDayShort($id)
+    public static function getShortDay($cid)
     {
-    	$d = $this->find($id);
+    	$c 		= Day_period::where('classallocation', $cid);
+        $data   = [];
+
+        if ($c->count() > 0) {
+            $cc = $c->get();
+            
+            foreach ($cc as $dp) {
+            	$day 	= self::find($dp->day);
+                $data[] = $day->shortname;
+            }
+            
+        }
+
+        return implode(' / ', $data);
     }
 }

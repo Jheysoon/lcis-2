@@ -23,10 +23,10 @@
             </td>
             <td> {{ App\Library\Api::getCourseMajor($cl->coursemajor) }} </td>
             <td style="text-align:center;">
-                {{ App\Classallocation::getShortDay($cl->id) }}
+                {{ App\Day::getShortDay($cl->id) }}
             </td>
             <td style="text-align:center;">
-                {{ App\Classallocation::getPeriod($cl->id) }}
+                {{ App\Time::getPeriod($cl->id) }}
             </td>
             <td>
                 <?php $rr = DB::table('tbl_dayperiod')->where('classallocation', $cl->id)->count() ?>
@@ -35,7 +35,7 @@
                     <?php $rr1 = DB::table('tbl_dayperiod')->where('classallocation', $cl->id)->where('classroom', 0)->count() ?>
 
                     @if ($rr1 < 1)
-                        {{ App\Classallocation::getRooms($cl->id) }}
+                        {{ App\Room::getRooms($cl->id) }}
                     @else
                         Not Available
                     @endif
@@ -62,5 +62,5 @@
             </td>
         </tr>
     @endforeach
-    
+
  </table>
