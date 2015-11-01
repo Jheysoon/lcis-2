@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Dean;
 use DB;
 use Auth;
 use Session;
+use App\Day;
+use App\Time;
 use App\Subject;
+use App\Day_period;
 use App\Library\Api;
 use App\Academicterm;
 use App\Http\Requests;
@@ -91,8 +94,8 @@ class Add_day_period extends Controller
         $data['cid']    = $id;
         $data['error']  = $this->error;
         $data['cl']     = Classallocation::find($id);
-        $data['days']   = DB::table('tbl_day')->where('id', '!=', 8)->get();
-        $data['times']  = DB::table('tbl_time')->where('id', '!=', 12)->get();
+        $data['days']   = Day::where('id', '!=', 8)->get();
+        $data['times']  = Time::where('id', '!=', 12)->get();
 
         return view('dean.assigned_subj', $data);
     }
@@ -117,14 +120,17 @@ class Add_day_period extends Controller
                     if ( ($start_time >= 1 AND $end_time <= 11) OR ($start_time >= 13 AND $end_time <= 28) ) {
 
                         // delete first the days and period before inserting
-                        DB::table('tbl_dayperiod')->where('classallocation', $cid)->delete();
+                        Day_period::where('classallocation', $cid)->delete();
 
-                        $data['classallocation']    = $cid;
-                        $data['day']                = $value;
-                        $data['from_time']          = $start_time;
-                        $data['to_time']            = $end_time;
+                        $day_period = new Day_period;
 
-                        DB::table('tbl_dayperiod')->insert($data);
+                        $day_period->classallocation    = $cid;
+                        $day_period->day                = $value;
+                        $day_period->from_time          = $start_time;
+                        $day_period->to_time            = $end_time;
+
+                        $day_period->save();
+
                     } else {
                         $this->error = htmlAlert('Overlaps Noon Break in <strong>'.$days[$value - 1].'</strong>');
 
