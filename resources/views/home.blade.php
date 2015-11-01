@@ -2,14 +2,6 @@
 
 @section('title' ,'Home')
 
-@section('header')
-    <style type="text/css">
-        .mdl-card__title-text {
-            color: #fff;
-        }
-    </style>
-@endsection
-
 @section('body')
     
     <div class="col-md-9 col-md-offset-3">
