@@ -32,7 +32,7 @@
             					@foreach ($days as $day)
 
             						@if ( !empty($table_day[$day->id][$i + 1] ))
-            						
+
             							@if ( !empty($table_day[$day->id][$i+1]['rowspan']))
             								<td rowspan="{{ $table_day[$day->id][$i+1]['rowspan'] }}" class="colspan" style="background-color:{{ $table_day[$day->id][$i+1]['color'] }}">
             									<span>
@@ -56,11 +56,6 @@
             		</table>
             		
             	</div>
-            </div>
-            <div class="mdl-card__actions mdl-card--border">
-                <div class="col-sm-offset-3 col-sm-9">
-                    <input type="submit" class="btn btn-success pull-right btn-raised" name="name" value="Sign in">
-                </div>
             </div>
         </div>
 	</div>
