@@ -16,7 +16,7 @@
         <br/>
         <div class="mdl-card mdl-shadow--4dp">
             <div class="mdl-card__title text-center mdl-color--green-700">
-                <h1 class="mdl-card__title-text">Personal Information</h1>
+                <h1 class="mdl-card__title-text mdl-color-text--yellow-300">Personal Information</h1>
             </div>
             <div class="mdl-card__supporting-text">
                 <a data-toggle="modal" data-target=".modal-pic">
