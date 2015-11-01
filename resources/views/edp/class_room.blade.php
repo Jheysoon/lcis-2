@@ -50,7 +50,7 @@
 									<td> {{ $room->maxcapacity }} </td>
 									<td> {{ $room->status }} </td>
 									<td>
-										<a class="btn btn-success btn-xs btn-block" href="/view_sched/{{ $room->id }}">View Schedule</a>
+										<a class="btn btn-success btn-xs btn-block" href="/room_sched/{{ $room->id }}">View Schedule</a>
 									</td>
 								</tr>
 							@endforeach
