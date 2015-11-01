@@ -14,6 +14,7 @@
             <div class="panel-body">
                 <div class="form-group">
                     <div class="col-sm-12">
+                    
                         @if ($nxt->phase == env('FIN') AND $nxt->classallocationstatus == 0)
                             <div class="alert alert-info center-block" id="confirmBox" style="max-width:400px;">
                                 <strong> Do you want to run the student statistics for <br/>
@@ -35,6 +36,7 @@
                                 You Are unable to run this program...
                             </div>
                         @endif
+
                         <div id="stat_wrapper" class="hide">
                             <div class="progress" style="height:25px;">
                               <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">

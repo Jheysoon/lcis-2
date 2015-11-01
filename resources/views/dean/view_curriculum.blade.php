@@ -11,9 +11,11 @@
     				<h4>System Parameter: Add Subject To Curriculum</h4>
     			</div>
     		</div>
+
             @if(Session::has('message'))
                 {{ Session::get('message') }}
             @endif
+
             <form action="/curriculum/insert_subject" method="post">
                 <div class="panel-body">
                     <div class="col-md-6 col-md-offset-3">
@@ -24,9 +26,11 @@
         					<label class="lbl-data">Subject</label>
         					<select class="form-control" name="subid" required>
         						<option value="">Select Subject</option>
+
                                 @foreach($get_cur as $subject)
                                     <option value="{{ $subject->id }}">{{ $subject->code.' '.$subject->descriptivetitle }}</option>
                                 @endforeach
+
         					</select>
         				</div>
 
@@ -34,9 +38,11 @@
         					<label class="lbl-data">Year Level</label>
         					<select class="form-control" name = "yearlevel" required>
         					<option value="">Select Year Level</option>
+
                             @for( $i = 1; $i <= 5; $i++)
                                 <option value="{{ $i }}">{{ $i }}</option>
                             @endfor
+
         					</select>
         				</div>
 
@@ -44,9 +50,11 @@
         					<label class="lbl-data">Term</label>
         					<select class="form-control" name = "term" required>
         					<option value="" selected>Select Term</option>
+
                             @for( $i = 1; $i <= 3; $i++)
                                 <option value="{{ $i }}">{{ $i == 3 ? 'Summer' : $i }}</option>
                             @endfor
+
         					</select>
         				</div>
                         </br />
@@ -68,6 +76,7 @@
                                 {{ $acam->systart.'-'.$acam->syend }}
                             </th>
                         </tr>
+
                         @foreach($cur_detail as $curriculum_detail)
                             <tr>
                                 <td class="tbl-header-main" colspan="5">Year Level : {{ $curriculum_detail->yearlevel }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Term : {{ $curriculum_detail->term }}</td>
@@ -79,8 +88,10 @@
                                 <td class="tbl-header">Action</th>
                         	</tr>
                             <?php $cur_d = DB::table('tbl_curriculumdetail')->whereCurriculumAndYearlevelAndTerm($id, $curriculum_detail->yearlevel, $curriculum_detail->term )->get() ?>
+                            
                             @foreach($cur_d as $detail)
                                 <?php $subject1 = App\Subject::where('id', $detail->subject); ?>
+
                                 @if($subject1->count() > 0)
                                     <?php $subject = $subject1->first() ?>
                                     <tr>
@@ -92,8 +103,11 @@
                                         </td>
                                     </tr>
                                 @endif
+
                             @endforeach
+
                         @endforeach
+                        
                     </table>
                 </div>
             </div>

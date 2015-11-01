@@ -7,6 +7,7 @@
 	<div class="col-md-9 body-container">
 		<div class="panel p-body" >
 			<div class="col-md-12" style="background-color:#F0FBF0;">
+			
 			@include('edp.cl_status')
 
 			@if($val == 'cannot run in this phase')
@@ -20,6 +21,7 @@
 				</div>
 
 			@elseif($val == 'college count')
+
 				@include('edp.dean_activity', ['stage' => 2, 'message' => 'You cannot initialize the classallocation'])
 
 			@elseif($val == 'OK')
@@ -27,6 +29,7 @@
 					Class Allocation Successfully Created
 				</div>
 			@endif
+
 			</div>
 		</div>
 	</div>

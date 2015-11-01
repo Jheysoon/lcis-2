@@ -14,6 +14,7 @@
 			<div class="panel-body">
 				<div class="form-group">
 					<div class="col-sm-12">
+
 						@include('edp.cl_status', ['system' => $system])
 
 						@if ($system->classallocationstatus == 1)
@@ -81,6 +82,7 @@
 								Cannot run this program. The EDP must complete the step 1.
 							</div>
 						@endif
+						
 					</div>
 				</div>
 			</div>
