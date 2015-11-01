@@ -7,8 +7,8 @@
 	<div class="col-md-9 body-container">
 		<br/>
 		<div class="mdl-card mdl-shadow--4dp">
-            <div class="mdl-card__title mdl-color--green-700">
-                <h1 class="mdl-card__title-text text-center" style="color:#fff;">Subject Schedule</h1>
+            <div class="mdl-card__title mdl-color--green-900">
+                <h1 class="mdl-card__title-text text-center mdl-color-text--yellow-300">Subject Schedule</h1>
             </div>
             <div class="mdl-card__supporting-text" style="width:100%;">
             	<form action="/add_day_period/{{ $cid }}" method="post">
