@@ -4,6 +4,9 @@ namespace App\Library;
 use DB;
 use Auth;
 use Session;
+use App\Day;
+use App\Time;
+use App\Day_period;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -178,33 +181,6 @@ class Api
 
     }
 
-    // 1:00-3:00 / 2:00-5:00
-
-	//$from = 1:00,	$from_compare 	= 2:00
-	//$to 	= 3:00,	$to_compare 	= 5:00
-    public static function intersectCheck($from, $from_compare, $to, $to_compare)
-	{
-        if ($from == $from_compare AND $to == $to_compare)
-            return true;
-
-        $from 			= strtotime($from);
-        $from_compare 	= strtotime($from_compare);
-        $to 			= strtotime($to);
-        $to_compare 	= strtotime($to_compare);
-        $intersect 		= min($to, $to_compare) - max($from, $from_compare);
-
-        if ( $intersect < 0 ) $intersect = 0;
-        $overlap = $intersect / 3600;
-        if ( $overlap <= 0 ):
-            // There are no time conflicts
-            return false;
-            else:
-            // There is a time conflict
-            // echo '<p>There is a time conflict where the times overlap by ' , $overlap , ' hours.</p>';
-            return true;
-        endif;
-    }
-
     public static function getCourseMajor($cid)
     {
         if ($cid == 0)
@@ -220,5 +196,33 @@ class Api
         }
 
         return $course->description.' '.$major;
+    }
+
+    public static function checkInstructor($instructor, $time, $day)
+    {
+        $instructor_sched   = Day_period::getInstructorsSched($instructor);
+        $subject_time       = explode(' / ', $time);
+        $subject_day        = explode(' / ', $day);
+
+        foreach ($instructor_sched as $sched) {
+
+            if ( !in_array('TBA', $subject_day)) {
+                $inst_day = Day::find($sched->day);
+
+                if ( !in_array($inst_day, $subject_day)) {
+                    $from   = Time::find($sched->from_time);
+                    $to     = Time::find($sched->to_time);
+
+                    foreach ($subject_time as $key) {
+                        $keys = explode('-', $key);
+                        $isConflict = intersectCheck($from->time, $keys[0], $to->time, $keys[1]);
+
+                        if ($isConflict)
+                            return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }

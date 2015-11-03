@@ -3,7 +3,7 @@
 @section('title' ,'Home')
 
 @section('body')
-    
+
     <div class="col-md-9 col-md-offset-3">
         <br/>
         <div class="mdl-card mdl-shadow--4dp">

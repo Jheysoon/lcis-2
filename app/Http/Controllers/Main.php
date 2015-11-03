@@ -41,7 +41,8 @@ class Main extends Controller
             if (Auth::attempt(['username' => $username, 'password' => $password])) {
                 $system = Api::systemValue();
                 $sy     = Academicterm::find($system->currentacademicterm);
-                $ses    = ['current_sy' => $sy->systart.'-'.$sy->syend, 'term' => $sy->term];
+                $ses    = ['current_sy' => $sy->systart.'-'.$sy->syend, 
+                        'term' => $sy->term, 'phaseterm' => $sy->phaseterm];
                 Session::put($ses);
                 
                 return redirect('/');
