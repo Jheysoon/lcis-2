@@ -50,7 +50,7 @@ class Assign_instructor extends Controller
             }
 
             $data['acam']       = Academicterm::find(Session::get('phaseterm'));
-            $data['sy']         = DB::table('tbl_academicterm')->orderBy('systart,term')->get();
+            $data['sy']         = Academicterm::orderBy('systart')->orderBy('term')->get();
             $data['classes']    = Classallocation::getAlloc($this->owner, $this->system);
 
             $data['val'] = 'valid';
