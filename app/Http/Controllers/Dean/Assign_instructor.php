@@ -34,20 +34,18 @@ class Assign_instructor extends Controller
 
             if (Auth::user()->id != $this->system->employeeid) {
                 $data['college']    = DB::table('tbl_college')->where('id', $this->owner)->first();
-                $academic           = DB::table('tbl_academic')->where('college', $this->owner)->select('id')->get();
-                $administration     = DB::select("SELECT a.id as id FROM tbl_administration a,tbl_office b WHERE a.office = b.id AND b.college = $this->owner");
-                $data['instruc']    = array_merge($academic, $administration);
-
-                $otherAcademic      = DB::table('tbl_academic')
-                                    ->where('college', '!=', '')
-                                    ->where('college', '!=', $this->owner)
-                                    ->select('id')->get();
-                $otherAdminist      = DB::select("SELECT a.id as id FROM tbl_administration a,tbl_office b WHERE a.office = b.id AND b.college != ''");
-                $data['otherInst']  = array_merge($otherAcademic, $otherAdminist);
-            } else {
-                $data['instruc'] = '';
-                $data['college'] = '';
             }
+            
+            $academic           = DB::table('tbl_academic')->where('college', $this->owner)->select('id')->get();
+            $administration     = DB::select("SELECT a.id as id FROM tbl_administration a,tbl_office b WHERE a.office = b.id AND b.college = $this->owner");
+            $data['instruc']    = array_merge($academic, $administration);
+
+            $otherAcademic      = DB::table('tbl_academic')
+                                ->where('college', '!=', '')
+                                ->where('college', '!=', $this->owner)
+                                ->select('id')->get();
+            $otherAdminist      = DB::select("SELECT a.id as id FROM tbl_administration a,tbl_office b WHERE a.office = b.id AND b.college != ''");
+            $data['otherInst']  = array_merge($otherAcademic, $otherAdminist);
 
             $data['acam']       = Academicterm::find(Session::get('phaseterm'));
             $data['sy']         = Academicterm::orderBy('systart')->orderBy('term')->get();
