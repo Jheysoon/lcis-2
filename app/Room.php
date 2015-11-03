@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
-    protected $table = 'tbl_classroom';
-    public $timestamps = false;
+    protected $table    = 'tbl_classroom';
+    public $timestamps  = false;
 
     public static function getRooms($cid)
     {
@@ -20,9 +20,9 @@ class Room extends Model
 
             foreach ($cc as $rooms) {
                 $room 	= self::find($rooms->classroom);
-                $data[] = $room->legacycode;    
+                $data[] = $room->legacycode;
             }
-            
+
         }
 
         return implode(' / ', $data);

@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Time extends Model
 {
-    protected $table = 'tbl_time';
-    public $timestamps = false;
+    protected $table    = 'tbl_time';
+    public $timestamps  = false;
 
     public static function getPeriod($cid)
     {
@@ -22,7 +22,7 @@ class Time extends Model
                 $times    	= self::find($per->day);
                 $data[] 	= $times->time;
             }
-            
+
         }
 
         return implode(' / ', $data);
