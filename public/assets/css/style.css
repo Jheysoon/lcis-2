@@ -2416,3 +2416,9 @@ td.tbl-header-main{
 .mdl-card {
 	width: 100%;
 }
+.mdl-card__supporting-text {
+	width: 100%;
+}
+.mdl-card__supporting-text, .mdl-card__actions {
+	background-color:#eee;
+}
