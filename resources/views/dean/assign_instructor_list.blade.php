@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', 'Assign Instructor'.Session::get('phaseterm'))
+@section('title', 'Assign Instructor')
 
 @section('body')
 	<div class="col-md-3"></div>
