@@ -87,7 +87,7 @@
 
 		    				@if ($val == 'valid')
 		    					@foreach ($otherInst as $ins)
-			    					<?php $p = Party::findOrFail($ins->id) ?>
+			    					<?php $p = App\Party::findOrFail($ins->id) ?>
 
 			    					@if (!$p instanceof ModelNotFoundException)
 			    						<option value="{{ $p->id }}">{{ $p->firstname.' '.$p->lastname }}</option>
