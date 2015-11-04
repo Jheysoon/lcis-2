@@ -15,7 +15,7 @@
 	            @if ($val == 'valid')
 	            	<div class="col-md-6">
 						<h3 style="text-align: center; font-weight: bold"> {{ Auth::user()->id == $system->employeeid ? '': $college->description }} </h3>
-						<h5 style="text-align: center; font-weight: bold">School Year: {{-- $acam->systart.'-'.$acam->syend --}} Term: {{-- $acam->term --}} </h5>
+						<h5 style="text-align: center; font-weight: bold">School Year: {{ $acam->systart.'-'.$acam->syend }} Term: {{ $acam->term }} </h5>
 					 </div>
 					 <div class="col-md-4">
 						<form class="form" action="/change_sy" method="post">

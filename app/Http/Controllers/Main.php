@@ -20,9 +20,9 @@ class Main extends Controller
     {
         if ( !Auth::guest()) {
             $user = Party::find(Auth::user()->id);
-            
+
             return view('home', ['user' => $user]);
-        } else 
+        } else
             return $this->login($request);
     }
 
@@ -41,16 +41,16 @@ class Main extends Controller
             if (Auth::attempt(['username' => $username, 'password' => $password])) {
                 $system = Api::systemValue();
                 $sy     = Academicterm::find($system->currentacademicterm);
-                $ses    = ['current_sy' => $sy->systart.'-'.$sy->syend, 
-                        'term' => $sy->term, 'phaseterm' => $sy->phaseterm];
+                $ses    = ['current_sy' => $sy->systart.'-'.$sy->syend,
+                        'term' => $sy->term, 'phaseterm' => $system->phaseterm];
                 Session::put($ses);
-                
+
                 return redirect('/');
             }
-            else 
+            else
                 return view('index', ['error' => htmlAlert('Authentication Failed')]);
 
-        } else 
+        } else
             return view('index', ['error' => '']);
     }
 
