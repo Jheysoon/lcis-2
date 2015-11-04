@@ -108,3 +108,28 @@
 	</div>
 
 @endsection
+
+@section('footer')
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.save_instructor').submit(function(e){
+				$.post('/dean/save_instructor', $(this).serialize(),function(data){
+					if (data == 'conflict') {
+						alert('Instructor Conflict');
+					} else if(data == 'no') {
+						alert('Please select a Instructor');
+					} else {
+						alert('Successfully Assigned');
+					}
+				});
+				e.preventDefault();
+			});
+			$('#sorting').change(function(){
+				v = $(this).val();
+				$.post('/dean/sorts',{sort:v},function(data){
+					$('#table-body').html(data);
+				});
+			});
+		});
+	</script>
+@endsection
