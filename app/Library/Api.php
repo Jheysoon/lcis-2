@@ -36,12 +36,12 @@ class Api
                 // check if the view file exists
                 if (view()->exists($file))
                     return $file;
-                else 
+                else
                     return view('errors.404');
 
             } else
                 return view('errors.unathorized');
-            
+
         } else
             return view('errors.404');
 
@@ -175,7 +175,7 @@ class Api
             $b['comment'] = 'no curriculum tbl_registration';
 			$b['student'] = $partyid;
             DB::table('out_exception')->insert($b);
-            
+
 			return 'Curriculum not fount';
         }
 
@@ -185,7 +185,7 @@ class Api
     {
         if ($cid == 0)
             return;
-        
+
         $cm     = DB::table('tbl_coursemajor')->where('id', $cid)->first();
         $course = DB::table('tbl_course')->where('id', $cm->course)->first();
         $major  = '';
@@ -214,7 +214,7 @@ class Api
                     $to     = Time::find($sched->to_time);
 
                     foreach ($subject_time as $key) {
-                        $keys = explode('-', $key);
+                        $keys       = explode('-', $key);
                         $isConflict = intersectCheck($from->time, $keys[0], $to->time, $keys[1]);
 
                         if ($isConflict)

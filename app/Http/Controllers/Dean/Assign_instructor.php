@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Dean;
 use DB;
 use Auth;
 use Session;
+use App\Day;
+use App\Time;
 use App\Library\Api;
 use App\Academicterm;
 use App\Http\Requests;
@@ -35,7 +37,7 @@ class Assign_instructor extends Controller
             if (Auth::user()->id != $this->system->employeeid) {
                 $data['college']    = DB::table('tbl_college')->where('id', $this->owner)->first();
             }
-            
+
             $academic           = DB::table('tbl_academic')->where('college', $this->owner)->select('id')->get();
             $administration     = DB::select("SELECT a.id as id FROM tbl_administration a,tbl_office b WHERE a.office = b.id AND b.college = $this->owner");
             $data['instruc']    = array_merge($academic, $administration);
@@ -58,5 +60,28 @@ class Assign_instructor extends Controller
         }
 
         return view(Api::getView(), $data);
+    }
+
+    function save_instructor(Request $request)
+    {
+        $acam       = Session::get('phaseterm');
+        $instructor = $request->instructor;
+        $class_id   = $request->cl_id;
+
+        // no point if the instructor = 0
+        if ($instructor != 0) {
+            $time       = Time::getPeriod($class_id);
+            $day        = Day::getShortDay($class_id);
+
+            $conflict = Api::checkInstructor($instructor, $time, $day);
+
+            if ($conflict == false) {
+                $class = Classallocation::find($class_id);
+                $class->instructor = $instructor;
+                $class->save();
+            } else
+                echo 'conflict';
+        } else
+            echo 'no';
     }
 }

@@ -113,7 +113,7 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('.save_instructor').submit(function(e){
-				$.post('/dean/save_instructor', $(this).serialize(),function(data){
+				$.post('/save_instructor', $(this).serialize(),function(data){
 					if (data == 'conflict') {
 						alert('Instructor Conflict');
 					} else if(data == 'no') {
