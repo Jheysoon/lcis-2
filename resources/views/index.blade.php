@@ -7,6 +7,9 @@
         .mdl-card__supporting-text {
             width: 100%;
         }
+        .mdl-card__actions, .mdl-card__supporting-text  {
+            background-color: #fff;
+        }
     </style>
 @endsection
 
