@@ -38,10 +38,7 @@ class Assign_instructor extends Controller
                 $data['college']    = DB::table('tbl_college')->where('id', $this->owner)->first();
             }
 
-            $academic           = DB::table('tbl_academic')->where('college', $this->owner)->select('id')->get();
-            $administration     = DB::select("SELECT a.id as id FROM tbl_administration a,tbl_office b WHERE a.office = b.id AND b.college = $this->owner");
-            $data['instruc']    = array_merge($academic, $administration);
-
+            $data['instruc'] = $this->instructors();
             $otherAcademic      = DB::table('tbl_academic')
                                 ->where('college', '!=', '')
                                 ->where('college', '!=', $this->owner)
@@ -60,6 +57,14 @@ class Assign_instructor extends Controller
         }
 
         return view(Api::getView(), $data);
+    }
+
+    function instructors()
+    {
+        $academic           = DB::table('tbl_academic')->where('college', $this->owner)->select('id')->get();
+        $administration     = DB::select("SELECT a.id as id FROM tbl_administration a,tbl_office b
+                            WHERE a.office = b.id AND b.college = $this->owner");
+        return array_merge($academic, $administration);
     }
 
     function save_instructor(Request $request)
@@ -83,5 +88,13 @@ class Assign_instructor extends Controller
                 echo 'conflict';
         } else
             echo 'no';
+    }
+
+    function instructor_sched_list()
+    {
+        $data['instruc'] = $this->instructors();
+        $data['system'] = $this->system;
+
+        return view('dean.instructor_list', $data);
     }
 }

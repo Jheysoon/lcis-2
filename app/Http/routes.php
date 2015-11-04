@@ -25,6 +25,7 @@ Route::get('add_day_period_list',		'Dean\Add_day_period@dayPeriod_list');
 Route::get('add_day_period/{id}', 		'Dean\Add_day_period@add_day_period');
 Route::get('assign_instructor', 		'Dean\Assign_instructor@index');
 Route::post('save_instructor',          'Dean\Assign_instructor@save_instructor');
+Route::get('instructor_sched_list',     'Dean\Assign_instructor@instructor_sched_list');
 
 Route::get('/stat',						'Edp\Stat@index');
 Route::post('load_stat', 				'Edp\Stat@load_stat');

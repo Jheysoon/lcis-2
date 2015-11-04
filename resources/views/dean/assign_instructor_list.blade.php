@@ -8,7 +8,12 @@
 		<br/>
 		<div class="mdl-card mdl-shadow--4dp">
             <div class="mdl-card__title text-center mdl-color--green-700">
-                <h1 class="mdl-card__title-text mdl-color-text--yellow-300">Assign Instructor</h1>
+				<div class="col-sm-6">
+					<h1 class="mdl-card__title-text mdl-color-text--yellow-300">Assign Instructor</h1>
+				</div>
+				<div class="col-sm-6">
+					<a href="{{ url('instructor_sched_list') }}" target="_blank" class="btn btn-warning pull-right">View Instructor Schedule</a>
+				</div>
             </div>
             <div class="mdl-card__supporting-text" style="width:100%">
 
@@ -78,7 +83,7 @@
 	    		<form action="/dean/ass_ins_other" method="POST">
 		    		<div class="modal-header">
 		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        		<h4 class="modal-title" id="myModalLabel" style="color:#fff;">Modal title</h4>
+		        		<h4 class="modal-title" id="myModalLabel" style="color:#fff;">Assign Other Instructor</h4>
 		    		</div>
 		    		<div class="modal-body">
 						<label>Instructor</label>
