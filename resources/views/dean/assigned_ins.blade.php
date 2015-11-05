@@ -68,7 +68,7 @@
 
 	    					</select>
 	    				</td>
-	                    <td><a href="#" data-param="{{ $class->cid }}" data-toggle="modal" data-target="#myModalIns" class="btn btn-primary cl_id_other">Choose</a></td>
+	                    <td><a href="#" data-param="{{ $class->cid }}" data-toggle="modal" data-target="#myModalIns" class="btn btn-primary btn-sm cl_id_other">Choose</a></td>
 	                    <td>
 	                        <button type="submit" class="btn btn-primary btn-sm" name="button">Save</button>
 	                    </td>

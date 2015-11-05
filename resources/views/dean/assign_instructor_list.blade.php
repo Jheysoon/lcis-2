@@ -36,7 +36,7 @@
 
 								</select>
 								<span class="input-group-btn">
-									<input type="submit" class="btn btn-primary pull-right" name="name" value="Change">
+									<input type="submit" class="btn btn-primary btn-sm pull-right" name="name" value="Change">
 								</span>
 							</div>
 							</div>
