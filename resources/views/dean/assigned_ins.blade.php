@@ -27,7 +27,18 @@
 	    			<tr>
 	    				<input type="hidden" name="cl_id" value="{{ $class->cid }}">
 	    				<td> {{ $class->code }} </td>
-	    				<td> {{ $class->getCourse->description or 'Not Available' }} </td>
+	    				<td>
+							@if($class->coursemajor != 0)
+								<?php $course = App\Course::find($class->coursemajor) ?>
+
+								@if( !$course instanceof ModelNotFoundException)
+									{{ $course->description }}
+								@endif
+
+							@else
+								Not Available
+							@endif
+						</td>
 	    				<td> {{ $room }} </td>
 	    				<td> {{ $day }} </td>
 	    				<td> {{ $time }} </td>
