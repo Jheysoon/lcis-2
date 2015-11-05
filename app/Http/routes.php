@@ -34,3 +34,5 @@ Route::get('initClassallocation', 		'Edp\ClassAlloc@init');
 Route::get('room_subj', 				'Edp\Room_subj@index');
 Route::get('classRooms', 				'Edp\Room@index');
 Route::get('room_sched/{id}', 			'Edp\Room@room');
+
+Route::get('instructor/{id}',           'Instructor\Sched@show');
