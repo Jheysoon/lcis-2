@@ -19,8 +19,9 @@ class Time extends Model
             $cc = $c->get();
 
             foreach ($cc as $per) {
-                $times    	= self::find($per->day);
-                $data[] 	= $times->time;
+                $from    	= self::find($per->from_time);
+                $to         = self::find($per->to_time);
+                $data[] 	= $from->time.'-'.$to->time;
             }
 
         }
