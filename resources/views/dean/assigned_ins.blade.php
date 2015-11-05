@@ -16,7 +16,7 @@
     @foreach ($classes as $class)
 
     	@if ($class->instructor != 0)
-    		<?php 
+    		<?php
     			$day 	= App\Day::getShortDay($class->cid);
     			$time 	= App\Time::getPeriod($class->cid);
     			$room 	= App\Room::getRooms($class->cid);
@@ -33,15 +33,23 @@
 	    				<td> {{ $time }} </td>
 	    				<td>
 	    					<select class="form-control" name="instructor" required>
-	    						<option value="{{ $class->instructor }}" selected></option>
+								<?php $party = App\Party::find($class->instructor) ?>
+
+								@if( !$party instanceof ModelNotFoundException)
+									<option value="{{ $class->instructor }}" selected> {{ $party->firstname.', '.$party->lastname }}</option>
+								@endif
 
 	    						@foreach ($instruc as $i)
 		    						<?php $conflict = App\Library\Api::checkInstructor($i->id, $time, $day) ?>
 
 		    						@if ($conflict == false)
 		    							<option value="{{ $i->id }}">
-		    								<?php $party = DB::table('tbl_party')->where('id', $i->id)->first() ?>
-		    								{{  $party->lastname.', '.$party->firstname }}
+		    								<?php $party = App\Party::find($i->id) ?>
+
+											@if( !$party instanceof ModelNotFoundException)
+												{{  $party->lastname.', '.$party->firstname }}
+											@endif
+
 		    							</option>
 		    						@endif
 
