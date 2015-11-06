@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Edp;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
-use Session;
 use DB;
+use Session;
 use App\Library\Api;
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ClassAlloc extends Controller
 {
@@ -17,15 +16,16 @@ class ClassAlloc extends Controller
     function __construct()
     {
     	$this->system = Api::systemValue();
+        $this->middleware('auth');
     }
 
     function init()
     {
     	$data['val'] = '';
     	if ($this->system->phaseterm == env('FIN')) {
+            $stat = $this->system->classallocationstatus;
 
-    		if ($this->system->classallocationstatus == 2 OR
-    			$this->system->classallocationstatus == 1) {
+    		if ($stat == 2 OR $stat == 1) {
     			$c		= DB::table('tbl_completion')->where('stage', 2)
 							->where('academicterm', $system->phaseterm)
 							->where('status', 'O');
@@ -42,9 +42,9 @@ class ClassAlloc extends Controller
 
 						// if the section is zero it will not satisfy this condition
 						for ($i = 1; $i <= $section->section; $i++) {
-							$data['academicterm'] 	= $ssection->academicterm;
-							$data['coursemajor'] 	= $ssection->coursemajor;
-							$data['subject'] 		= $ssection->subject;
+							$data['academicterm'] 	= $section->academicterm;
+							$data['coursemajor'] 	= $section->coursemajor;
+							$data['subject'] 		= $section->subject;
 							$data['instructor']		= 0;
 							$data['reserved']		= 0;
 							$data['enrolled']		= 0;
@@ -53,17 +53,14 @@ class ClassAlloc extends Controller
 					}
 
 					$data['val'] = 'OK';
-    			} else {
+    			} else
     				$data['val'] = 'college count';
-    			}
 
-    		} else {
+    		} else
     			$data['val'] = 'cannot run';
-    		}
 
-    	} else {
+    	} else
     		$data['val'] = 'cannot run in this phase';
-    	}
     	
     	return view('edp.initClass', $data);
     }

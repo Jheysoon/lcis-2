@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Option extends Model
 {
-    //
-    protected $table = 'tbl_option';
-
-    public $timestamps = false;
+    protected $table    = 'tbl_option';
+    public $timestamps  = false;
 }

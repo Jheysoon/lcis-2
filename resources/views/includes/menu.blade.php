@@ -1,45 +1,17 @@
 <div class="container-fluid main-body">
     <div class="row">
-        <nav class="navbar navbar-default nav-head" role="navigation">
-          <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1 ">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <div>
-                    <img class="img-logo" src="<?php echo asset('assets/images/LC Logo.jpg'); ?>">
-                    <h2 class="hd-title"><a class="title" href="/"> &nbsp;LEYTE COLLEGES Information System</a></h2>
-                </div>
-            </div>
-
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav top-sign navbar-right">
-                    <li class="logout"><a href="/logout">Logout</a></li>
-                </ul>
-
-                <p class="navbar-text top-sign2 navbar-right">SY:{{ Session::get('current_sy') }}&nbsp;&nbsp;&nbsp;&nbsp; Term: {{ Session::get('term') }}</p>
-            	<p class="navbar-text top-sign2 navbar-right">Signed in as {{ Session::get('username') }}
-	            	<a href="index.php?page=home" class="navbar-link"></a>
-	            </p>
-            	<p class="navbar-text navbar-right">
-	            	<img src="<?php echo asset('assets/images/sample.jpg'); ?>" alt="" class="img-rounded profile_pic">
-	            </p>
-            </div>
-          </div>
-        </nav>
+        
+        @include ('includes.nav')
 
         <div class="row">
             <div class="col-md-3 side-bar-menu hidden-print">
                 <div class="collapse navbar-collapse">
-                    <div class="panel-heading"><h2></h2></div>
+                    <div class="panel-heading mdl-color--green-700"><h2></h2></div>
                     <?php
-                        $user   = Session::get('uid');
+                        $user   = Auth::user()->id;
                         $menu1  = DB::table('tbl_useroption')->where('userid', $user)->groupBy('header')->orderBy('priors')->get();
                      ?>
+
                     @foreach ($menu1 as $option)
                         <li class="list-group-item">
                             <a class="menu">
@@ -49,6 +21,7 @@
                                 {{ $opt->name }}
                             </a>
                             <?php $o = DB::table('tbl_useroption')->where('header', $option->header)->where('userid', $user)->orderBY('optionid', 'ASC')->get(); ?>
+                            
                             @foreach($o as $oo)
                                 <?php $options = App\Option::find($oo->optionid); ?>
                                 <ul class="sub-menu">
@@ -61,6 +34,7 @@
                                     </li>
                                 </ul>
                             @endforeach
+
                         </li>
                     @endforeach
 

@@ -9,7 +9,7 @@
         <link rel="shortcut icon" type="image/jpg" href="{{ asset('assets/images/LC logo.jpg') }}">
         @yield('header')
     </head>
-    <body>
+    <body class="mdl-color--yellow-200">
         @include('includes.menu')
         @yield('body')
         <footer>

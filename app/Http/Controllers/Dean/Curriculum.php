@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Dean;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
+use DB;
 use Session;
+use Validator;
+use App\Subject;
 use App\Library\Api;
 use App\Academicterm;
-use DB;
-use App\Subject;
-use Validator;
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class Curriculum extends Controller
 {
@@ -48,6 +47,7 @@ class Curriculum extends Controller
             $m      = DB::table('tbl_major')->where('id', $cm->major)->first();
             $major  = $m->description;
         }
+        
         $course = $c->description.' '.$m;
 
         return view('dean.view_curriculum', compact('get_cur', 'cur_detail', 'cur', 'id', 'course'));
@@ -70,14 +70,14 @@ class Curriculum extends Controller
             ]);
 
         if ($validation->fails()) {
-            Session::flash('message', '<div class="alert alert-danger">All Fields Are Required</div>');
+            Session::flash('message', htmlAlert('All Fields Are Required'));
         } else {
             $data['curriculum'] = $request->cur_id;
             $data['subject']    = $request->subid;
             $data['yearlevel']  = $request->yearlevel;
             $data['term']       = $request->term;
             DB::table('curriculumdetail')->insert($data);
-            Session::flash('message', '<div class="alert alert-success">Successfully Added</div>');
+            Session::flash('message', htmlAlert('Successfully Added', 'success'));
         }
 
         return back();
@@ -97,7 +97,7 @@ class Curriculum extends Controller
         $past_cur = DB::table('tbl_curriculum')->where('id', $request->curriculum_id)->first();
 
         if ($past_cur->academicterm == $request->sy_id) {
-            Session::flash('message', '<div class="alert alert-danger">The Same Academicterm</div>');
+            Session::flash('message', htmlAlert('The Same Academicterm'));
         } else {
             $cur['coursemajor']     = $past_cur->coursemajor;
             $cur['academicterm']    = $past_cur->academicterm;

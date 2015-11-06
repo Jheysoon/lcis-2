@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Dean;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
-use Session;
 use DB;
-use App\Library\Api;
+use Session;
 use App\Subject;
+use App\Library\Api;
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class Manage_section extends Controller
 {

@@ -1,22 +1,32 @@
 <?php
 namespace App\Library;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
 use DB;
+use Auth;
 use Session;
+use App\Day;
+use App\Time;
+use App\Day_period;
+use App\Http\Requests;
+use Illuminate\Http\Request;
 
 class Api
 {
     public static function getView()
     {
         $route  = ltrim($_SERVER['REQUEST_URI'], '/');
+
+        if (strpos($route, '?')) {
+            $r      = explode('?', $route);
+            $route  = $r[0];
+        }
+
         $op     = DB::table('tbl_option')->where('link', $route);
 
         if ($op->count() > 0) {
             $option = $op->first();
             $isUserMenu = DB::table('tbl_useroption')
-                        ->where('userid', Session::get('uid'))
+                        ->where('userid', Auth::user()->id)
                         ->where('optionid', $option->id)
                         ->count();
 
@@ -24,19 +34,16 @@ class Api
                 $file = str_replace('/', '.', $option->file);
 
                 // check if the view file exists
-                if (view()->exist($file)) {
+                if (view()->exists($file))
                     return $file;
-                } else {
+                else
                     return view('errors.404');
-                }
 
-            } else {
+            } else
                 return view('errors.unathorized');
-            }
-            
-        } else {
-            return view('error.404');
-        }
+
+        } else
+            return view('errors.404');
 
     }
 
@@ -47,14 +54,14 @@ class Api
 
     public static function getCollege()
     {
-        $o      = DB::table('tbl_academic')->where('id', Session::get('uid'));
+        $o      = DB::table('tbl_academic')->where('id', Auth::user()->id);
 
         if ($o->count() > 0) {
             $own = $i->first();
 
             return $own->college;
         } else {
-            $a      = DB::table('tbl_administration')->where('id', Session::get('uid'))->first();
+            $a      = DB::table('tbl_administration')->where('id', Auth::user()->id)->first();
             $ofs    = DB::table('tbl_office')->where('id', $a->office)->first();
 
             return $ofs->college;
@@ -168,36 +175,54 @@ class Api
             $b['comment'] = 'no curriculum tbl_registration';
 			$b['student'] = $partyid;
             DB::table('out_exception')->insert($b);
-            
+
 			return 'Curriculum not fount';
         }
 
     }
 
-    // 1:00-3:00 / 2:00-5:00
+    public static function getCourseMajor($cid)
+    {
+        if ($cid == 0)
+            return;
 
-	//$from = 1:00,	$from_compare 	= 2:00
-	//$to 	= 3:00,	$to_compare 	= 5:00
-    public static function intersectCheck($from, $from_compare, $to, $to_compare)
-	{
-        if ($from == $from_compare AND $to == $to_compare)
-            return true;
+        $cm     = DB::table('tbl_coursemajor')->where('id', $cid)->first();
+        $course = DB::table('tbl_course')->where('id', $cm->course)->first();
+        $major  = '';
 
-        $from 			= strtotime($from);
-        $from_compare 	= strtotime($from_compare);
-        $to 			= strtotime($to);
-        $to_compare 	= strtotime($to_compare);
-        $intersect 		= min($to, $to_compare) - max($from, $from_compare);
+        if($cm->major != 0) {
+            $major = DB::table('tbl_major')->where('id', $cm->major)->first();
+            $major = '('.$major->description.')';
+        }
 
-        if ( $intersect < 0 ) $intersect = 0;
-        $overlap = $intersect / 3600;
-        if ( $overlap <= 0 ):
-            // There are no time conflicts
-            return false;
-            else:
-            // There is a time conflict
-            // echo '<p>There is a time conflict where the times overlap by ' , $overlap , ' hours.</p>';
-            return true;
-        endif;
+        return $course->description.' '.$major;
+    }
+
+    public static function checkInstructor($instructor, $time, $day)
+    {
+        $instructor_sched   = Day_period::getInstructorsSched($instructor);
+        $subject_time       = explode(' / ', $time);
+        $subject_day        = explode(' / ', $day);
+
+        foreach ($instructor_sched as $sched) {
+
+            if ( !in_array('TBA', $subject_day)) {
+                $inst_day = Day::find($sched->day);
+
+                if ( !in_array($inst_day, $subject_day)) {
+                    $from   = Time::find($sched->from_time);
+                    $to     = Time::find($sched->to_time);
+
+                    foreach ($subject_time as $key) {
+                        $keys       = explode('-', $key);
+                        $isConflict = intersectCheck($from->time, $keys[0], $to->time, $keys[1]);
+
+                        if ($isConflict)
+                            return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }
