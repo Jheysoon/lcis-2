@@ -43,8 +43,7 @@ class Room extends Controller
         $data['days']       = Day::where('id', '!=', 8)->get();
         $data['times']      = Time::all();
         $schedCollection    = new SchedCollection;
-        $schedCollection->getSchedRoom($roomId, $this->system);
-        $data['table_day']  = $schedCollection->collection;
+        $data['table_day']  = $schedCollection->getSchedRoom($roomId, $this->system);
 
         return view('edp.room_sched', $data);
     }

@@ -37,7 +37,7 @@ class SchedCollection
                     ->where('instructor', $instructor)->get();
 
         foreach ($classes as $class) {
-            if ($this->ctr > count($this->color))
+            if ($this->ctr > (count($this->color) - 1))
                 $this->ctr = 0;
 
             $dayperiods = Day_period::where('classallocation', $class->id)->get();
@@ -47,7 +47,7 @@ class SchedCollection
             $this->ctr++;
         }
 
-        $this->returnCollection();
+        return $this->returnCollection();
 
     }
 
@@ -56,7 +56,7 @@ class SchedCollection
         $classes    = Classallocation::where('academicterm', $system->phaseterm)->get();
 
         foreach ($classes as $class) {
-            if ($this->ctr > count($this->color))
+            if ($this->ctr > (count($this->color) - 1))
                 $this->ctr = 0;
 
                 $dayperiods = Day_period::where('classallocation', $class->id)
@@ -67,7 +67,7 @@ class SchedCollection
             $this->ctr++;
         }
 
-        $this->returnCollection();
+        return $this->returnCollection();
     }
 
     function returnCollection()
@@ -80,7 +80,7 @@ class SchedCollection
         $this->collection['6'] = $this->day[5];
         $this->collection['7'] = $this->day[6];
 
-        return $this;
+        return $this->collection;
     }
 
     function getSched($dayperiods, $class)

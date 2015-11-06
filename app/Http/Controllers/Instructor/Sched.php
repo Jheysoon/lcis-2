@@ -38,8 +38,7 @@ class Sched extends Controller
         $data['days']       = Day::where('id', '!=', 8)->get();
         $data['times']      = Time::all();
         $schedCollection    = new SchedCollection;
-        $schedCollection->getSchedInstructor($id, $this->system);
-        $data['table_day']  = $schedCollection->collection;
+        $data['table_day']  = $schedCollection->getSchedInstructor($id, $this->system);
 
         return view('instructor.sched', $data);
     }
