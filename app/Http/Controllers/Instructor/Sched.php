@@ -56,7 +56,7 @@ class Sched extends Controller
         $classes    = Classallocation::where('academicterm', $this->system->phaseterm)
                     ->where('instructor', $instructor)->get();
         $ctr        = 0;
-        $day        = [ 0   => [], 1    => [],
+        $day        = [ 0   => [], 1   => [],
                         2   => [], 3   => [],
                         4   => [], 5   => [],
                         6   => []
