@@ -11,6 +11,10 @@ use App\Http\Controllers\Controller;
 class Subject extends Controller
 {
 
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $data['subjects'] = Subjects::paginate(15);
