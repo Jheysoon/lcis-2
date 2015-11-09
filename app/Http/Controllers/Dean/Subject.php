@@ -15,6 +15,7 @@ class Subject extends Controller
     {
         $this->middleware('auth');
     }
+
     public function index()
     {
         $data['subjects'] = Subjects::paginate(15);
@@ -22,4 +23,14 @@ class Subject extends Controller
         return view(Api::getView(), $data);
     }
 
+    function show($id)
+    {
+        $subject_id =  Subjects::findOrFail($id);
+        $owner      = Api::getCollege();
+
+        if ($subject_id instanceof ModelNotFoundException)
+            return view('errors.404');
+
+        return view('dean.subject', ['subject' => $subject_id, 'owner' => $owner]);
+    }
 }

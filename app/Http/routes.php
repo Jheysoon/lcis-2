@@ -27,6 +27,7 @@ Route::get('assign_instructor', 		'Dean\Assign_instructor@index');
 Route::post('save_instructor',          'Dean\Assign_instructor@save_instructor');
 Route::get('instructor_sched_list',     'Dean\Assign_instructor@instructor_sched_list');
 Route::get('subject_list',              'Dean\Subject@index');
+Route::get('subject/{id}',              'Dean\Subject@show');
 
 Route::get('/stat',						'Edp\Stat@index');
 Route::post('load_stat', 				'Edp\Stat@load_stat');

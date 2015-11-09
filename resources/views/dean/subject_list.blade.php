@@ -28,7 +28,7 @@
                                 <td> {{ $subject->code }} </td>
                                 <td> {{ $subject->descriptivetitle }} </td>
                                 <td> {{ $subject->units }} </td>
-                                <td><a href="#" class="label label-primary btn-block pull-right" style="padding:5px;">View</a></td>
+                                <td><a href="{{ url("subject/$subject->id") }}" class="label label-primary btn-block pull-right" style="padding:5px;">View</a></td>
                             </tr>
                         @endforeach
 
