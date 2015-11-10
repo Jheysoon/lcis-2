@@ -12,7 +12,7 @@
 */
 
 Route::any('/', 						'Main@index');
-Route::get('/logout', 					'Main@logout');
+Route::get('logout', 					'Main@logout');
 
 Route::get('manage_curriculum',         'Dean\Curriculum@manage_curriculum');
 Route::get('view_curriculum/{id}',      'Dean\Curriculum@view_curriculum');
@@ -29,7 +29,7 @@ Route::get('instructor_sched_list',     'Dean\Assign_instructor@instructor_sched
 Route::get('subject_list',              'Dean\Subject@index');
 Route::get('subject/{id}',              'Dean\Subject@show');
 
-Route::get('/stat',						'Edp\Stat@index');
+Route::get('stat',						'Edp\Stat@index');
 Route::post('load_stat', 				'Edp\Stat@load_stat');
 Route::post('studentcount', 			'Edp\Stat@studentcount');
 Route::get('initClassallocation', 		'Edp\ClassAlloc@init');
