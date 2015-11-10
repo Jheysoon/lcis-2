@@ -2472,7 +2472,7 @@ td.tbl-header-main{
 }
 
 .card-header:first-child {
-  border-radius: .1875rem .1875rem 0 0;
+  border-radius: .25rem .25rem 0 0;
 }
 
 .card-footer {
@@ -2482,7 +2482,7 @@ td.tbl-header-main{
 }
 
 .card-footer:last-child {
-  border-radius: 0 0 .1875rem .1875rem;
+  border-radius: 0 0 .25rem .25rem;
 }
 
 .card-primary {
