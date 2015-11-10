@@ -22,8 +22,8 @@
 				      <div class="modal-body">
 				        <select name="subj" class="form-control">
 
-				        	@foreach ($subject_owner as $sub)
-				        		<option value="{{ $sub->id }}"> {{ $ss->code.' | '.$ss->descriptivetitle }}</option>
+				        	@foreach ($subject as $sub)
+				        		<option value="{{ $sub->id }}"> {{ $sub->code.' | '.$sub->descriptivetitle }}</option>
 				        	@endforeach
 
 				        </select>
@@ -90,10 +90,10 @@
 										{{ $subj->code }}
 									</td>
 									<td class="text-center">
-										<?php 
+										<?php
 											$course = DB::table('tbl_course')
 													->where('id', $subj->coursemajor)
-													->first(); 
+													->first();
 										?>
 										{{ $course->description }}
 									</td>
@@ -103,7 +103,7 @@
 									</td>
 									<td>
 										<?php $cc = DB::table('tbl_dayperiod')->where('classallocation', $subj->cid)->count(); ?>
-										
+
 										@if ($cc > 0)
 											Added Day Period
 										@else
