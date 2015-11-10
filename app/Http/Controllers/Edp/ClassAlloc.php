@@ -6,6 +6,7 @@ use DB;
 use Session;
 use App\Library\Api;
 use App\Http\Requests;
+use App\Classallocation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -34,21 +35,21 @@ class ClassAlloc extends Controller
     				// update the systemvalues
 					DB::table('tbl_systemvalues')->update(['classallocationstatus' => 3]);
 					// delete classallocation for this phaseterm
-					DB::table('tbl_classallocation')->where('academicterm', $system->phaseterm)
-						->delete();
+					Classallocation::where('academicterm', $system->phaseterm)->delete();
 					$sec = DB::table('out_section')->get();
 
 					foreach ($sec as $section) {
 
 						// if the section is zero it will not satisfy this condition
 						for ($i = 1; $i <= $section->section; $i++) {
-							$data['academicterm'] 	= $section->academicterm;
-							$data['coursemajor'] 	= $section->coursemajor;
-							$data['subject'] 		= $section->subject;
-							$data['instructor']		= 0;
-							$data['reserved']		= 0;
-							$data['enrolled']		= 0;
-							DB::table('tbl_classallocation')->insert($data);
+                            $class                  = new Classallocation;
+                            $class->academicterm    = $section->academicterm;
+                            $class->coursemajor     = $section->coursemajor;
+                            $class->subject         = $section->subject;
+                            $class->instructor      = 0;
+                            $class->reserved        = 0;
+                            $class->enrolled        = 0;
+                            $class->save();
 						}
 					}
 
@@ -61,7 +62,7 @@ class ClassAlloc extends Controller
 
     	} else
     		$data['val'] = 'cannot run in this phase';
-    	
+
     	return view('edp.initClass', $data);
     }
 }
