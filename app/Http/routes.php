@@ -38,3 +38,4 @@ Route::get('classRooms', 				'Edp\Room@index');
 Route::get('room_sched/{id}', 			'Edp\Room@room');
 
 Route::get('instructor/{id}',           'Instructor\Sched@show');
+Route::get('class_list',                'Instructor\Instructor_Class@index');
