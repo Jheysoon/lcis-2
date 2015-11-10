@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Instructor;
 use DB;
 use Auth;
 use App\Library\Api;
+use App\Academicterm;
 use App\Http\Requests;
 use App\Classallocation;
 use Illuminate\Http\Request;
@@ -25,6 +26,7 @@ class Instructor_Class extends Controller
         $data['classes'] = Classallocation::where('academicterm', $this->system->currentacademicterm)
                         ->where('instructor', Auth::user()->id)->get();
         $data['system'] = $this->system;
+        $data['acam']   = Academicterm::find($this->system->currentacademicterm);
 
         return view(Api::getView(), $data);
     }

@@ -13,7 +13,10 @@
             </div>
             <div class="mdl-card__supporting-text">
                 <table class="table">
-                    <caption>sdfsdf</caption>
+                    <?php $term = App\Academicterm::getShortTerm($acam->term); ?>
+                    <caption class="text-center">
+                        <h3>{{ $acam->systart.' - '.$acam->syend.' Term: '.$term->shortname }}</h3>
+                    </caption>
                     <thead>
                         <tr>
                             <th>Course</th>
