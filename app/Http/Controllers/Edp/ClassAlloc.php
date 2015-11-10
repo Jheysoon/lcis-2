@@ -16,8 +16,8 @@ class ClassAlloc extends Controller
 
     function __construct()
     {
-    	$this->system = Api::systemValue();
         $this->middleware('auth');
+    	$this->system = Api::systemValue();
     }
 
     function init()
