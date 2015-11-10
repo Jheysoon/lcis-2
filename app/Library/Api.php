@@ -57,7 +57,7 @@ class Api
         $o      = DB::table('tbl_academic')->where('id', Auth::user()->id);
 
         if ($o->count() > 0) {
-            $own = $i->first();
+            $own = $o->first();
 
             return $own->college;
         } else {
