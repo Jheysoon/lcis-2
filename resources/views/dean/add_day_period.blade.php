@@ -5,10 +5,10 @@
 @section('body')
 	<div class="col-md-3"></div>
 	<div class="col-md-9 body-container">
-
+		<br/>
 		<div class="card">
-			<div class="card-header mdl-color--green-900">
-				<h4 class="card-title mdl-color-text--yellow-300">Add Day/Period</h4>
+			<div class="card-header card-header-main">
+				<h3 class="card-title mdl-color-text--yellow-300">Add Day/Period</h3>
 			</div>
 			<div class="card-block">
 				<div class="modal fade" id="modal_classalloc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
