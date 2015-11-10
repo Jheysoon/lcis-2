@@ -7,7 +7,7 @@
 	<div class="col-md-9 body-container">
 		<br/>
 		<div class="mdl-card mdl-shadow--4dp">
-            <div class="mdl-card__title text-center mdl-color--green-700">
+            <div class="mdl-card__title text-center mdl-color--green-900">
 				<div class="col-sm-6">
 					<h1 class="mdl-card__title-text mdl-color-text--yellow-300">Assign Instructor</h1>
 				</div>

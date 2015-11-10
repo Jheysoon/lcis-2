@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table table-striped">
 	<tr>
         <td class="tbl-header" style="text-align: center;" colspan="8"><strong>Assigned Subjects</strong></td>
     </tr>
@@ -12,6 +12,7 @@
         <th>Other Instructors</th>
         <th>Action</th>
     </tr>
+	<tbody>
 
     @foreach ($classes as $class)
 
@@ -75,5 +76,7 @@
     	@endif
 
     @endforeach
+
+	</tbody>
 
 </table>
