@@ -2631,3 +2631,7 @@ td.tbl-header-main{
   display: inline-block;
   width: 100%;
 }
+
+.card-header-main {
+	background-color:#1B5E20;
+}
