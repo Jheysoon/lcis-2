@@ -72,7 +72,7 @@
 									<br/>
 									@if ($system->employeeid != Session::get('uid'))
 										<?php $of = DB::table('tbl_college')->where('id', $owner)->first() ?>
-										{{ 'College'.$of->description }}
+										College {{ $of->description }}
 									@endif
 								</strong>
 							</caption>
