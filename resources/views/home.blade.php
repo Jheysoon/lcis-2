@@ -8,7 +8,7 @@
         <br/>
         <div class="card">
             <div class="card-header card-header-main">
-                <h2 class="mdl-color-text--yellow-300">Personal Information</h2>
+                <h3 class="mdl-color-text--yellow-300">Personal Information</h3>
             </div>
             <div class="card-block">
                 <div class="col-md-9">
