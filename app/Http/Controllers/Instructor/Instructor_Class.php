@@ -28,4 +28,11 @@ class Instructor_Class extends Controller
 
         return view(Api::getView(), $data);
     }
+
+    function show($id)
+    {
+        $data['class'] = Classallocation::findOrFail($id);
+
+        return view('instructor.class_student', $data);
+    }
 }

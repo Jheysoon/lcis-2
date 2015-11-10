@@ -39,3 +39,4 @@ Route::post('studentcount', 			'Edp\Stat@studentcount');
 
 Route::get('instructor/{id}',           'Instructor\Sched@show');
 Route::get('class_list',                'Instructor\Instructor_Class@index');
+Route::get('class/{id}',                'Instructor\Instructor_Class@show');
