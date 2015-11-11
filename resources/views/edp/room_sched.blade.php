@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 
 @section('title', 'Room Schedule')
 
@@ -44,7 +44,7 @@
             								</td>
             							@endif
 
-            						@else            						
+            						@else
             							<td style="height:5px;">&nbsp;</td>
             						@endif
 
@@ -54,7 +54,7 @@
             			@endfor
 
             		</table>
-            		
+
             	</div>
             </div>
         </div>

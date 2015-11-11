@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 
 @section('title', 'Rooms')
 
@@ -11,10 +11,10 @@
                 <h1 class="mdl-card__title-text text-center mdl-color-text--yellow-300">Classrooms</h1>
             </div>
             <div class="mdl-card__supporting-text" style="width:100%">
-                <div class="col-md-6">		
+                <div class="col-md-6">
 					<h4>Class Allocation For The SY:
 					{{ $acam->systart.' - '.$acam->syend.' Term:'.$acam->term }}
-					</h4>		
+					</h4>
 				</div>
 				<div class="col-md-6">
 					<form class="navbar-form navbar-right" action="index.php" method="post" role="search">
@@ -54,7 +54,7 @@
 									</td>
 								</tr>
 							@endforeach
-							
+
 						</table>
 						{!! $rooms->render() !!}
 					</div>
