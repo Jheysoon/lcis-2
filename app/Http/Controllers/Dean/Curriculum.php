@@ -12,6 +12,7 @@ use App\Academicterm;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\InsertCurriculumRequest;
 
 class Curriculum extends Controller
 {
@@ -62,24 +63,14 @@ class Curriculum extends Controller
         return back();
     }
 
-    function insert(Request $request)
+    function insert(InsertCurriculumRequest $request)
     {
-        $validation = Validator::make($request->all(), [
-            'subid'         => 'required',
-            'yearlevel'     => 'required',
-            'term'          => 'required'
-            ]);
-
-        if ($validation->fails()) {
-            Session::flash('message', htmlAlert('All Fields Are Required'));
-        } else {
-            $data['curriculum'] = $request->cur_id;
-            $data['subject']    = $request->subid;
-            $data['yearlevel']  = $request->yearlevel;
-            $data['term']       = $request->term;
-            DB::table('curriculumdetail')->insert($data);
-            Session::flash('message', htmlAlert('Successfully Added', 'success'));
-        }
+        $data['curriculum'] = $request->cur_id;
+        $data['subject']    = $request->subject;
+        $data['yearlevel']  = $request->yearlevel;
+        $data['term']       = $request->term;
+        DB::table('curriculumdetail')->insert($data);
+        Session::flash('message', htmlAlert('Successfully Added', 'success'));
 
         return back();
     }

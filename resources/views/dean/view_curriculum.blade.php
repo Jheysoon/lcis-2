@@ -16,6 +16,14 @@
                 {{ Session::get('message') }}
             @endif
 
+            @if($errors->any())
+                @foreach($errors->all() as $error)
+                    <div class="alert alert-danger text-center">
+                        {{ $error }}
+                    </div>
+                @endforeach
+            @endif
+
             <form action="/curriculum/insert_subject" method="post">
                 <div class="panel-body">
                     <div class="col-md-6 col-md-offset-3">
@@ -24,7 +32,7 @@
 
                         <div class="col-md-12 ">
         					<label class="lbl-data">Subject</label>
-        					<select class="form-control" name="subid" required>
+        					<select class="form-control" name="subject" required>
         						<option value="">Select Subject</option>
 
                                 @foreach($get_cur as $subject)
