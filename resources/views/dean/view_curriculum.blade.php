@@ -13,7 +13,7 @@
     		</div>
 
             @if(Session::has('message'))
-                {{ Session::get('message') }}
+                {!! Session::get('message') !!}
             @endif
 
             @if($errors->any())
