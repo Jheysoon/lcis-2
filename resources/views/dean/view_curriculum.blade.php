@@ -24,7 +24,7 @@
                 @endforeach
             @endif
 
-            <form action="/curriculum/insert_subject" method="post">
+            <form action="{{ url('curriculum/insert_subject') }}" method="post">
                 <div class="panel-body">
                     <div class="col-md-6 col-md-offset-3">
                         {!! csrf_field() !!}
