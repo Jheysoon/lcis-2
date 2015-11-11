@@ -27,7 +27,7 @@
             <form action="/curriculum/insert_subject" method="post">
                 <div class="panel-body">
                     <div class="col-md-6 col-md-offset-3">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        {!! csrf_field() !!}
                         <input type="hidden" name="cur_id" value="{{ $id }}">
 
                         <div class="col-md-12 ">
