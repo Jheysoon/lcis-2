@@ -139,6 +139,8 @@
                         <input type="text" class="form-control" name="repeat_password" value="{{ request('repeat_password') }}">
                         <span class="clearfix"></span>
                     </div>
+                    <span class="clearfix"></span>
+                    <input type="submit" class="btn btn-primary btn-raised pull-right" name="name" value="Submit">
                 </div>
             </form>
         </div>
