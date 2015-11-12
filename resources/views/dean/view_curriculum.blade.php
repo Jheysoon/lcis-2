@@ -45,11 +45,11 @@
                         <div class="col-md-12 ">
         					<label class="lbl-data">Year Level</label>
         					<select class="form-control" name = "yearlevel" required>
-        					<option value="">Select Year Level</option>
+        					    <option value="">Select Year Level</option>
 
-                            @for( $i = 1; $i <= 5; $i++)
-                                <option value="{{ $i }}">{{ $i }}</option>
-                            @endfor
+                                @for( $i = 1; $i <= 5; $i++)
+                                    <option value="{{ $i }}">{{ $i }}</option>
+                                @endfor
 
         					</select>
         				</div>
@@ -57,11 +57,11 @@
                         <div class="col-md-12 ">
         					<label class="lbl-data">Term</label>
         					<select class="form-control" name = "term" required>
-        					<option value="" selected>Select Term</option>
+        					    <option value="" selected>Select Term</option>
 
-                            @for( $i = 1; $i <= 3; $i++)
-                                <option value="{{ $i }}">{{ $i == 3 ? 'Summer' : $i }}</option>
-                            @endfor
+                                @for( $i = 1; $i <= 3; $i++)
+                                    <option value="{{ $i }}">{{ $i == 3 ? 'Summer' : $i }}</option>
+                                @endfor
 
         					</select>
         				</div>
