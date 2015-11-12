@@ -70,7 +70,7 @@ class Api
 
     public static function yearLevel($partyid)
     {
-        $system     = $this->systemValue();
+        $system     = self::systemValue();
         $sy         = $system->nextacademicterm;
         $tolerance  = (int) $system->cutoffpercentage;
         $cur_id     = 0;
