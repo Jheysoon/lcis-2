@@ -12,9 +12,9 @@ use Illuminate\Http\Request;
 
 class Api
 {
-    public static function getView(Request $request)
+    public static function getView()
     {
-        $route  = $request->path();
+        $route  = ltrim($_SERVER['REQUEST_URI'], '/');
 
         if (strpos($route, '?')) {
             $r      = explode('?', $route);
