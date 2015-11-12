@@ -12,7 +12,7 @@ use App\Academicterm;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\InsertCurriculumRequest;
+use App\Http\Requests\InsertSubjectCurriculumRequest;
 
 class Curriculum extends Controller
 {
@@ -63,7 +63,7 @@ class Curriculum extends Controller
         return back();
     }
 
-    function insert(InsertCurriculumRequest $request)
+    function insert(InsertSubjectCurriculumRequest $request)
     {
         $data['curriculum'] = $request->cur_id;
         $data['subject']    = $request->subject;
