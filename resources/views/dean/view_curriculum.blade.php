@@ -98,10 +98,9 @@
                             <?php $cur_d = DB::table('tbl_curriculumdetail')->whereCurriculumAndYearlevelAndTerm($id, $curriculum_detail->yearlevel, $curriculum_detail->term )->get() ?>
 
                             @foreach($cur_d as $detail)
-                                <?php $subject1 = App\Subject::where('id', $detail->subject); ?>
+                                <?php $subject = App\Subject::findOrFail($detail->subject); ?>
 
-                                @if($subject1->count() > 0)
-                                    <?php $subject = $subject1->first() ?>
+                                @if( ! $subject instanceof ModelNotFoundException)
                                     <tr>
                                         <td>{{ $subject->code }}</td>
                                         <td>{{ $subject->descriptivetitle }}</td>
