@@ -9,6 +9,7 @@ use App\Library\Api;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\NewStudentRegRequest;
 
 class Registration extends Controller
 {
@@ -19,20 +20,19 @@ class Registration extends Controller
         $this->middleware('auth');
         $this->system = Api::systemValue();
     }
-    public function new_student(Request $request)
+
+    public function new_student()
     {
-        $validator = Validator::make($request->all(), [
-            'body' => 'required',
-            'pass' => 'required'
-            ]);
-        if ( !$validator->fails()) {
+        $data['courses']    = Course::all();
+        $data['majors']     = DB::table('tbl_major')->get();
+        $data['religions']  = DB::table('tbl_religion')->get();
 
-        } else {
-            $data['courses']    = Course::all();
-            $data['majors']     = DB::table('tbl_major')->get();
-            $data['religions']  = DB::table('tbl_religion')->get();
-            return view(Api::getView(), $data);
-        }
+        return view(Api::getView(), $data);
 
+    }
+
+    public function register_new_student(NewStudentRegRequest $request)
+    {
+        return back();
     }
 }

@@ -42,3 +42,4 @@ Route::get('class_list',                'Instructor\Instructor_Class@index');
 Route::get('class/{id}',                'Instructor\Instructor_Class@show');
 
 Route::get('registration',              'Registrar\Registration@new_student');
+Route::post('new_student',              'Registrar\Registration@register_new_student');
