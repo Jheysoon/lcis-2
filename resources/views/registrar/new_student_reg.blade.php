@@ -94,8 +94,11 @@
 
                         <label>Zip Code</label>
                         <select class="form-control" name="zip_code">
-                            {{-- create a loop for increments in zip code --}}
-                            <option value="6501">6501</option>
+
+                            @for($i = 6500; $i < 6510; $i++)
+                                <option value="{{ $i }}">{{ $i }}</option>
+                            @endfor
+
                         </select>
 
                         <label>Contact Number</label>
