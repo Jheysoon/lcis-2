@@ -10,6 +10,7 @@
     <div class="col-md-9 col-sm-9 col-md-offset-3 col-sm-offset-3">
         <br/>
         <div class="card">
+
             <div class="card-header card-header-main">
                 <h3 class="mdl-color-text--yellow-300">New Student Registration</h3>
             </div>
@@ -20,17 +21,43 @@
                     <h3 class="col-sm-offset-1">Student Information</h3>
                     <hr>
                     <div class="col-sm-8 col-sm-offset-1">
+
+                        @if($errors->has('lastname'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('lastname') }}
+                            </div>
+                        @endif
+
                         <label>Lastname <small class="required">(required)</small></label>
                         <input type="text" class="form-control" name="lastname" value="{{ request('lastname') }}">
 
+                        @if($errors->has('firstname'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('firstname') }}
+                            </div>
+                        @endif
+
                         <label>Firstname <small class="required">(required)</small></label>
                         <input type="text" class="form-control" name="firstname" value="{{ request('firstname') }}">
+
+                        @if($errors->has('middlename'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('middlename') }}
+                            </div>
+                        @endif
 
                         <label>Middlename <small class="required">(required)</small></label>
                         <input type="text" class="form-control" name="middlename" value="{{ request('middlename') }}">
                         <br/>
                         <hr>
                         <br/>
+
+                        @if($errors->has('course'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('course') }}
+                            </div>
+                        @endif
+
                         <label>Course</label>
                         <select class="form-control" name="course">
 
@@ -49,11 +76,23 @@
 
                         </select>
 
+                        @if($errors->has('gender'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('gender') }}
+                            </div>
+                        @endif
+
                         <label>Gender</label>
                         <select class="form-control" name="gender">
                             <option value="1" {{ request('gender') == 1 ? 'selected' : '' }}>Male</option>
                             <option value="0" {{ request('gender') == 0 ? 'selected' : '' }}>Female</option>
                         </select>
+
+                        @if($errors->has('maritalstatus'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('maritalstatus') }}
+                            </div>
+                        @endif
 
                         <label>Marital Status</label>
                         <select class="form-control" name="maritalstatus">
@@ -62,6 +101,12 @@
                             <option value="2" {{ request('maritalstatus') == 2 ? 'selected' : '' }}>SEPARATED</option>
                             <option value="3" {{ request('maritalstatus') == 3 ? 'selected' : '' }}>WIDOWED</option>
                         </select>
+
+                        @if($errors->has('religion'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('religion') }}
+                            </div>
+                        @endif
 
                         <label>Religion</label>
                         <select class="form-control" name="religion">
@@ -72,25 +117,67 @@
 
                         </select>
 
+                        @if($errors->has('nationality'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('nationality') }}
+                            </div>
+                        @endif
+
                         <label>Nationality</label>
                         <select class="form-control" name="nationality">
                             <option value="0">Filipino</option>
                         </select>
 
+                        @if($errors->has('dob'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('dob') }}
+                            </div>
+                        @endif
+
                         <label>Date Of Birth <small class="required">(required)</small></label>
                         <input type="date" class="form-control" name="dob" value="{{ request('dob') }}">
+
+                        @if($errors->has('pob'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('pob') }}
+                            </div>
+                        @endif
 
                         <label>Place Of Birth <small class="required">(required)</small></label>
                         <textarea name="pob" class="form-control" style="resize:vertical;">{{ request('pob') }}</textarea>
 
+                        @if($errors->has('mailing_add'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('mailing_add') }}
+                            </div>
+                        @endif
+
                         <label>Mailing Address <small class="required">(required)</small></label>
                         <textarea name="mailing_add" class="form-control" style="resize:vertical;">{{ request('mailing_add') }}</textarea>
+
+                        @if($errors->has('town_city'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('town_city') }}
+                            </div>
+                        @endif
 
                         <label>Town / City <small class="required">(required)</small></label>
                         <input type="text" class="form-control" name="town_city" value="{{ request('town_city') }}">
 
+                        @if($errors->has('province'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('province') }}
+                            </div>
+                        @endif
+
                         <label>Province</label>
                         <input type="text" class="form-control" name="province" value="{{ request('province') }}">
+
+                        @if($errors->has('zip_code'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('zip_code') }}
+                            </div>
+                        @endif
 
                         <label>Zip Code</label>
                         <select class="form-control" name="zip_code">
@@ -101,11 +188,23 @@
 
                         </select>
 
+                        @if($errors->has('contact'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('contact') }}
+                            </div>
+                        @endif
+
                         <label>Contact Number</label>
                         <input type="text" class="form-control" name="contact" value="{{ request('contact') }}">
 
+                        @if($errors->has('emailadd'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('emailadd') }}
+                            </div>
+                        @endif
+
                         <label>Email Address</label>
-                        <input type="email" class="form-control" name="emailadd" value="{{ request('emailadd') }}" required>
+                        <input type="email" class="form-control" name="emailadd" value="{{ request('emailadd') }}">
                         <br/>
                     </div>
 
@@ -116,12 +215,40 @@
                     <h3 class="col-sm-offset-1">Guardian Information</h3>
                     <hr>
                     <div class="col-sm-8 col-sm-offset-1">
+
+                        @if($errors->has('father_name'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('father_name') }}
+                            </div>
+                        @endif
+
                         <label>Father's Name</label>
                         <input type="text" class="form-control" name="father_name" value="{{ request('father_name') }}">
+
+                        @if($errors->has('father_occupation'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('father_occupation') }}
+                            </div>
+                        @endif
+
                         <label>Occupation</label>
                         <input type="text" class="form-control" name="father_occupation" value="{{ request('father_occupation') }}">
+
+                        @if($errors->has('mother_name'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('mother_name') }}
+                            </div>
+                        @endif
+
                         <label>Mother's Name</label>
                         <input type="text" class="form-control" name="mother_name" value="{{ request('mother_name') }}">
+
+                        @if($errors->has('mother_occupation'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('mother_occupation') }}
+                            </div>
+                        @endif
+
                         <label>Occupation</label>
                         <input type="text" class="form-control" name="mother_occupation" value="{{ request('mother_occupation') }}">
                         <br/>
@@ -134,10 +261,31 @@
                     <h3 class="col-sm-offset-1">User Account Information</h3>
                     <hr>
                     <div class="col-sm-8 col-sm-offset-1">
+
+                        @if($errors->has('username'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('username') }}
+                            </div>
+                        @endif
+
                         <label>Username</label>
                         <input type="text" class="form-control" name="username" value="{{ request('username') }}">
+
+                        @if($errors->has('password'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('password') }}
+                            </div>
+                        @endif
+
                         <label>Password</label>
                         <input type="text" class="form-control" name="password" value="{{ request('password') }}">
+
+                        @if($errors->has('repeat_password'))
+                            <div class="alert alert-danger text-center">
+                                {{ $errors->first('repeat_password') }}
+                            </div>
+                        @endif
+
                         <label>Repeat Password</label>
                         <input type="text" class="form-control" name="repeat_password" value="{{ request('repeat_password') }}">
                         <span class="clearfix"></span>
