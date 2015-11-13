@@ -29,7 +29,7 @@
                         @endif
 
                         <label>Lastname <small class="required">(required)</small></label>
-                        <input type="text" class="form-control" name="lastname" value="{{ request('lastname') }}">
+                        <input type="text" class="form-control" name="lastname" value="{{ old('lastname') }}">
 
                         @if($errors->has('firstname'))
                             <div class="alert alert-danger text-center">
@@ -38,7 +38,7 @@
                         @endif
 
                         <label>Firstname <small class="required">(required)</small></label>
-                        <input type="text" class="form-control" name="firstname" value="{{ request('firstname') }}">
+                        <input type="text" class="form-control" name="firstname" value="{{ old('firstname') }}">
 
                         @if($errors->has('middlename'))
                             <div class="alert alert-danger text-center">
@@ -47,7 +47,7 @@
                         @endif
 
                         <label>Middlename <small class="required">(required)</small></label>
-                        <input type="text" class="form-control" name="middlename" value="{{ request('middlename') }}">
+                        <input type="text" class="form-control" name="middlename" value="{{ old('middlename') }}">
                         <br/>
                         <hr>
                         <br/>
@@ -84,8 +84,8 @@
 
                         <label>Gender</label>
                         <select class="form-control" name="gender">
-                            <option value="1" {{ request('gender') == 1 ? 'selected' : '' }}>Male</option>
-                            <option value="0" {{ request('gender') == 0 ? 'selected' : '' }}>Female</option>
+                            <option value="1" {{ old('gender') == 1 ? 'selected' : '' }}>Male</option>
+                            <option value="0" {{ old('gender') == 0 ? 'selected' : '' }}>Female</option>
                         </select>
 
                         @if($errors->has('maritalstatus'))
@@ -96,10 +96,10 @@
 
                         <label>Marital Status</label>
                         <select class="form-control" name="maritalstatus">
-                            <option value="0" {{ request('maritalstatus') == 0 ? 'selected' : '' }}>SINGLE</option>
-                            <option value="1" {{ request('maritalstatus') == 1 ? 'selected' : '' }}>MARRIED</option>
-                            <option value="2" {{ request('maritalstatus') == 2 ? 'selected' : '' }}>SEPARATED</option>
-                            <option value="3" {{ request('maritalstatus') == 3 ? 'selected' : '' }}>WIDOWED</option>
+                            <option value="0" {{ old('maritalstatus') == 0 ? 'selected' : '' }}>SINGLE</option>
+                            <option value="1" {{ old('maritalstatus') == 1 ? 'selected' : '' }}>MARRIED</option>
+                            <option value="2" {{ old('maritalstatus') == 2 ? 'selected' : '' }}>SEPARATED</option>
+                            <option value="3" {{ old('maritalstatus') == 3 ? 'selected' : '' }}>WIDOWED</option>
                         </select>
 
                         @if($errors->has('religion'))
@@ -135,7 +135,7 @@
                         @endif
 
                         <label>Date Of Birth <small class="required">(required)</small></label>
-                        <input type="date" class="form-control" name="dob" value="{{ request('dob') }}">
+                        <input type="date" class="form-control" name="dob" value="{{ old('dob') }}">
 
                         @if($errors->has('pob'))
                             <div class="alert alert-danger text-center">
@@ -144,7 +144,7 @@
                         @endif
 
                         <label>Place Of Birth <small class="required">(required)</small></label>
-                        <textarea name="pob" class="form-control" style="resize:vertical;">{{ request('pob') }}</textarea>
+                        <textarea name="pob" class="form-control" style="resize:vertical;">{{ old('pob') }}</textarea>
 
                         @if($errors->has('mailing_add'))
                             <div class="alert alert-danger text-center">
@@ -153,7 +153,7 @@
                         @endif
 
                         <label>Mailing Address <small class="required">(required)</small></label>
-                        <textarea name="mailing_add" class="form-control" style="resize:vertical;">{{ request('mailing_add') }}</textarea>
+                        <textarea name="mailing_add" class="form-control" style="resize:vertical;">{{ old('mailing_add') }}</textarea>
 
                         @if($errors->has('town_city'))
                             <div class="alert alert-danger text-center">
@@ -162,7 +162,7 @@
                         @endif
 
                         <label>Town / City <small class="required">(required)</small></label>
-                        <input type="text" class="form-control" name="town_city" value="{{ request('town_city') }}">
+                        <input type="text" class="form-control" name="town_city" value="{{ old('town_city') }}">
 
                         @if($errors->has('province'))
                             <div class="alert alert-danger text-center">
@@ -171,7 +171,7 @@
                         @endif
 
                         <label>Province</label>
-                        <input type="text" class="form-control" name="province" value="{{ request('province') }}">
+                        <input type="text" class="form-control" name="province" value="{{ old('province') }}">
 
                         @if($errors->has('zip_code'))
                             <div class="alert alert-danger text-center">
@@ -195,7 +195,7 @@
                         @endif
 
                         <label>Contact Number</label>
-                        <input type="text" class="form-control" name="contact" value="{{ request('contact') }}">
+                        <input type="text" class="form-control" name="contact" value="{{ old('contact') }}">
 
                         @if($errors->has('emailadd'))
                             <div class="alert alert-danger text-center">
@@ -204,7 +204,7 @@
                         @endif
 
                         <label>Email Address</label>
-                        <input type="email" class="form-control" name="emailadd" value="{{ request('emailadd') }}">
+                        <input type="email" class="form-control" name="emailadd" value="{{ old('emailadd') }}">
                         <br/>
                     </div>
 
@@ -223,7 +223,7 @@
                         @endif
 
                         <label>Father's Name</label>
-                        <input type="text" class="form-control" name="father_name" value="{{ request('father_name') }}">
+                        <input type="text" class="form-control" name="father_name" value="{{ old('father_name') }}">
 
                         @if($errors->has('father_occupation'))
                             <div class="alert alert-danger text-center">
@@ -232,7 +232,7 @@
                         @endif
 
                         <label>Occupation</label>
-                        <input type="text" class="form-control" name="father_occupation" value="{{ request('father_occupation') }}">
+                        <input type="text" class="form-control" name="father_occupation" value="{{ old('father_occupation') }}">
 
                         @if($errors->has('mother_name'))
                             <div class="alert alert-danger text-center">
@@ -241,7 +241,7 @@
                         @endif
 
                         <label>Mother's Name</label>
-                        <input type="text" class="form-control" name="mother_name" value="{{ request('mother_name') }}">
+                        <input type="text" class="form-control" name="mother_name" value="{{ old('mother_name') }}">
 
                         @if($errors->has('mother_occupation'))
                             <div class="alert alert-danger text-center">
@@ -250,7 +250,7 @@
                         @endif
 
                         <label>Occupation</label>
-                        <input type="text" class="form-control" name="mother_occupation" value="{{ request('mother_occupation') }}">
+                        <input type="text" class="form-control" name="mother_occupation" value="{{ old('mother_occupation') }}">
                         <br/>
                         <span class="clearfix"></span>
                     </div>
@@ -269,7 +269,7 @@
                         @endif
 
                         <label>Username</label>
-                        <input type="text" class="form-control" name="username" value="{{ request('username') }}">
+                        <input type="text" class="form-control" name="username" value="{{ old('username') }}">
 
                         @if($errors->has('password'))
                             <div class="alert alert-danger text-center">
@@ -278,7 +278,7 @@
                         @endif
 
                         <label>Password</label>
-                        <input type="text" class="form-control" name="password" value="{{ request('password') }}">
+                        <input type="text" class="form-control" name="password" value="{{ old('password') }}">
 
                         @if($errors->has('repeat_password'))
                             <div class="alert alert-danger text-center">
@@ -287,7 +287,7 @@
                         @endif
 
                         <label>Repeat Password</label>
-                        <input type="text" class="form-control" name="repeat_password" value="{{ request('repeat_password') }}">
+                        <input type="text" class="form-control" name="repeat_password" value="{{ old('repeat_password') }}">
                         <span class="clearfix"></span>
                     </div>
                     <span class="clearfix"></span>
