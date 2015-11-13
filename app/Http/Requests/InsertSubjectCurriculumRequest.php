@@ -29,4 +29,13 @@ class InsertSubjectCurriculumRequest extends Request
             'term'          => 'required'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'subject.required'      => 'Subject field is required',
+            'yearlevel.required'    => 'Yearlevel field is required',
+            'term.required'         => 'Term field is required'
+        ];
+    }
 }
