@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Registrar;
 
 use DB;
+use Sesion;
 use Validator;
 use App\Party;
 use App\Course;
@@ -82,6 +83,8 @@ class Registration extends Controller
             ]);
 
         });
+
+        Session::put('message', htmlAlert('Successfully Registered', 'success'));
 
         return back();
     }

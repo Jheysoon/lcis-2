@@ -11,6 +11,10 @@
         <br/>
         <div class="card">
 
+            @if(Session::has('message'))
+                {!! Session::get('message') !!}
+            @endif
+
             <div class="card-header card-header-main">
                 <h3 class="mdl-color-text--yellow-300">New Student Registration</h3>
             </div>
