@@ -49,6 +49,7 @@ class Registration extends Controller
             $party->emailaddress    = $request->emailadd;
             $party->legacyid        = $this->system->laststudentid;
 
+            // insert into party
             $party->save();
 
             // get the inserted id
@@ -66,6 +67,7 @@ class Registration extends Controller
             $registration->status       = 'P';
             $registration->date         = date('Y-m-d');
 
+            // insert into registration
             $registration->save();
 
             DB::table('tbl_student')->insert([
