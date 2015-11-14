@@ -33,7 +33,7 @@
 
         <label>Middlename <small class="required">(required)</small></label>
         <input type="text" class="form-control" name="middlename"
-            value="{{ (old('middlename') == '' AND isset($middlename) ? $middlename : old('middlename')) }}">
+            value="{{ (old('middlename') == '' AND isset($middlename)) ? $middlename : old('middlename') }}">
         <br/>
         <hr>
         <br/>
