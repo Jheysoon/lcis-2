@@ -29,14 +29,24 @@ class Update_Registration extends Controller
 
     public function show($id)
     {
-        $data['courses']    = Course::all();
-        $data['majors']     = DB::table('tbl_major')->get();
-        $data['religions']  = DB::table('tbl_religion')->get();
+        // TODO: make this 3 query reusable
+        $data['courses']            = Course::all();
+        $data['majors']             = DB::table('tbl_major')->get();
+        $data['religions']          = DB::table('tbl_religion')->get();
 
-        $party              = Party::find($id);
+        $party                      = Party::find($id);
+        //$student            = DB::table('tbl_student')->where('id', $id)->get();
 
-        $data['id']         = $id;
-        $data['firstname']  = $party->firstname;
+        $data['id']                 = $id;
+        $data['firstname']          = $party->firstname;
+        $data['lastname']           = $party->lastname;
+        $data['middlename']         = $party->middlename;
+        $data['gender']             = $party->sex;
+        $data['maritalstatus']      = $party->civilstatus;
+        $data['religion_student']   = $party->religion;
+        $data['mail_add']           = $party->address1;
+        $data['contact']            = $party->mobilenumber;
+        $data['emailadd']           = $party->emailaddress;
 
         return view('registrar.update_student_reg', $data);
     }
