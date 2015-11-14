@@ -8,4 +8,9 @@ class Registration extends Model
 {
     protected $table    = 'tbl_registration';
     public $timestamps  = false;
+
+    public function user()
+    {
+        return $this->belongsTo('App\Party', 'student');
+    }
 }
