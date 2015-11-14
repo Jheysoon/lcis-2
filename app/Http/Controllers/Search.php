@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 class Search extends Controller
 {
-    public $result;
+    public $results;
 
     function __construct()
     {
@@ -18,7 +18,7 @@ class Search extends Controller
 
     public function pending_student($name)
     {
-        $this->result = DB::select("SELECT firstname, lastname, legacyid
+        $this->results = DB::select("SELECT firstname, lastname, legacyid
                 FROM tbl_party, tbl_registration
                 WHERE (legacyid LIKE '%$name%'
                 OR CONCAT(firstname, ' ', lastname) LIKE '%$name%')
@@ -31,7 +31,7 @@ class Search extends Controller
 
     public function student($name)
     {
-        $this->result = DB::select("SELECT firstname, lastname, legacyid
+        $this->results = DB::select("SELECT firstname, lastname, legacyid
                 FROM tbl_party, tbl_registration
                 WHERE (legacyid LIKE '%$name%'
                 OR CONCAT(firstname, ' ', lastname) LIKE '%$name%')
@@ -45,7 +45,7 @@ class Search extends Controller
     {
         $data = [];
 
-        foreach ($this->result as $result) {
+        foreach ($this->results as $result) {
             $data[] = ['value' => $result->legacyid, 'name' => $result->firstname.' '.$result->lastname];
         }
 
