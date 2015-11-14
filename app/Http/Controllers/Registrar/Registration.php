@@ -52,6 +52,7 @@ class Registration extends Controller
             $party->mobilenumber    = $request->contact;
             $party->religion        = $request->religion;
             $party->emailaddress    = $request->emailadd;
+            $party->civilstatus     = $request->maritalstatus;
             $party->legacyid        = $this->system->laststudentid;
 
             // insert into party
