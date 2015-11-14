@@ -12,7 +12,8 @@
         @endif
 
         <label>Lastname <small class="required">(required)</small></label>
-        <input type="text" class="form-control" name="lastname" value="{{ old('lastname') }}">
+        <input type="text" class="form-control" name="lastname"
+            value="{{ (old('lastname') == '' AND isset($lastname)) ? $lastname : old('lastname') }}">
 
         @if($errors->has('firstname'))
             <div class="alert alert-danger text-center">
@@ -21,7 +22,8 @@
         @endif
 
         <label>Firstname <small class="required">(required)</small></label>
-        <input type="text" class="form-control" name="firstname" value="{{ old('firstname') }}">
+        <input type="text" class="form-control" name="firstname"
+            value="{{ (old('firstname') == '' AND isset($firstname)) ? $firstname : old('firstname') }}">
 
         @if($errors->has('middlename'))
             <div class="alert alert-danger text-center">
@@ -30,7 +32,8 @@
         @endif
 
         <label>Middlename <small class="required">(required)</small></label>
-        <input type="text" class="form-control" name="middlename" value="{{ old('middlename') }}">
+        <input type="text" class="form-control" name="middlename"
+            value="{{ (old('middlename') == '' AND isset($middlename) ? $middlename : old('middlename')) }}">
         <br/>
         <hr>
         <br/>
@@ -45,7 +48,10 @@
         <select class="form-control" name="course">
 
             @foreach($courses as $course)
-                <option value="{{ $course->id }}" {{ old('course') == $course->id ? 'selected' : '' }} >{{ $course->description }}</option>
+                <option value="{{ $course->id }}"
+                    {{ ( (isset($course_student) AND $course_student == $course->id) OR (old('course') == $course->id) ) ? 'selected' : '' }} >
+                    {{ $course->description }}
+                </option>
             @endforeach
 
         </select>
@@ -55,7 +61,10 @@
             <option value="0">None</option>
 
             @foreach($majors as $major)
-                <option value="{{ $major->id }}" {{ old('major') == $major->id ? 'selected' : '' }} >{{ $major->description }}</option>
+                <option value="{{ $major->id }}"
+                    {{ ( (isset($major_student) AND $major_student == $major->id ) OR (old('major') == $major->id) ) ? 'selected' : '' }} >
+                    {{ $major->description }}
+                </option>
             @endforeach
 
         </select>
@@ -68,8 +77,14 @@
 
         <label>Gender</label>
         <select class="form-control" name="gender">
-            <option value="1" {{ old('gender') == 1 ? 'selected' : '' }}>Male</option>
-            <option value="0" {{ old('gender') == 0 ? 'selected' : '' }}>Female</option>
+            <option value="1"
+            {{ ( (isset($gender) AND $gender == 1) OR old('gender') == 1 ) ? 'selected' : '' }}>
+                Male
+            </option>
+            <option value="0"
+            {{ ( (isset($gender) AND $gender == 0) OR old('gender') == 0 ) ? 'selected' : '' }} >
+                Female
+            </option>
         </select>
 
         @if($errors->has('maritalstatus'))
@@ -80,10 +95,22 @@
 
         <label>Marital Status</label>
         <select class="form-control" name="maritalstatus">
-            <option value="0" {{ old('maritalstatus') == 0 ? 'selected' : '' }}>SINGLE</option>
-            <option value="1" {{ old('maritalstatus') == 1 ? 'selected' : '' }}>MARRIED</option>
-            <option value="2" {{ old('maritalstatus') == 2 ? 'selected' : '' }}>SEPARATED</option>
-            <option value="3" {{ old('maritalstatus') == 3 ? 'selected' : '' }}>WIDOWED</option>
+            <option value="0"
+                {{ ( (isset($maritalstatus) AND $maritalstatus == 0) OR old('maritalstatus') == 0 ) ? 'selected' : '' }} >
+                SINGLE
+            </option>
+            <option value="1"
+                {{ ( (isset($maritalstatus) AND $maritalstatus == 1) OR old('maritalstatus') == 1 ) ? 'selected' : '' }} >
+                MARRIED
+            </option>
+            <option value="2"
+                {{ ( (isset($maritalstatus) AND $maritalstatus == 2) OR old('maritalstatus') == 2 ) ? 'selected' : '' }} >
+                SEPARATED
+            </option>
+            <option value="3"
+                {{ ( (isset($maritalstatus) AND $maritalstatus == 3) OR old('maritalstatus') == 3 ) ? 'selected' : '' }} >
+                WIDOWED
+            </option>
         </select>
 
         @if($errors->has('religion'))
@@ -96,7 +123,10 @@
         <select class="form-control" name="religion">
 
             @foreach($religions as $religion)
-                <option value="{{ $religion->id }}">{{ $religion->description }}</option>
+                <option value="{{ $religion->id }}"
+                    {{ ( (isset($religion_student) AND $religion_student == $religion->id) OR old('religion') == $religion->id ) ? 'selected' : '' }} >
+                    {{ $religion->description }}
+                </option>
             @endforeach
 
         </select>
@@ -109,6 +139,7 @@
 
         <label>Nationality</label>
         <select class="form-control" name="nationality">
+            {{-- stick nationality --}}
             <option value="0">Filipino</option>
         </select>
 
@@ -119,7 +150,7 @@
         @endif
 
         <label>Date Of Birth <small class="required">(required)</small></label>
-        <input type="date" class="form-control" name="dob" value="{{ old('dob') }}">
+        <input type="date" class="form-control" name="dob" value="{{  (old('dob') == '' AND isset($dob)) ? $dob : old('dob') }}">
 
         @if($errors->has('pob'))
             <div class="alert alert-danger text-center">
@@ -128,7 +159,7 @@
         @endif
 
         <label>Place Of Birth <small class="required">(required)</small></label>
-        <textarea name="pob" class="form-control" style="resize:vertical;">{{ old('pob') }}</textarea>
+        <textarea name="pob" class="form-control" style="resize:vertical;">{{ (old('pob') == '' AND isset($pob)) ? $dob : old('pob') }}</textarea>
 
         @if($errors->has('mailing_add'))
             <div class="alert alert-danger text-center">
@@ -137,7 +168,7 @@
         @endif
 
         <label>Mailing Address <small class="required">(required)</small></label>
-        <textarea name="mailing_add" class="form-control" style="resize:vertical;">{{ old('mailing_add') }}</textarea>
+        <textarea name="mailing_add" class="form-control" style="resize:vertical;">{{ (old('mailing_add') == '' AND isset($mail_add)) ? $mail_add : old('mailing_add') }}</textarea>
 
         @if($errors->has('town_city'))
             <div class="alert alert-danger text-center">
@@ -146,7 +177,8 @@
         @endif
 
         <label>Town / City <small class="required">(required)</small></label>
-        <input type="text" class="form-control" name="town_city" value="{{ old('town_city') }}">
+        <input type="text" class="form-control" name="town_city"
+            value="{{ (old('town_city') == '' AND isset($town_city)) ? $town_city : old('town_city') }}">
 
         @if($errors->has('province'))
             <div class="alert alert-danger text-center">
@@ -155,7 +187,8 @@
         @endif
 
         <label>Province</label>
-        <input type="text" class="form-control" name="province" value="{{ old('province') }}">
+        <input type="text" class="form-control" name="province"
+            value="{{ (old('province') == '' AND isset($province)) ? $province : old('province') }}">
 
         @if($errors->has('zip_code'))
             <div class="alert alert-danger text-center">
@@ -179,7 +212,8 @@
         @endif
 
         <label>Contact Number</label>
-        <input type="text" class="form-control" name="contact" value="{{ old('contact') }}">
+        <input type="text" class="form-control" name="contact"
+            value="{{ (old('contact') == '' AND isset($contact)) ? $contact : old('contact') }}">
 
         @if($errors->has('emailadd'))
             <div class="alert alert-danger text-center">
@@ -188,11 +222,14 @@
         @endif
 
         <label>Email Address</label>
-        <input type="email" class="form-control" name="emailadd" value="{{ old('emailadd') }}">
+        <input type="email" class="form-control" name="emailadd"
+            value="{{ (old('emailadd') == '' AND isset($emailadd)) ? $emailadd : old('emailadd') }}">
         <br/>
     </div>
     <span class="clearfix"></span>
 </div>
+
+{{-- Does the guardian info needs to be updated ? --}}
 
 <div class="card-block">
     <h3 class="col-sm-offset-1">Guardian Information</h3>
