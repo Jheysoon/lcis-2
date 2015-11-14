@@ -46,3 +46,4 @@ Route::get('update_registration',       'Registrar\Update_Registration@index');
 Route::post('new_student',              'Registrar\Registration@register_new_student');
 
 Route::get('search_for_student/{name}', 'Search@student');
+Route::post('search_student',           'Search@legacyid');

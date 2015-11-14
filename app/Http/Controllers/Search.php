@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use App\Party;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -50,5 +51,20 @@ class Search extends Controller
         }
 
         return json_encode($data);
+    }
+
+    public function legacyid(Request $request)
+    {
+        $partys = Party::where('legacyid', $request->student);
+
+        // think twice if this checking is needed
+        // since the dropdown will show a reliable results
+        if ($partys->count() > 0) {
+            $party = $partys->first();
+
+            return redirect("$request->redirect/$party->id");
+        } else
+            return back();
+            // TODO: return back with error
     }
 }
