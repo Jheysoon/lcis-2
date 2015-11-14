@@ -43,6 +43,7 @@ Route::get('class/{id}',                'Instructor\Instructor_Class@show');
 
 Route::get('registration',              'Registrar\Registration@new_student');
 Route::get('update_registration',       'Registrar\Update_Registration@index');
+Route::get('update_registration/{id}',  'Registrar\Update_Registration@show');
 Route::post('new_student',              'Registrar\Registration@register_new_student');
 
 Route::get('search_for_student/{name}', 'Search@student');
