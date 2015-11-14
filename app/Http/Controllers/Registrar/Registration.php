@@ -18,6 +18,11 @@ class Registration extends Controller
 {
     public $system;
 
+    // status for registration
+    // P = Pending
+    // A = Approved
+    // D = Disapprove
+
     function __construct()
     {
         $this->middleware('auth');
