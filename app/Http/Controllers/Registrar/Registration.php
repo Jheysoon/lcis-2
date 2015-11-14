@@ -54,6 +54,7 @@ class Registration extends Controller
             $party->emailaddress    = $request->emailadd;
             $party->civilstatus     = $request->maritalstatus;
             $party->legacyid        = $this->system->laststudentid;
+            $party->address1        = $request->mailing_add;
 
             // insert into party
             $party->save();
