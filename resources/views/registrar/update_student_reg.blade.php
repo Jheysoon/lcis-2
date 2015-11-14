@@ -20,10 +20,10 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <td>Student ID</td>
-                            <td>Name</td>
-                            <td>Course w/ Major</td>
-                            <td>Action</td>
+                            <th>Student ID</th>
+                            <th>Name</th>
+                            <th>Course w/ Major</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
