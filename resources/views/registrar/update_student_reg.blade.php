@@ -16,6 +16,7 @@
             <div class="card-block">
                 <div class="col-md-4 col-md-offset-8">
                     <form action="/search_registration" method="post">
+                        {!! csrf_field() !!}
                         <input type="text" style="width:250px;" class="form-control" name="student" placeholder="Search for students" value="">
                         <input type="submit" class="btn btn-primary btn-sm pull-right" name="name" value="Search">
                     </form>
