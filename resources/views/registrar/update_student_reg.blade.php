@@ -18,6 +18,9 @@
                 </div>
 
                 <table class="table">
+                    <caption>
+                        <h3 class="text-center">Pending Students Registration</h3>
+                    </caption>
                     <thead>
                         <tr>
                             <th>Student ID</th>
