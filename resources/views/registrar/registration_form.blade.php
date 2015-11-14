@@ -143,23 +143,27 @@
             <option value="0">Filipino</option>
         </select>
 
-        @if($errors->has('dob'))
-            <div class="alert alert-danger text-center">
-                {{ $errors->first('dob') }}
-            </div>
+        @if( !isset($firstname))
+
+            @if($errors->has('dob'))
+                <div class="alert alert-danger text-center">
+                    {{ $errors->first('dob') }}
+                </div>
+            @endif
+
+            <label>Date Of Birth <small class="required">(required)</small></label>
+            <input type="date" class="form-control" name="dob" value="{{  (old('dob') == '' AND isset($dob)) ? $dob : old('dob') }}">
+
+            @if($errors->has('pob'))
+                <div class="alert alert-danger text-center">
+                    {{ $errors->first('pob') }}
+                </div>
+            @endif
+
+            <label>Place Of Birth <small class="required">(required)</small></label>
+            <textarea name="pob" class="form-control" style="resize:vertical;">{{ (old('pob') == '' AND isset($pob)) ? $dob : old('pob') }}</textarea>
+
         @endif
-
-        <label>Date Of Birth <small class="required">(required)</small></label>
-        <input type="date" class="form-control" name="dob" value="{{  (old('dob') == '' AND isset($dob)) ? $dob : old('dob') }}">
-
-        @if($errors->has('pob'))
-            <div class="alert alert-danger text-center">
-                {{ $errors->first('pob') }}
-            </div>
-        @endif
-
-        <label>Place Of Birth <small class="required">(required)</small></label>
-        <textarea name="pob" class="form-control" style="resize:vertical;">{{ (old('pob') == '' AND isset($pob)) ? $dob : old('pob') }}</textarea>
 
         @if($errors->has('mailing_add'))
             <div class="alert alert-danger text-center">
