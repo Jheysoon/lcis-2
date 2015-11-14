@@ -199,6 +199,8 @@
         <label>Zip Code</label>
         <select class="form-control" name="zip_code">
 
+            {{-- sticky here --}}
+
             @for($i = 6500; $i < 6510; $i++)
                 <option value="{{ $i }}">{{ $i }}</option>
             @endfor
