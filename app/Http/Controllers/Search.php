@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 class Search extends Controller
 {
+    public $result;
+
     function __construct()
     {
         $this->middleware('auth');
@@ -16,7 +18,7 @@ class Search extends Controller
 
     public function pending_student($name)
     {
-        $party = DB::select("SELECT firstname, lastname, legacyid
+        $this->result = DB::select("SELECT firstname, lastname, legacyid
                 FROM tbl_party, tbl_registration
                 WHERE (legacyid LIKE '%$name%'
                 OR CONCAT(firstname, ' ', lastname) LIKE '%$name%')
@@ -24,9 +26,26 @@ class Search extends Controller
                 AND tbl_registration.status = 'P'
                 ORDER BY lastname, firstname LIMIT 8");
 
+        return $this->collection();
+    }
+
+    public function student($name)
+    {
+        $this->result = DB::select("SELECT firstname, lastname, legacyid
+                FROM tbl_party, tbl_registration
+                WHERE (legacyid LIKE '%$name%'
+                OR CONCAT(firstname, ' ', lastname) LIKE '%$name%')
+                AND tbl_party.id = tbl_registration.student
+                ORDER BY lastname, firstname LIMIT 8");
+
+        return $this->collection();
+    }
+
+    public function collection()
+    {
         $data = [];
 
-        foreach ($party as $result) {
+        foreach ($this->result as $result) {
             $data[] = ['value' => $result->legacyid, 'name' => $result->firstname.' '.$result->lastname];
         }
 

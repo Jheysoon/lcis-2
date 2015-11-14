@@ -45,4 +45,4 @@ Route::get('registration',              'Registrar\Registration@new_student');
 Route::get('update_registration',       'Registrar\Update_Registration@index');
 Route::post('new_student',              'Registrar\Registration@register_new_student');
 
-Route::get('search_for_student/{name}', 'Search@pending_student');
+Route::get('search_for_student/{name}', 'Search@student');
