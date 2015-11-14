@@ -77,12 +77,12 @@
 
         <label>Gender</label>
         <select class="form-control" name="gender">
-            <option value="1"
-            {{ ( (isset($gender) AND $gender == 1) OR old('gender') == 1 ) ? 'selected' : '' }}>
+            <option value="M"
+            {{ ( (isset($gender) AND $gender == 'M') OR old('gender') == 'M' ) ? 'selected' : '' }}>
                 Male
             </option>
             <option value="0"
-            {{ ( (isset($gender) AND $gender == 0) OR old('gender') == 0 ) ? 'selected' : '' }} >
+            {{ ( (isset($gender) AND $gender == 'F') OR old('gender') == 'F' ) ? 'selected' : '' }} >
                 Female
             </option>
         </select>
