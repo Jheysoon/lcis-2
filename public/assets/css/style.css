@@ -447,8 +447,8 @@ td.tbl-header-main{
 /* typeahead */
 
 .tt-dropdown-menu {
-    width:190px;
-    margin-top: 12px;
+    width:250px;
+    margin-top: 4px;
     padding: 8px 0;
     background-color: #fff;
     border: 1px solid #ccc;
@@ -465,11 +465,16 @@ td.tbl-header-main{
     color: #fff;
     background-color: #0097cf;
 }
+
+.tt-suggestion:last-child {
+	border-bottom: 1px solid transparent;
+}
+
 .tt-suggestion {
     padding: 5px 20px;
     font-size: 14px;
     line-height: 15px;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid #aaa;
     cursor: pointer;
 }
 
