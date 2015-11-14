@@ -2,6 +2,10 @@
 
 @section('title', 'Update Student Registration')
 
+@section('header')
+    <link rel="stylesheet" href="{{ asset('assets/css/select2.css') }}" media="screen" title="no title" charset="utf-8">
+@endsection
+
 @section('body')
     <div class="col-md-9 col-sm-9 col-md-offset-3 col-sm-offset-3">
         <br/>
@@ -28,10 +32,14 @@
 @endsection
 
 @section('footer')
+    <script src="{{ asset('assets/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/js/typeahead.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/handlebars-v3.0.1.js') }}"></script>
     <script>
         $(document).ready(function () {
+
+            $('select[name=course], select[name=major]').select2();
+
             var studlist = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
