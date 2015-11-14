@@ -20,19 +20,20 @@ class Update_Registration extends Controller
 
     public function index()
     {
-        $data['courses']    = Course::all();
-        $data['majors']     = DB::table('tbl_major')->get();
-        $data['religions']  = DB::table('tbl_religion')->get();
+        $common                     = $this->commonQuery();
+        $data['courses']            = $common['course'];
+        $data['majors']             = $common['majors'];
+        $data['religions']          = $common['religions'];
 
         return view(Api::getView(), $data);
     }
 
     public function show($id)
     {
-        // TODO: make this 3 query reusable
-        $data['courses']            = Course::all();
-        $data['majors']             = DB::table('tbl_major')->get();
-        $data['religions']          = DB::table('tbl_religion')->get();
+        $common                     = $this->commonQuery();
+        $data['courses']            = $common['course'];
+        $data['majors']             = $common['majors'];
+        $data['religions']          = $common['religions'];
 
         $party                      = Party::find($id);
         //$student            = DB::table('tbl_student')->where('id', $id)->get();
@@ -49,6 +50,15 @@ class Update_Registration extends Controller
         $data['emailadd']           = $party->emailaddress;
 
         return view('registrar.update_student_reg', $data);
+    }
+
+    function commonQuery()
+    {
+        return [
+            'course'    => Course::all(),
+            'majors'    => DB::table('tbl_major')->get(),
+            'religions' => DB::table('tbl_religion')->get()
+        ];
     }
 
 }
