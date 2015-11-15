@@ -2,7 +2,6 @@
 
 namespace App;
 
-use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Registration extends Model
