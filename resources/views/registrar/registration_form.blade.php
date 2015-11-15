@@ -237,7 +237,7 @@
 
 {{-- Does the guardian info needs to be updated ? --}}
 
-if ( !isset($update))
+@if( !isset($update))
 
     <div class="card-block">
         <h3 class="col-sm-offset-1">Guardian Information</h3>
