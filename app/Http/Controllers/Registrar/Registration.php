@@ -9,6 +9,7 @@ use App\Party;
 use App\Course;
 use App\Library\Api;
 use App\Http\Requests;
+use App\Library\Curriculum;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Registration as ModelRegistration;
@@ -65,7 +66,7 @@ class Registration extends Controller
             // set the laststudentid
             $this->setLastStudentId();
 
-            $curriculum = $this->getCurrentCurriculum($request->course, $request->major);
+            $curriculum = Curriculum::getCurrentCurriculum($request->course, $request->major, $this->system);
 
             $registration               = new ModelRegistration;
             $registration->curriculum   = $curriculum;
@@ -107,28 +108,5 @@ class Registration extends Controller
         $newStudent     = $lastStudent[0].'-'.$increment;
 
         DB::table('tbl_systemvalues')->update(['laststudentid' => $newStudent]);
-    }
-
-    public function getCurrentCurriculum($course, $major)
-    {
-        $coursemajor = DB::table('tbl_coursemajor')
-                    ->where('course', $course)
-                    ->where('major', $major)->first();
-
-        $academics  = DB::table('tbl_academicterm')->where('systart', '<=', $this->system->currentacademiterm)
-                    ->orderBy('systart', 'DESC')->orderBy('term')->get();
-
-        foreach ($academics as $academic) {
-            $cur    = DB::table('tbl_curriculum')->where('coursemajor', $coursemajor)
-                    ->where('academicterm', $academic->id);
-
-            if ($cur->count() > 0) {
-                $c = $cur->first();
-
-                // return the latest curriculum
-                return $c->id;
-            }
-        }
-        // TODO: add a fallback method here !!!
     }
 }
