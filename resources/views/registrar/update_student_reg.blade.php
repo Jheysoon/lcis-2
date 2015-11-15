@@ -10,6 +10,11 @@
     <div class="col-md-9 col-sm-9 col-md-offset-3 col-sm-offset-3">
         <br/>
         <div class="card">
+
+            @if(Session::has('message'))
+                {!! Session::get('message') !!}
+            @endif
+
             <div class="card-header card-header-main">
                 <h3 class="mdl-color-text--yellow-300">Update Student Registration</h3>
             </div>
