@@ -91,6 +91,8 @@ class Registration extends Controller
                 'password'  => password_hash($request->password, PASSWORD_BCRYPT)
             ]);
 
+            // TODO: insert into tbl_useroption
+
         });
 
         Session::put('message', htmlAlert('Successfully Registered', 'success'));
