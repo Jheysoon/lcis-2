@@ -319,7 +319,9 @@
             <span class="clearfix"></span>
         </div>
         <span class="clearfix"></span>
-        <input type="submit" class="btn btn-primary btn-raised pull-right" name="name" value="Submit">
     </div>
 
 @endif
+<div class="col-md-12">
+    <input type="submit" class="btn btn-primary btn-raised pull-right" name="name" value="Submit">
+</div>
