@@ -6,6 +6,7 @@ use DB;
 use App\Party;
 use App\Course;
 use App\Library\Api;
+use App\Registration;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -38,6 +39,10 @@ class Update_Registration extends Controller
         $party                      = Party::find($id);
         //$student            = DB::table('tbl_student')->where('id', $id)->get();
 
+        // get the latest registration
+        $registration               = Registration::where('student', $id)->latest()->first();
+        $coursemajor                = DB::table('tbl_coursemajor')->where('id', $registration->coursemajor)->first();
+
         $data['id']                 = $id;
         $data['firstname']          = $party->firstname;
         $data['lastname']           = $party->lastname;
@@ -48,6 +53,8 @@ class Update_Registration extends Controller
         $data['mail_add']           = $party->address1;
         $data['contact']            = $party->mobilenumber;
         $data['emailadd']           = $party->emailaddress;
+        $data['course_student']     = $coursemajor->course;
+        $data['major_student']      = $coursemajor->major;
 
         return view('registrar.update_student_reg', $data);
     }
