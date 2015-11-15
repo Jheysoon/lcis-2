@@ -2,6 +2,7 @@
 
 namespace App;
 
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Registration extends Model
@@ -12,5 +13,10 @@ class Registration extends Model
     public function user()
     {
         return $this->belongsTo('App\Party', 'student');
+    }
+
+    public function scopeLatest($query)
+    {
+        return $query->orderBy('academicterm', 'DESC');
     }
 }
