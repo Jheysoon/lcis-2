@@ -55,6 +55,7 @@ class Update_Registration extends Controller
         $data['emailadd']           = $party->emailaddress;
         $data['course_student']     = $coursemajor->course;
         $data['major_student']      = $coursemajor->major;
+        $data['update']             = 'yes this is a update';
 
         return view('registrar.update_student_reg', $data);
     }

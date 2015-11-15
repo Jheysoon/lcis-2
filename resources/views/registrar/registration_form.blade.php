@@ -143,7 +143,7 @@
             <option value="0">Filipino</option>
         </select>
 
-        @if( !isset($firstname))
+        @if( !isset($update))
 
             @if($errors->has('dob'))
                 <div class="alert alert-danger text-center">
@@ -237,85 +237,89 @@
 
 {{-- Does the guardian info needs to be updated ? --}}
 
-<div class="card-block">
-    <h3 class="col-sm-offset-1">Guardian Information</h3>
-    <hr>
-    <div class="col-sm-8 col-sm-offset-1">
+if ( !isset($update))
 
-        @if($errors->has('father_name'))
-            <div class="alert alert-danger text-center">
-                {{ $errors->first('father_name') }}
-            </div>
-        @endif
+    <div class="card-block">
+        <h3 class="col-sm-offset-1">Guardian Information</h3>
+        <hr>
+        <div class="col-sm-8 col-sm-offset-1">
 
-        <label>Father's Name</label>
-        <input type="text" class="form-control" name="father_name" value="{{ old('father_name') }}">
+            @if($errors->has('father_name'))
+                <div class="alert alert-danger text-center">
+                    {{ $errors->first('father_name') }}
+                </div>
+            @endif
 
-        @if($errors->has('father_occupation'))
-            <div class="alert alert-danger text-center">
-                {{ $errors->first('father_occupation') }}
-            </div>
-        @endif
+            <label>Father's Name</label>
+            <input type="text" class="form-control" name="father_name" value="{{ old('father_name') }}">
 
-        <label>Occupation</label>
-        <input type="text" class="form-control" name="father_occupation" value="{{ old('father_occupation') }}">
+            @if($errors->has('father_occupation'))
+                <div class="alert alert-danger text-center">
+                    {{ $errors->first('father_occupation') }}
+                </div>
+            @endif
 
-        @if($errors->has('mother_name'))
-            <div class="alert alert-danger text-center">
-                {{ $errors->first('mother_name') }}
-            </div>
-        @endif
+            <label>Occupation</label>
+            <input type="text" class="form-control" name="father_occupation" value="{{ old('father_occupation') }}">
 
-        <label>Mother's Name</label>
-        <input type="text" class="form-control" name="mother_name" value="{{ old('mother_name') }}">
+            @if($errors->has('mother_name'))
+                <div class="alert alert-danger text-center">
+                    {{ $errors->first('mother_name') }}
+                </div>
+            @endif
 
-        @if($errors->has('mother_occupation'))
-            <div class="alert alert-danger text-center">
-                {{ $errors->first('mother_occupation') }}
-            </div>
-        @endif
+            <label>Mother's Name</label>
+            <input type="text" class="form-control" name="mother_name" value="{{ old('mother_name') }}">
 
-        <label>Occupation</label>
-        <input type="text" class="form-control" name="mother_occupation" value="{{ old('mother_occupation') }}">
-        <br/>
+            @if($errors->has('mother_occupation'))
+                <div class="alert alert-danger text-center">
+                    {{ $errors->first('mother_occupation') }}
+                </div>
+            @endif
+
+            <label>Occupation</label>
+            <input type="text" class="form-control" name="mother_occupation" value="{{ old('mother_occupation') }}">
+            <br/>
+            <span class="clearfix"></span>
+        </div>
         <span class="clearfix"></span>
     </div>
-    <span class="clearfix"></span>
-</div>
 
-<div class="card-block">
-    <h3 class="col-sm-offset-1">User Account Information</h3>
-    <hr>
-    <div class="col-sm-8 col-sm-offset-1">
+    <div class="card-block">
+        <h3 class="col-sm-offset-1">User Account Information</h3>
+        <hr>
+        <div class="col-sm-8 col-sm-offset-1">
 
-        @if($errors->has('username'))
-            <div class="alert alert-danger text-center">
-                {{ $errors->first('username') }}
-            </div>
-        @endif
+            @if($errors->has('username'))
+                <div class="alert alert-danger text-center">
+                    {{ $errors->first('username') }}
+                </div>
+            @endif
 
-        <label>Username</label>
-        <input type="text" class="form-control" name="username" value="{{ old('username') }}">
+            <label>Username</label>
+            <input type="text" class="form-control" name="username" value="{{ old('username') }}">
 
-        @if($errors->has('password'))
-            <div class="alert alert-danger text-center">
-                {{ $errors->first('password') }}
-            </div>
-        @endif
+            @if($errors->has('password'))
+                <div class="alert alert-danger text-center">
+                    {{ $errors->first('password') }}
+                </div>
+            @endif
 
-        <label>Password</label>
-        <input type="text" class="form-control" name="password" value="{{ old('password') }}">
+            <label>Password</label>
+            <input type="text" class="form-control" name="password" value="{{ old('password') }}">
 
-        @if($errors->has('repeat_password'))
-            <div class="alert alert-danger text-center">
-                {{ $errors->first('repeat_password') }}
-            </div>
-        @endif
+            @if($errors->has('repeat_password'))
+                <div class="alert alert-danger text-center">
+                    {{ $errors->first('repeat_password') }}
+                </div>
+            @endif
 
-        <label>Repeat Password</label>
-        <input type="text" class="form-control" name="repeat_password" value="{{ old('repeat_password') }}">
+            <label>Repeat Password</label>
+            <input type="text" class="form-control" name="repeat_password" value="{{ old('repeat_password') }}">
+            <span class="clearfix"></span>
+        </div>
         <span class="clearfix"></span>
+        <input type="submit" class="btn btn-primary btn-raised pull-right" name="name" value="Submit">
     </div>
-    <span class="clearfix"></span>
-    <input type="submit" class="btn btn-primary btn-raised pull-right" name="name" value="Submit">
-</div>
+
+@endif
