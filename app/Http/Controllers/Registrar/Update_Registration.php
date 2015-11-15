@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Registrar;
 
 use DB;
+use Session;
 use App\Party;
 use App\Course;
 use App\Library\Api;
@@ -10,6 +11,7 @@ use App\Registration;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Request\UpdateRegistrationRequest;
 
 class Update_Registration extends Controller
 {
@@ -53,8 +55,6 @@ class Update_Registration extends Controller
         $data['mail_add']           = $party->address1;
         $data['contact']            = $party->mobilenumber;
         $data['emailadd']           = $party->emailaddress;
-        $data['course_student']     = $coursemajor->course;
-        $data['major_student']      = $coursemajor->major;
         $data['update']             = 'yes this is a update';
 
         return view('registrar.update_student_reg', $data);
@@ -67,6 +67,21 @@ class Update_Registration extends Controller
             'majors'    => DB::table('tbl_major')->get(),
             'religions' => DB::table('tbl_religion')->get()
         ];
+    }
+
+    public function update(UpdateRegistrationRequest $request)
+    {
+        $party                  = Party::find($request->student);
+        $party->firstname       = $request->firstname;
+        $party->lastname        = $request->lastname;
+        $party->middlename      = $request->middlename;
+        $party->emailaddres     = $request->emailadd;
+        $party->sex             = $request->gender;
+        $party->mobilenumber    = $request->contact;
+        $party->address1        = $request->mailing_add;
+
+        Session::put('message', htmlAlert('Successfully Updated', 'success'));
+        return redirect('update_registration');
     }
 
 }
