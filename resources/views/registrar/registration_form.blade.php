@@ -38,36 +38,40 @@
         <hr>
         <br/>
 
-        @if($errors->has('course'))
-            <div class="alert alert-danger text-center">
-                {{ $errors->first('course') }}
-            </div>
+        @if ( !isset($update))
+
+            @if($errors->has('course'))
+                <div class="alert alert-danger text-center">
+                    {{ $errors->first('course') }}
+                </div>
+            @endif
+
+            <label>Course</label>
+            <select class="form-control" name="course">
+
+                @foreach($courses as $course)
+                    <option value="{{ $course->id }}"
+                        {{ ( (isset($course_student) AND $course_student == $course->id) OR (old('course') == $course->id) ) ? 'selected' : '' }} >
+                        {{ $course->description }}
+                    </option>
+                @endforeach
+
+            </select>
+
+            <label>Major <small class="optional">(optional)</small></label>
+            <select class="form-control" name="major">
+                <option value="0">None</option>
+
+                @foreach($majors as $major)
+                    <option value="{{ $major->id }}"
+                        {{ ( (isset($major_student) AND $major_student == $major->id ) OR (old('major') == $major->id) ) ? 'selected' : '' }} >
+                        {{ $major->description }}
+                    </option>
+                @endforeach
+
+            </select>
+
         @endif
-
-        <label>Course</label>
-        <select class="form-control" name="course">
-
-            @foreach($courses as $course)
-                <option value="{{ $course->id }}"
-                    {{ ( (isset($course_student) AND $course_student == $course->id) OR (old('course') == $course->id) ) ? 'selected' : '' }} >
-                    {{ $course->description }}
-                </option>
-            @endforeach
-
-        </select>
-
-        <label>Major <small class="optional">(optional)</small></label>
-        <select class="form-control" name="major">
-            <option value="0">None</option>
-
-            @foreach($majors as $major)
-                <option value="{{ $major->id }}"
-                    {{ ( (isset($major_student) AND $major_student == $major->id ) OR (old('major') == $major->id) ) ? 'selected' : '' }} >
-                    {{ $major->description }}
-                </option>
-            @endforeach
-
-        </select>
 
         @if($errors->has('gender'))
             <div class="alert alert-danger text-center">
