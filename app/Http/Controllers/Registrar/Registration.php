@@ -68,12 +68,16 @@ class Registration extends Controller
 
             $curriculum = Curriculum::getCurrentCurriculum($request->course, $request->major, $this->system);
 
+            $coursemajor    = DB::table('coursemajor')->where('course', $request->course)
+                            ->where('major', $request->major)->first();
+
             $registration               = new ModelRegistration;
             $registration->curriculum   = $curriculum;
             $registration->student      = $party_id;
             $registration->academicterm = $this->system->currentacademicterm;
             $registration->status       = 'P';
             $registration->date         = date('Y-m-d');
+            $registration->coursemajor  = $coursemajor->id;
 
             // insert into registration
             $registration->save();
