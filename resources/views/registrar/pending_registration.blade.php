@@ -19,7 +19,7 @@
                             <th>Student ID</th>
                             <th>Name</th>
                             <th>Course w/ Major</th>
-                            <th>Action</th>
+                            <th style="width:20%;" colspan="2" class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,7 +42,10 @@
                                     {{ $course->description.' '.$major }}
                                 </td>
                                 <td>
-                                    <a href="{{ url("registration/$registration->id") }}" class="btn btn-primary btn-sm btn-raised">Update</a>
+                                    <a href="{{ url("registration/$registration->id") }}" class="btn btn-primary btn-sm btn-raised pull-left">View</a>
+                                </td>
+                                <td>
+                                    <a href="{{ url("registration/$registration->id") }}" class="btn btn-success btn-sm btn-raised pull-right">Confirm</a>
                                 </td>
                             </tr>
                         @endforeach
