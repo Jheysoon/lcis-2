@@ -23,4 +23,9 @@ class Registration extends Model
     {
         return $query->where('student', $student);
     }
+
+    public function scopePending($query)
+    {
+        return $query->where('status', 'P');
+    }
 }
