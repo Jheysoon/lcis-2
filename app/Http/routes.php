@@ -44,6 +44,7 @@ Route::get('class/{id}',                'Instructor\Instructor_Class@show');
 Route::get('registration',              'Registrar\Registration@new_student');
 Route::get('update_registration',       'Registrar\Update_Registration@index');
 Route::get('update_registration/{id}',  'Registrar\Update_Registration@show');
+Route::get('shift_student',             'Registrar\Shift_Registration@index');
 Route::post('update_student_reg',       'Registrar\Update_Registration@update');
 Route::post('new_student',              'Registrar\Registration@register_new_student');
 
