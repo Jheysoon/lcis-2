@@ -30,6 +30,8 @@
             </div>
 
             <form action="index.html" method="post">
+                {!! csrf_field() !!}
+                <input type="hidden" name="student" value="{{ $id or '' }}">
 
                 @include('registrar.registration_form')
 
