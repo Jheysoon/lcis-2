@@ -16,8 +16,7 @@ class Shift_Registration extends Controller
         $data['courses']    = Course::all();
         $data['majors']     = DB::table('tbl_major')->get();
         $data['religions']  = DB::table('tbl_religion')->get();
-        $data['update']     = 'yes it is';
-        $data['shift']      = 'yes it is';
+        $data['shift']      = $data['update'] = 'yes it is';
 
         return view(Api::getView(), $data);
     }
