@@ -18,4 +18,9 @@ class Registration extends Model
     {
         return $query->orderBy('academicterm', 'DESC');
     }
+
+    public function scopeStudent($query, $student)
+    {
+        return $query->where('student', $student);
+    }
 }

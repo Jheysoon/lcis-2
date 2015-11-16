@@ -42,7 +42,7 @@ class Update_Registration extends Controller
         //$student            = DB::table('tbl_student')->where('id', $id)->get();
 
         // get the latest registration
-        $registration               = Registration::where('student', $id)->latest()->first();
+        $registration               = Registration::student($id)->latest()->first();
         $coursemajor                = DB::table('tbl_coursemajor')->where('id', $registration->coursemajor)->first();
 
         $data['id']                 = $id;
