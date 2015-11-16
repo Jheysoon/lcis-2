@@ -46,6 +46,7 @@ Route::get('update_registration',       'Registrar\Update_Registration@index');
 Route::get('update_registration/{id}',  'Registrar\Update_Registration@show');
 Route::get('shift_student',             'Registrar\Shift_Registration@index');
 Route::get('shift_student/{id}',        'Registrar\Shift_Registration@show');
+Route::post('save_shift_reg',           'Registrar\Shift_Registration@store');
 Route::post('update_student_reg',       'Registrar\Update_Registration@update');
 Route::post('new_student',              'Registrar\Registration@register_new_student');
 

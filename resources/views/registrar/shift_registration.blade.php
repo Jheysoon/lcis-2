@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-            <form action="index.html" method="post">
+            <form action="{{ url('save_shift_reg') }}" method="post">
                 {!! csrf_field() !!}
                 <input type="hidden" name="student" value="{{ $id or '' }}">
 
