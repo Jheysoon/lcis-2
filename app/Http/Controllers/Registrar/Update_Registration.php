@@ -80,7 +80,7 @@ class Update_Registration extends Controller
         $party->mobilenumber    = $request->contact;
         $party->address1        = $request->mailing_add;
 
-        Session::put('message', htmlAlert('Successfully Updated', 'success'));
+        Session::flashdata('message', htmlAlert('Successfully Updated', 'success'));
         return redirect('update_registration');
     }
 
