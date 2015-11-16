@@ -41,6 +41,9 @@
 
 @section('footer')
     <script src="{{ asset('assets/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('assets/js/typeahead.bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/handlebars-v3.0.1.js') }}"></script>
+    <script src="{{ asset('assets/js/search_for_student.js') }}"></script>
     <script>
         $(document).ready(function () {
             $('select[name=course], select[name=major]').select2();
