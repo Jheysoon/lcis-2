@@ -15,6 +15,7 @@ use App\Http\Controllers\Controller;
 use App\Registration as ModelRegistration;
 use App\Http\Requests\NewStudentRegRequest;
 
+// TODO: change this class to new_student_registration
 class Registration extends Controller
 {
     public $system;
