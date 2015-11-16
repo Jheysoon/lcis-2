@@ -38,7 +38,7 @@
         <hr>
         <br/>
 
-        @if ( !isset($update))
+        @if ( !isset($update) OR isset($shift))
 
             @if($errors->has('course'))
                 <div class="alert alert-danger text-center">
@@ -73,79 +73,83 @@
 
         @endif
 
-        @if($errors->has('gender'))
-            <div class="alert alert-danger text-center">
-                {{ $errors->first('gender') }}
-            </div>
-        @endif
+        @if( !isset($shift))
 
-        <label>Gender</label>
-        <select class="form-control" name="gender">
-            <option value="M"
-            {{ ( (isset($gender) AND $gender == 'M') OR old('gender') == 'M' ) ? 'selected' : '' }}>
-                Male
-            </option>
-            <option value="0"
-            {{ ( (isset($gender) AND $gender == 'F') OR old('gender') == 'F' ) ? 'selected' : '' }} >
-                Female
-            </option>
-        </select>
+            @if($errors->has('gender'))
+                <div class="alert alert-danger text-center">
+                    {{ $errors->first('gender') }}
+                </div>
+            @endif
 
-        @if($errors->has('maritalstatus'))
-            <div class="alert alert-danger text-center">
-                {{ $errors->first('maritalstatus') }}
-            </div>
-        @endif
-
-        <label>Marital Status</label>
-        <select class="form-control" name="maritalstatus">
-            <option value="0"
-                {{ ( (isset($maritalstatus) AND $maritalstatus == 0) OR old('maritalstatus') == 0 ) ? 'selected' : '' }} >
-                SINGLE
-            </option>
-            <option value="1"
-                {{ ( (isset($maritalstatus) AND $maritalstatus == 1) OR old('maritalstatus') == 1 ) ? 'selected' : '' }} >
-                MARRIED
-            </option>
-            <option value="2"
-                {{ ( (isset($maritalstatus) AND $maritalstatus == 2) OR old('maritalstatus') == 2 ) ? 'selected' : '' }} >
-                SEPARATED
-            </option>
-            <option value="3"
-                {{ ( (isset($maritalstatus) AND $maritalstatus == 3) OR old('maritalstatus') == 3 ) ? 'selected' : '' }} >
-                WIDOWED
-            </option>
-        </select>
-
-        @if($errors->has('religion'))
-            <div class="alert alert-danger text-center">
-                {{ $errors->first('religion') }}
-            </div>
-        @endif
-
-        <label>Religion</label>
-        <select class="form-control" name="religion">
-
-            @foreach($religions as $religion)
-                <option value="{{ $religion->id }}"
-                    {{ ( (isset($religion_student) AND $religion_student == $religion->id) OR old('religion') == $religion->id ) ? 'selected' : '' }} >
-                    {{ $religion->description }}
+            <label>Gender</label>
+            <select class="form-control" name="gender">
+                <option value="M"
+                {{ ( (isset($gender) AND $gender == 'M') OR old('gender') == 'M' ) ? 'selected' : '' }}>
+                    Male
                 </option>
-            @endforeach
+                <option value="0"
+                {{ ( (isset($gender) AND $gender == 'F') OR old('gender') == 'F' ) ? 'selected' : '' }} >
+                    Female
+                </option>
+            </select>
 
-        </select>
+            @if($errors->has('maritalstatus'))
+                <div class="alert alert-danger text-center">
+                    {{ $errors->first('maritalstatus') }}
+                </div>
+            @endif
 
-        @if($errors->has('nationality'))
-            <div class="alert alert-danger text-center">
-                {{ $errors->first('nationality') }}
-            </div>
+            <label>Marital Status</label>
+            <select class="form-control" name="maritalstatus">
+                <option value="0"
+                    {{ ( (isset($maritalstatus) AND $maritalstatus == 0) OR old('maritalstatus') == 0 ) ? 'selected' : '' }} >
+                    SINGLE
+                </option>
+                <option value="1"
+                    {{ ( (isset($maritalstatus) AND $maritalstatus == 1) OR old('maritalstatus') == 1 ) ? 'selected' : '' }} >
+                    MARRIED
+                </option>
+                <option value="2"
+                    {{ ( (isset($maritalstatus) AND $maritalstatus == 2) OR old('maritalstatus') == 2 ) ? 'selected' : '' }} >
+                    SEPARATED
+                </option>
+                <option value="3"
+                    {{ ( (isset($maritalstatus) AND $maritalstatus == 3) OR old('maritalstatus') == 3 ) ? 'selected' : '' }} >
+                    WIDOWED
+                </option>
+            </select>
+
+            @if($errors->has('religion'))
+                <div class="alert alert-danger text-center">
+                    {{ $errors->first('religion') }}
+                </div>
+            @endif
+
+            <label>Religion</label>
+            <select class="form-control" name="religion">
+
+                @foreach($religions as $religion)
+                    <option value="{{ $religion->id }}"
+                        {{ ( (isset($religion_student) AND $religion_student == $religion->id) OR old('religion') == $religion->id ) ? 'selected' : '' }} >
+                        {{ $religion->description }}
+                    </option>
+                @endforeach
+
+            </select>
+
+            @if($errors->has('nationality'))
+                <div class="alert alert-danger text-center">
+                    {{ $errors->first('nationality') }}
+                </div>
+            @endif
+
+            <label>Nationality</label>
+            <select class="form-control" name="nationality">
+                {{-- stick nationality --}}
+                <option value="0">Filipino</option>
+            </select>
+
         @endif
-
-        <label>Nationality</label>
-        <select class="form-control" name="nationality">
-            {{-- stick nationality --}}
-            <option value="0">Filipino</option>
-        </select>
 
         @if( !isset($update))
 
@@ -169,71 +173,75 @@
 
         @endif
 
-        @if($errors->has('mailing_add'))
-            <div class="alert alert-danger text-center">
-                {{ $errors->first('mailing_add') }}
-            </div>
+        @if( !isset($shift))
+
+            @if($errors->has('mailing_add'))
+                <div class="alert alert-danger text-center">
+                    {{ $errors->first('mailing_add') }}
+                </div>
+            @endif
+
+            <label>Mailing Address <small class="required">(required)</small></label>
+            <textarea name="mailing_add" class="form-control" style="resize:vertical;">{{ (old('mailing_add') == '' AND isset($mail_add)) ? $mail_add : old('mailing_add') }}</textarea>
+
+            @if($errors->has('town_city'))
+                <div class="alert alert-danger text-center">
+                    {{ $errors->first('town_city') }}
+                </div>
+            @endif
+
+            <label>Town / City <small class="required">(required)</small></label>
+            <input type="text" class="form-control" name="town_city"
+                value="{{ (old('town_city') == '' AND isset($town_city)) ? $town_city : old('town_city') }}">
+
+            @if($errors->has('province'))
+                <div class="alert alert-danger text-center">
+                    {{ $errors->first('province') }}
+                </div>
+            @endif
+
+            <label>Province</label>
+            <input type="text" class="form-control" name="province"
+                value="{{ (old('province') == '' AND isset($province)) ? $province : old('province') }}">
+
+            @if($errors->has('zip_code'))
+                <div class="alert alert-danger text-center">
+                    {{ $errors->first('zip_code') }}
+                </div>
+            @endif
+
+            <label>Zip Code</label>
+            <select class="form-control" name="zip_code">
+
+                {{-- sticky here --}}
+
+                @for($i = 6500; $i < 6510; $i++)
+                    <option value="{{ $i }}">{{ $i }}</option>
+                @endfor
+
+            </select>
+
+            @if($errors->has('contact'))
+                <div class="alert alert-danger text-center">
+                    {{ $errors->first('contact') }}
+                </div>
+            @endif
+
+            <label>Contact Number</label>
+            <input type="text" class="form-control" name="contact"
+                value="{{ (old('contact') == '' AND isset($contact)) ? $contact : old('contact') }}">
+
+            @if($errors->has('emailadd'))
+                <div class="alert alert-danger text-center">
+                    {{ $errors->first('emailadd') }}
+                </div>
+            @endif
+
+            <label>Email Address</label>
+            <input type="email" class="form-control" name="emailadd"
+                value="{{ (old('emailadd') == '' AND isset($emailadd)) ? $emailadd : old('emailadd') }}">
+
         @endif
-
-        <label>Mailing Address <small class="required">(required)</small></label>
-        <textarea name="mailing_add" class="form-control" style="resize:vertical;">{{ (old('mailing_add') == '' AND isset($mail_add)) ? $mail_add : old('mailing_add') }}</textarea>
-
-        @if($errors->has('town_city'))
-            <div class="alert alert-danger text-center">
-                {{ $errors->first('town_city') }}
-            </div>
-        @endif
-
-        <label>Town / City <small class="required">(required)</small></label>
-        <input type="text" class="form-control" name="town_city"
-            value="{{ (old('town_city') == '' AND isset($town_city)) ? $town_city : old('town_city') }}">
-
-        @if($errors->has('province'))
-            <div class="alert alert-danger text-center">
-                {{ $errors->first('province') }}
-            </div>
-        @endif
-
-        <label>Province</label>
-        <input type="text" class="form-control" name="province"
-            value="{{ (old('province') == '' AND isset($province)) ? $province : old('province') }}">
-
-        @if($errors->has('zip_code'))
-            <div class="alert alert-danger text-center">
-                {{ $errors->first('zip_code') }}
-            </div>
-        @endif
-
-        <label>Zip Code</label>
-        <select class="form-control" name="zip_code">
-
-            {{-- sticky here --}}
-
-            @for($i = 6500; $i < 6510; $i++)
-                <option value="{{ $i }}">{{ $i }}</option>
-            @endfor
-
-        </select>
-
-        @if($errors->has('contact'))
-            <div class="alert alert-danger text-center">
-                {{ $errors->first('contact') }}
-            </div>
-        @endif
-
-        <label>Contact Number</label>
-        <input type="text" class="form-control" name="contact"
-            value="{{ (old('contact') == '' AND isset($contact)) ? $contact : old('contact') }}">
-
-        @if($errors->has('emailadd'))
-            <div class="alert alert-danger text-center">
-                {{ $errors->first('emailadd') }}
-            </div>
-        @endif
-
-        <label>Email Address</label>
-        <input type="email" class="form-control" name="emailadd"
-            value="{{ (old('emailadd') == '' AND isset($emailadd)) ? $emailadd : old('emailadd') }}">
         <br/>
     </div>
     <span class="clearfix"></span>

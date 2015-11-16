@@ -13,9 +13,11 @@ class Shift_Registration extends Controller
 {
     public function index()
     {
-        $data['courses']     = Course::all();
+        $data['courses']    = Course::all();
         $data['majors']     = DB::table('tbl_major')->get();
         $data['religions']  = DB::table('tbl_religion')->get();
+        $data['update']     = 'yes it is';
+        $data['shift']      = 'yes it is';
 
         return view(Api::getView(), $data);
     }
