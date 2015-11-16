@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('header')
+    <link rel="stylesheet" href="{{ asset('assets/css/select2.css') }}" media="screen" title="no title" charset="utf-8">
+@endsection
+
 @section('title', 'Shifting Registration')
 
 @section('body')
@@ -28,9 +32,18 @@
             <form action="index.html" method="post">
 
                 @include('registrar.registration_form')
-                
+
             </form>
 
         </div>
     </div>
+@endsection
+
+@section('footer')
+    <script src="{{ asset('assets/js/select2.full.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('select[name=course], select[name=major]').select2();
+        });
+    </script>
 @endsection
