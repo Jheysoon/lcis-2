@@ -33,7 +33,11 @@ class Instructor_Class extends Controller
 
     function show($id)
     {
-        $data['class'] = Classallocation::findOrFail($id);
+        $class              = Classallocation::findOrFail($id);
+        $data['students']   = DB::table('view_class_list')
+                            ->where('classallocation', $class->id)
+                            ->orderBy('lastname')->orderBy('firstname')->get();
+        $data['grades']     = DB::table('tbl_grade')->get();
 
         return view('instructor.class_student', $data);
     }
