@@ -24,7 +24,7 @@
                             <th>Room</th>
                             <th>Day</th>
                             <th>Time</th>
-                            <th>Action</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
