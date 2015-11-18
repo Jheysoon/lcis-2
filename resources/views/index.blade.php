@@ -5,7 +5,24 @@
 @section('body')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 mdl-color--green-900">
+            <div class="col-md-12">
+                <nav class="navbar navbar-inverse nav-head mdl-color--green-900" role="navigation">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <div>
+                                <img class="img-logo" src="{{ asset('assets/images/LC Logo.jpg') }}">
+                                <h2 class="hd-title">
+                                    <a class="title" href="{{ url('/') }}">&nbsp;LEYTE COLLEGES Information System</a>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <br/>
+                <br/>
+                <br/>
+            </div>
+            <div class="col-md-12 mdl-color--green-800">
                 <div class="col-md-8">
 
                 </div>
