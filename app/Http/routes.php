@@ -43,7 +43,7 @@ Route::get('class/{id}',                'Instructor\Instructor_Class@show');
 Route::post('save_grade',               'Instructor\SaveGrade@index');
 
 Route::get('registration',              'Registrar\Registration@new_student');
-Route::get('registration/{id}',          'Registrar\Pending_Registration@show');
+Route::get('registration/{id}',         'Registrar\Pending_Registration@show');
 Route::get('update_registration',       'Registrar\Update_Registration@index');
 Route::get('update_registration/{id}',  'Registrar\Update_Registration@show');
 Route::get('shift_student',             'Registrar\Shift_Registration@index');
