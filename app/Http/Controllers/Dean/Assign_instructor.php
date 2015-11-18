@@ -64,6 +64,7 @@ class Assign_instructor extends Controller
         $academic           = DB::table('tbl_academic')->where('college', $this->owner)->select('id')->get();
         $administration     = DB::select("SELECT a.id as id FROM tbl_administration a,tbl_office b
                             WHERE a.office = b.id AND b.college = $this->owner");
+
         return array_merge($academic, $administration);
     }
 
@@ -84,10 +85,31 @@ class Assign_instructor extends Controller
                 $class = Classallocation::find($class_id);
                 $class->instructor = $instructor;
                 $class->save();
-            } else
-                echo 'conflict';
-        } else
-            echo 'no';
+
+                if ($request->ajax == 0) {
+                    Session::flashdata('message', htmlAlert('Successfully Assigned', 'success'));
+                    return back();
+                }
+
+            } else {
+
+                if ($request->ajax == 0){
+                    Session::flashdata('message', htmlAlert('Conflict'));
+                    return back();
+                }
+                else
+                    echo 'conflict';
+            }
+
+        } else {
+
+            if ($request->ajax == 0) {
+                Session::flashdata('message', htmlAlert('Please Select a instructor'));
+                return back();
+            }
+            else
+                echo 'no';
+        }
     }
 
     function instructor_sched_list()
