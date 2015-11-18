@@ -40,6 +40,7 @@ Route::post('studentcount', 			'Edp\Stat@studentcount');
 Route::get('instructor/{id}',           'Instructor\Sched@show');
 Route::get('class_list',                'Instructor\Instructor_Class@index');
 Route::get('class/{id}',                'Instructor\Instructor_Class@show');
+Route::post('save_grade',               'Instructor\SaveGrade@index');
 
 Route::get('registration',              'Registrar\Registration@new_student');
 Route::get('registration/{id}',          'Registrar\Pending_Registration@show');
