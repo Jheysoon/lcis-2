@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 
 @section('title', 'Add Day Period')
 
@@ -34,8 +34,8 @@
 								@endif
 							</td>
 						</tr>
-					 </table>					 
-							
+					 </table>
+
 					<input type="hidden" name="class_id" value="{{ $cid }}">
 					<table class="table">
 						<tr>

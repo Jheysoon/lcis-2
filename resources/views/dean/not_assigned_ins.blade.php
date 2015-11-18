@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table table-striped">
 	<tr>
         <td class="tbl-header" style="text-align: center;" colspan="8"><strong>Assigned Subjects</strong></td>
     </tr>
@@ -12,6 +12,7 @@
         <th>Other Instructors</th>
         <th>Action</th>
     </tr>
+	<tbody>
 
     @foreach ($classes as $class)
 
@@ -24,6 +25,7 @@
 
     		@if (!empty($room) AND !empty($time))
     			<form class="save_instructor" method="post" data-alloc = "{{ $class->cid }}">
+					<input type="hidden" name="ajax" value="1">
 	    			<tr>
 	    				<input type="hidden" name="cl_id" value="{{ $class->cid }}">
 	    				<td> {{ $class->code }} </td>
@@ -75,5 +77,7 @@
     	@endif
 
     @endforeach
+
+	</tbody>
 
 </table>

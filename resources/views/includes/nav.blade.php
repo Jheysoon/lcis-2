@@ -15,7 +15,7 @@
         </div>
 
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav top-sign navbar-right">
+            <ul class="nav navbar-nav navbar-right">
                 <li class="logout"><a href="/logout">Logout</a></li>
             </ul>
 

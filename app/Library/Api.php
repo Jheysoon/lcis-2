@@ -57,7 +57,7 @@ class Api
         $o      = DB::table('tbl_academic')->where('id', Auth::user()->id);
 
         if ($o->count() > 0) {
-            $own = $i->first();
+            $own = $o->first();
 
             return $own->college;
         } else {
@@ -70,7 +70,7 @@ class Api
 
     public static function yearLevel($partyid)
     {
-        $system     = $this->systemValue();
+        $system     = self::systemValue();
         $sy         = $system->nextacademicterm;
         $tolerance  = (int) $system->cutoffpercentage;
         $cur_id     = 0;

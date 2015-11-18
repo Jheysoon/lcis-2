@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 
 @section('title', 'Assign Instructor')
 
@@ -7,7 +7,7 @@
 	<div class="col-md-9 body-container">
 		<br/>
 		<div class="mdl-card mdl-shadow--4dp">
-            <div class="mdl-card__title text-center mdl-color--green-700">
+            <div class="mdl-card__title text-center mdl-color--green-900">
 				<div class="col-sm-6">
 					<h1 class="mdl-card__title-text mdl-color-text--yellow-300">Assign Instructor</h1>
 				</div>
@@ -16,6 +16,9 @@
 				</div>
             </div>
             <div class="mdl-card__supporting-text" style="width:100%">
+				@if(Session::has('message'))
+					{!! Session::get('message') !!}
+				@endif
 
 	            @if ($val == 'valid')
 	            	<div class="col-md-6">
@@ -23,7 +26,7 @@
 						<h5 style="text-align: center; font-weight: bold">School Year: {{ $acam->systart.'-'.$acam->syend }} Term: {{ $acam->term }} </h5>
 					 </div>
 					 <div class="col-md-4">
-						<form class="form" action="/change_sy" method="post">
+						<form class="form" action="{{ url('change_sy') }}" method="post">
 							<div class="form-group">
 							<label class="control-label">School Year : </label>
 							<div class="input-group">
@@ -80,10 +83,12 @@
 	<div class="modal fade" id="myModalIns" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 	    	<div class="modal-content modal-sm">
-	    		<form action="/dean/ass_ins_other" method="POST">
+	    		<form action="{{ url('save_instructor') }}" method="POST">
+					<input type="hidden" name="ajax" value="0">
+					{!! csrf_field() !!}
 		    		<div class="modal-header">
 		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        		<h4 class="modal-title" id="myModalLabel" style="color:#fff;">Assign Other Instructor</h4>
+		        		<h4 class="modal-title" id="myModalLabel">Assign Other Instructor</h4>
 		    		</div>
 		    		<div class="modal-body">
 						<label>Instructor</label>

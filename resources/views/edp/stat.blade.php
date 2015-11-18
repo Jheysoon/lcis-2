@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 
 @section('title' ,'Student Statistics')
 
@@ -14,7 +14,7 @@
             <div class="panel-body">
                 <div class="form-group">
                     <div class="col-sm-12">
-                    
+
                         @if ($nxt->phase == env('FIN') AND $nxt->classallocationstatus == 0)
                             <div class="alert alert-info center-block" id="confirmBox" style="max-width:400px;">
                                 <strong> Do you want to run the student statistics for <br/>

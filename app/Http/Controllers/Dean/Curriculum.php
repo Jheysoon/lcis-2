@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Dean;
 use DB;
 use Session;
 use Validator;
+use App\Course;
 use App\Subject;
 use App\Library\Api;
 use App\Academicterm;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\InsertSubjectCurriculumRequest;
 
 class Curriculum extends Controller
 {
@@ -23,7 +25,7 @@ class Curriculum extends Controller
                 b.description as c_description
                 FROM tbl_curriculum a, tbl_course b, tbl_coursemajor c
                 WHERE a.coursemajor = c.id AND b.id = c.course AND b.college = $owner");
-        
+
         return view(Api::getView(), ['c' => $c, 'acam' => $acam, 'cur' => $cur]);
     }
 
@@ -40,14 +42,14 @@ class Curriculum extends Controller
                         ->groupBy('term')->get();
         $cur        = DB::table('tbl_curriculum')->where('id', $id)->first();
         $cm         = DB::table('tbl_coursemajor')->where('id', $cur->coursemajor)->first();
-        $c          = DB::table('tbl_course')->where('id', $cm->course)->first();
+        $c          = Course::find($cm->course);
         $m          = '';
 
         if ($cm->major != 0) {
             $m      = DB::table('tbl_major')->where('id', $cm->major)->first();
             $major  = $m->description;
         }
-        
+
         $course = $c->description.' '.$m;
 
         return view('dean.view_curriculum', compact('get_cur', 'cur_detail', 'cur', 'id', 'course'));
@@ -61,24 +63,14 @@ class Curriculum extends Controller
         return back();
     }
 
-    function insert(Request $request)
+    function insert(InsertSubjectCurriculumRequest $request)
     {
-        $validation = Validator::make($request->all(), [
-            'subid'         => 'required',
-            'yearlevel'     => 'required',
-            'term'          => 'required'
-            ]);
-
-        if ($validation->fails()) {
-            Session::flash('message', htmlAlert('All Fields Are Required'));
-        } else {
-            $data['curriculum'] = $request->cur_id;
-            $data['subject']    = $request->subid;
-            $data['yearlevel']  = $request->yearlevel;
-            $data['term']       = $request->term;
-            DB::table('curriculumdetail')->insert($data);
-            Session::flash('message', htmlAlert('Successfully Added', 'success'));
-        }
+        $data['curriculum'] = $request->cur_id;
+        $data['subject']    = $request->subject;
+        $data['yearlevel']  = $request->yearlevel;
+        $data['term']       = $request->term;
+        DB::table('curriculumdetail')->insert($data);
+        Session::flash('message', htmlAlert('Successfully Added', 'success'));
 
         return back();
     }

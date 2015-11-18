@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 
 @section('title' ,'Manage Section')
 
@@ -51,7 +51,7 @@
 										<tr>
 											<td> {{ $subj->code }} </td>
 											<td> {{ $subj->descriptivetitle }} </td>
-											<td> 
+											<td>
 												<?php $course = DB::table('tbl_course')->where('id', $subj->coursemajor)->first(); ?>
 												{{ $course->shortname }}
 											</td>
@@ -82,7 +82,7 @@
 								Cannot run this program. The EDP must complete the step 1.
 							</div>
 						@endif
-						
+
 					</div>
 				</div>
 			</div>

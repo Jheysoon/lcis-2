@@ -16,7 +16,7 @@ if ( ! function_exists('set_select')) {
 	function set_select($field, $value = '', $default = FALSE)
 	{
         $input = \Request::get($field);
-        
+
 		if ($input === NULL) {
 			return ($default === TRUE) ? ' selected="selected"' : '';
 		}

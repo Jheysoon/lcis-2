@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 
 @section('title', 'Iniatialize Classallocation')
 
@@ -7,7 +7,7 @@
 	<div class="col-md-9 body-container">
 		<div class="panel p-body" >
 			<div class="col-md-12" style="background-color:#F0FBF0;">
-			
+
 			@include('edp.cl_status')
 
 			@if($val == 'cannot run in this phase')

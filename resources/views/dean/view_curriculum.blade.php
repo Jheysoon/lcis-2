@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 
 @section('title' ,'View Curriculum')
 
@@ -13,18 +13,26 @@
     		</div>
 
             @if(Session::has('message'))
-                {{ Session::get('message') }}
+                {!! Session::get('message') !!}
             @endif
 
-            <form action="/curriculum/insert_subject" method="post">
+            @if($errors->any())
+                @foreach($errors->all() as $error)
+                    <div class="alert alert-danger text-center">
+                        {{ $error }}
+                    </div>
+                @endforeach
+            @endif
+
+            <form action="{{ url('curriculum/insert_subject') }}" method="post">
                 <div class="panel-body">
                     <div class="col-md-6 col-md-offset-3">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        {!! csrf_field() !!}
                         <input type="hidden" name="cur_id" value="{{ $id }}">
 
                         <div class="col-md-12 ">
         					<label class="lbl-data">Subject</label>
-        					<select class="form-control" name="subid" required>
+        					<select class="form-control" name="subject" required>
         						<option value="">Select Subject</option>
 
                                 @foreach($get_cur as $subject)
@@ -37,11 +45,11 @@
                         <div class="col-md-12 ">
         					<label class="lbl-data">Year Level</label>
         					<select class="form-control" name = "yearlevel" required>
-        					<option value="">Select Year Level</option>
+        					    <option value="">Select Year Level</option>
 
-                            @for( $i = 1; $i <= 5; $i++)
-                                <option value="{{ $i }}">{{ $i }}</option>
-                            @endfor
+                                @for( $i = 1; $i <= 5; $i++)
+                                    <option value="{{ $i }}">{{ $i }}</option>
+                                @endfor
 
         					</select>
         				</div>
@@ -49,11 +57,11 @@
                         <div class="col-md-12 ">
         					<label class="lbl-data">Term</label>
         					<select class="form-control" name = "term" required>
-        					<option value="" selected>Select Term</option>
+        					    <option value="" selected>Select Term</option>
 
-                            @for( $i = 1; $i <= 3; $i++)
-                                <option value="{{ $i }}">{{ $i == 3 ? 'Summer' : $i }}</option>
-                            @endfor
+                                @for( $i = 1; $i <= 3; $i++)
+                                    <option value="{{ $i }}">{{ $i == 3 ? 'Summer' : $i }}</option>
+                                @endfor
 
         					</select>
         				</div>
@@ -88,12 +96,11 @@
                                 <td class="tbl-header">Action</th>
                         	</tr>
                             <?php $cur_d = DB::table('tbl_curriculumdetail')->whereCurriculumAndYearlevelAndTerm($id, $curriculum_detail->yearlevel, $curriculum_detail->term )->get() ?>
-                            
-                            @foreach($cur_d as $detail)
-                                <?php $subject1 = App\Subject::where('id', $detail->subject); ?>
 
-                                @if($subject1->count() > 0)
-                                    <?php $subject = $subject1->first() ?>
+                            @foreach($cur_d as $detail)
+                                <?php $subject = App\Subject::findOrFail($detail->subject); ?>
+
+                                @if( ! $subject instanceof ModelNotFoundException)
                                     <tr>
                                         <td>{{ $subject->code }}</td>
                                         <td>{{ $subject->descriptivetitle }}</td>
@@ -107,7 +114,7 @@
                             @endforeach
 
                         @endforeach
-                        
+
                     </table>
                 </div>
             </div>

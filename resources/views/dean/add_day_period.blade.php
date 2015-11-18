@@ -1,50 +1,50 @@
-@extends('master')
+@extends('layouts.master')
 
 @section('title', 'Add Day Period')
 
 @section('body')
 	<div class="col-md-3"></div>
 	<div class="col-md-9 body-container">
-		<div class="panel p-body">
-			<div class="panel-heading">
-				<h4>Add Day/Period</h4>
+		<br/>
+		<div class="card">
+			<div class="card-header card-header-main">
+				<h3 class="card-title mdl-color-text--yellow-300">Add Day/Period</h3>
 			</div>
-			<div class="panel-body">
+			<div class="card-block">
 				<div class="modal fade" id="modal_classalloc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				  <div class="modal-dialog modal-sm">
-				    <div class="modal-content">
+					<div class="modal-dialog modal-sm">
+				    	<div class="modal-content">
 
-				    <form action="/add_classalloc" method="post">
-				      <div class="modal-header">
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				        <h5 class="modal-title" id="myModalLabel">ADD</h5>
-				      </div>
-				      <div class="modal-body">
-				        <select name="subj" class="form-control">
+				    		<form action="/add_classalloc" method="post">
+				    			<div class="modal-header">
+				        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        			<h5 class="modal-title" id="myModalLabel">ADD</h5>
+				    			</div>
+				    			<div class="modal-body">
+				        			<select name="subj" class="form-control">
 
-				        	@foreach ($subject_owner as $sub)
-				        		<option value="{{ $sub->id }}"> {{ $ss->code.' | '.$ss->descriptivetitle }}</option>
-				        	@endforeach
+							        	@foreach ($subject as $sub)
+							        		<option value="{{ $sub->id }}"> {{ $sub->code.' | '.$sub->descriptivetitle }}</option>
+							        	@endforeach
 
-				        </select>
-				        <br/>
-				        <select class="form-control" name="course_major">
-	            			<?php $c = DB::table('tbl_course')->get(); ?>
+				        			</select>
+				        			<br/>
+							        <select class="form-control" name="course_major">
+				            			<?php $c = DB::table('tbl_course')->get(); ?>
 
-            				@foreach ($c as $cc)
-            					<option value="{{ $cc->id }}"> {{ $cc->description }} </option>
-            				@endforeach
+			            				@foreach ($c as $cc)
+			            					<option value="{{ $cc->id }}"> {{ $cc->description }} </option>
+			            				@endforeach
 
-	            		</select>
-				      </div>
-				      <div class="modal-footer">
-				    	<button type="button" class="btn btn-primary">Save</button>
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				      </div>
-				    </form>
-
-				    </div>
-				  </div>
+				            		</select>
+								</div>
+				    			<div class="modal-footer">
+				    				<button type="button" class="btn btn-primary">Save</button>
+				        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				    				</div>
+				    		</form>
+				    	</div>
+					</div>
 				</div>
 
 				<div class="col-md-12">
@@ -72,7 +72,7 @@
 									<br/>
 									@if ($system->employeeid != Session::get('uid'))
 										<?php $of = DB::table('tbl_college')->where('id', $owner)->first() ?>
-										{{ 'College'.$of->description }}
+										College {{ $of->description }}
 									@endif
 								</strong>
 							</caption>
@@ -90,10 +90,10 @@
 										{{ $subj->code }}
 									</td>
 									<td class="text-center">
-										<?php 
+										<?php
 											$course = DB::table('tbl_course')
 													->where('id', $subj->coursemajor)
-													->first(); 
+													->first();
 										?>
 										{{ $course->description }}
 									</td>
@@ -103,7 +103,7 @@
 									</td>
 									<td>
 										<?php $cc = DB::table('tbl_dayperiod')->where('classallocation', $subj->cid)->count(); ?>
-										
+
 										@if ($cc > 0)
 											Added Day Period
 										@else
