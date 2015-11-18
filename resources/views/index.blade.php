@@ -2,17 +2,6 @@
 
 @section('title', 'Login')
 
-@section('header')
-    <style type="text/css">
-        .mdl-card__supporting-text {
-            width: 100%;
-        }
-        .mdl-card__actions, .mdl-card__supporting-text  {
-            background-color: #fff;
-        }
-    </style>
-@endsection
-
 @section('body')
     <div class="container-fluid">
         <div class="row">
