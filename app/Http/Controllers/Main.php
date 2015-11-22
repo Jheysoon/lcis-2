@@ -8,7 +8,6 @@ use Session;
 use Validator;
 use App\Party;
 use App\Library\Api;
-use App\User_access;
 use App\Academicterm;
 use App\Http\Requests;
 use Illuminate\Http\Request;
