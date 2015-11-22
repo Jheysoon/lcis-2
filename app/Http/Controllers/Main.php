@@ -34,11 +34,11 @@ class Main extends Controller
             $password = $request->password;
 
             if (Auth::attempt(['username' => $username, 'password' => $password])) {
-                $system = Api::systemValue();
-                $sy     = Academicterm::find($system->currentacademicterm);
-                $ses    = ['current_sy' => $sy->systart.'-'.$sy->syend,
-                        'term' => $sy->term, 'phaseterm' => $system->phaseterm];
-                Session::put($ses);
+                $system     = Api::systemValue();
+                $sy         = Academicterm::find($system->currentacademicterm);
+                $session    = ['current_sy' => $sy->systart.'-'.$sy->syend,
+                            'term' => $sy->term, 'phaseterm' => $system->phaseterm];
+                Session::put($session);
 
                 return redirect('/');
             }
