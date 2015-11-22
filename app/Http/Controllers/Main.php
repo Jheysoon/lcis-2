@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use DB;
 use Auth;
 use Session;
-use Validator;
 use App\Party;
 use App\Library\Api;
 use App\Academicterm;
@@ -21,21 +20,18 @@ class Main extends Controller
             $user = Party::find(Auth::user()->id);
 
             return view('home', ['user' => $user]);
-        } else
-            return $this->login($request);
+        }
+
+        return $this->login($request);
     }
 
     function login($request)
     {
-        $username = $request->username;
-        $password = $request->password;
+        $error = '';
 
-        $validator = Validator::make($request->all(), [
-            'username' => 'required',
-            'password' => 'required'
-            ]);
-
-        if ( !$validator->fails()) {
+        if ( $request->has('username') AND $request->has('password')) {
+            $username = $request->username;
+            $password = $request->password;
 
             if (Auth::attempt(['username' => $username, 'password' => $password])) {
                 $system = Api::systemValue();
@@ -46,11 +42,11 @@ class Main extends Controller
 
                 return redirect('/');
             }
-            else
-                return view('index', ['error' => htmlAlert('Authentication Failed')]);
 
-        } else
-            return view('index', ['error' => '']);
+            $error = htmlAlert('Authentication Failed');
+        }
+
+        return view('index', ['error' => $error]);
     }
 
     function logout()
