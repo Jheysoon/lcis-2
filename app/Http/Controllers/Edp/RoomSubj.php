@@ -9,7 +9,7 @@ use App\Classallocation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class Room_subj extends Controller
+class RoomSubj extends Controller
 {
     public $system;
 

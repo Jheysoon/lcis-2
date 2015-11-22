@@ -12,7 +12,7 @@ use App\Library\Curriculum;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class Shift_Registration extends Controller
+class ShiftRegistration extends Controller
 {
     public function index()
     {
@@ -57,7 +57,7 @@ class Shift_Registration extends Controller
         $registration->curriculum   = Curriculum::getCurrentCurriculum($request->course, $request->major, $system);
         $registration->datecreated  = date('Y-m-d');
         $registration->save();
-        
+
         Session::flashdata('message', htmlAlert('Successfully Saved', 'success'));
 
         return redirect('shift_student');

@@ -16,7 +16,7 @@ use App\Classallocation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class Add_day_period extends Controller
+class AddDayPeriod extends Controller
 {
     public $system;
 

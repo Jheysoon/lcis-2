@@ -9,7 +9,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class Pending_Registration extends Controller
+class PendingRegistration extends Controller
 {
     public function __construct()
     {

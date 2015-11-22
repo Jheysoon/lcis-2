@@ -10,10 +10,10 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class Manage_section extends Controller
+class ManageSection extends Controller
 {
     public $system;
-    
+
     public $owner;
 
     function __construct()

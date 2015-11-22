@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Request\UpdateRegistrationRequest;
 
-class Update_Registration extends Controller
+class UpdateRegistration extends Controller
 {
 
     function __construct()

@@ -11,7 +11,7 @@ use App\Classallocation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class Instructor_Class extends Controller
+class InstructorClass extends Controller
 {
     public $system;
 
