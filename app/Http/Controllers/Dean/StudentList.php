@@ -13,6 +13,8 @@ class StudentList extends Controller
     public function index()
     {
         // check for phase and classallocation status
+        // load the student that is enrolled in first sem
+        // if current term is second term
         $system             = Api::systemValue();
         $data['isDisabled'] = ($system->phase != env('FIN') OR $system->classallocationstatus < 99) ? 'disabled' : '';
         $owner              = Api::getCollege();
