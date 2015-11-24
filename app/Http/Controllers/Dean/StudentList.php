@@ -13,9 +13,10 @@ class StudentList extends Controller
     public function index()
     {
         // check for phase and classallocation status
-        $system = Api::systemValue();
+        $system             = Api::systemValue();
         $data['isDisabled'] = ($system->phase != env('FIN') OR $system->classallocationstatus < 99) ? 'disabled' : '';
-        $owner = Api::getCollege();
+        $owner              = Api::getCollege();
+        
         $data['students'] = DB::table('tbl_registration')
                             ->join('tbl_coursemajor', 'tbl_registration.coursemajor', '=', 'tbl_coursemajor.id')
                             ->join('tbl_course', 'tbl_coursemajor.course', '=' ,'tbl_course.id')
