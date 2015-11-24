@@ -33,10 +33,10 @@
                         @foreach($students as $student)
                             <tr>
                                 <td>
-                                    {{ $student->lastname }}
+                                    <strong> {{ $student->lastname }} </strong>
                                 </td>
                                 <td>
-                                    {{ $student->firstname }}
+                                    <strong> {{ $student->firstname }} </strong>
                                 </td>
                                 <td class="text-center">
                                     {{ $student->description }}
