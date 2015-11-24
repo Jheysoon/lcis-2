@@ -14,8 +14,8 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Firstname</th>
                             <th>Lastname</th>
+                            <th>Firstname</th>
                             <th class="text-center">College</th>
                         </tr>
                     </thead>
@@ -24,10 +24,10 @@
                         @foreach($students as $student)
                             <tr>
                                 <td>
-                                    {{ $student->firstname }}
+                                    {{ $student->lastname }}
                                 </td>
                                 <td>
-                                    {{ $student->lastname }}
+                                    {{ $student->firstname }}
                                 </td>
                                 <td class="text-center">
                                     {{ $student->description }}
