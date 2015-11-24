@@ -2,6 +2,14 @@
 
 @section('title', 'Student List')
 
+@section('header')
+    <style>
+        .btn {
+            margin: 2px 1px;
+        }
+    </style>
+@endsection
+
 @section('body')
     <div class="col-md-3"></div>
     <div class="col-md-9">
@@ -17,6 +25,7 @@
                             <th>Lastname</th>
                             <th>Firstname</th>
                             <th class="text-center">College</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,6 +40,9 @@
                                 </td>
                                 <td class="text-center">
                                     {{ $student->description }}
+                                </td>
+                                <td>
+                                    <a href="#" class="btn btn-primary btn-block btn-sm">Evaluate</a>
                                 </td>
                             </tr>
                         @endforeach
