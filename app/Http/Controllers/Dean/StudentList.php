@@ -12,6 +12,7 @@ class StudentList extends Controller
 {
     public function index()
     {
+        // TODO: check for phase and classallocation status
         $owner = Api::getCollege();
         $data['students'] = DB::table('tbl_registration')
                             ->join('tbl_coursemajor', 'tbl_registration.coursemajor', '=', 'tbl_coursemajor.id')
