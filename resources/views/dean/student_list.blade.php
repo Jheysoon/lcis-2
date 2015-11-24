@@ -5,7 +5,7 @@
 @section('header')
     <style>
         .btn {
-            margin: 2px 1px;
+            margin: 0px 1px;
         }
     </style>
 @endsection
@@ -19,6 +19,11 @@
                 <h3 class="mdl-color-text--yellow-300">Students List</h3>
             </div>
             <div class="card-block">
+                
+                @include('includes.searchStudent', ['redirect' => 'evaluation'])
+                
+                <span class="clearfix"></span>
+                <br/>
                 <table class="table">
                     <thead>
                         <tr>
@@ -53,4 +58,10 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('footer')
+    <script src="{{ asset('assets/js/typeahead.bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/handlebars-v3.0.1.js') }}"></script>
+    <script src="{{ asset('assets/js/search_for_student.js') }}"></script>
 @endsection
