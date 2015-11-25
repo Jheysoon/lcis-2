@@ -33,7 +33,7 @@ class StudentList extends Controller
                                 ->where('tbl_enrolment.academicterm', $acam)
                                 ->orderBy('legacyid', 'DESC')
                                 ->groupBy('tbl_enrolment.student')
-                                ->select('firstname', 'lastname' ,'description')
+                                ->select('firstname', 'lastname' ,'description', 'tbl_party.id as id')
                                 ->paginate(15);
         
         } elseif ($academicterm->term == 1) {

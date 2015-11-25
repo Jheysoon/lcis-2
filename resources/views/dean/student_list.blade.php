@@ -47,7 +47,7 @@
                                     {{ $student->description }}
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-primary btn-block btn-sm" {{ $isDisabled }}>Evaluate</a>
+                                    <a href="{{ url("evaluate/$student->id") }}" class="btn btn-primary btn-block btn-sm" {{ $isDisabled }}>Evaluate</a>
                                 </td>
                             </tr>
                         @endforeach
