@@ -130,16 +130,21 @@ class Api
                 $stud = DB::select("SELECT * FROM tbl_studentgrade
 					WHERE (semgrade <= 21 OR semgrade = 44
 						OR reexamgrade <= 21)
-						AND enrolment = {$val['id']}");
+						AND enrolment = $val->id");
 
                 foreach ($stud as $stud_subj) {
-                    $stu = DB::select("SELECT * FROM tbl_subject
-						WHERE id = (SELECT subject FROM tbl_classallocation WHERE id = {$stud_subj['classallocation']})");
-
-                    $cur_detail = DB::table('tbl_curriculumdetail')->where('curriculum', $cur_id)->where('subject', $stu[0]->id);
+                    $stu    = DB::select("SELECT a.id as id, units FROM tbl_subject a, tbl_classallocation b
+						        WHERE a.id = b.subject and b.id = $stud_subj->classallocation");
+                                
+                    foreach ($stu as $key) {
+                        $subject    = $key->id;
+                        $sub_units  = $key->units;
+                    }
+                        
+                    $cur_detail = DB::table('tbl_curriculumdetail')->where('curriculum', $cur_id)->where('subject', $subject);
 
                     if ($cur_detail->count() > 0) {
-                        $student_units += $stu[0]->units;
+                        $student_units += $sub_units;
                     }
 
                 }
