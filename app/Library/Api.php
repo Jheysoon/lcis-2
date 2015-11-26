@@ -68,7 +68,7 @@ class Api
         }
     }
 
-    public static function yearLevel($partyid)
+    public static function yearLevel($partyid, $insert = true)
     {
         $system     = self::systemValue();
         $sy         = $system->nextacademicterm;
@@ -150,12 +150,14 @@ class Api
                 }
 
             }
-
-            $h['comment']       = 'OK';
-            $h['student']       = $partyid;
-            $h['student_units'] = $student_units;
-            $h['totalunits']    = $units;
-            DB::table('out_exception')->insert($h);
+            
+            if ($insert) {
+                $h['comment']       = 'OK';
+                $h['student']       = $partyid;
+                $h['student_units'] = $student_units;
+                $h['totalunits']    = $units;
+                DB::table('out_exception')->insert($h);
+            }
 
             for ( $q = 0; $q <= 3 ; $q++ ) {
 				$m_units = (int) ($sum_units[$q] * ($tolerance / 100));
