@@ -46,4 +46,26 @@ class Classallocation extends Model
     {
         return $this->belongsTo('App\Course', 'coursemajor');
     }
+    
+    public static function getClassAlloc($academicterm, $student, $course, $lvl, $cur, $term)
+    {
+        return DB::select(
+            "SELECT * FROM tbl_classallocation
+            WHERE academicterm = '$academicterm'
+            AND subject 
+                IN (SELECT subject FROM tbl_curriculumdetail
+                    WHERE curriculum = '$cur'
+                    AND yearlevel <= '$lvl'
+                    AND term = '$term')
+                    AND subject 
+                    NOT IN (SELECT b.subject FROM tbl_studentgrade a, tbl_classallocation b, tbl_enrolment c, tbl_grade d
+                           WHERE a.classallocation = b.id
+                           AND c.id = a.enrolment
+                           AND c.student = $student
+                           AND (d.id = a.semgrade OR d.id = a.reexamgrade)
+                           AND d.value <= 3.0 AND description IS NULL)
+                           GROUP BY subject
+                           ORDER BY subject"
+                       );
+    }
 }
