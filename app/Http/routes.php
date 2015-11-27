@@ -26,6 +26,7 @@ Route::get('instructor_sched_list',     'Dean\AssignInstructor@instructor_sched_
 Route::get('subject_list',              'Dean\Subject@index');
 Route::get('subject/{id}',              'Dean\Subject@show');
 Route::get('studentlist',               'Dean\StudentList@index');
+Route::get('evaluate/{id}',             'Dean\Evaluation@index');
 Route::post('copy_curriculum',          'Dean\Curriculum@copy');
 Route::post('curriculum/insert_subject','Dean\Curriculum@insert');
 Route::post('save_instructor',          'Dean\AssignInstructor@save_instructor');
