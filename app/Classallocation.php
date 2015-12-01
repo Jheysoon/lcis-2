@@ -47,6 +47,16 @@ class Classallocation extends Model
         return $this->belongsTo('App\Course', 'coursemajor');
     }
     
+    public function scopeAcademicterm($query, $id)
+    {
+        return $query->where('academicterm', $id);
+    }
+    
+    public function scopeSubject($query, $id)
+    {
+        return $query->where('subject', $id);
+    }
+    
     public static function getClassAlloc($academicterm, $student, $course, $lvl, $cur, $term)
     {
         return DB::select(
