@@ -11,7 +11,8 @@
 |
 */
 
-Route::any('/', 						'Main@index');
+Route::get('/', 						'Main@index');
+Route::post('login',                    'Main@login');
 Route::get('logout', 					'Main@logout');
 
 Route::get('manage_curriculum',         'Dean\Curriculum@manage_curriculum');

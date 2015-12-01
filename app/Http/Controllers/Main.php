@@ -9,6 +9,7 @@ use App\Library\Api;
 use App\Academicterm;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
 
 class Main extends Controller
@@ -19,33 +20,26 @@ class Main extends Controller
             $user = Party::find(Auth::user()->id);
 
             return view('home', ['user' => $user]);
-        }
-
-        return $this->login($request);
+        } else
+            return view('index');
     }
 
-    function login($request)
+    function login(LoginRequest $request)
     {
-        $error = '';
+        $username = $request->username;
+        $password = $request->password;
+        
+        if (Auth::attempt(['username' => $username, 'password' => $password])) {
+            $system     = Api::systemValue();
+            $sy         = Academicterm::find($system->currentacademicterm);
+            $session    = ['current_sy' => $sy->systart.'-'.$sy->syend,
+                        'term' => $sy->term, 'phaseterm' => $system->phaseterm];
+            Session::put($session);
 
-        if ( $request->has('username') AND $request->has('password')) {
-            $username = $request->username;
-            $password = $request->password;
-
-            if (Auth::attempt(['username' => $username, 'password' => $password])) {
-                $system     = Api::systemValue();
-                $sy         = Academicterm::find($system->currentacademicterm);
-                $session    = ['current_sy' => $sy->systart.'-'.$sy->syend,
-                            'term' => $sy->term, 'phaseterm' => $system->phaseterm];
-                Session::put($session);
-
-                return redirect('/');
-            }
-
-            $error = htmlAlert('Authentication Failed');
+            return redirect('/');
         }
-
-        return view('index', ['error' => $error]);
+        
+        return back()->withInput()->with('message', htmlAlert('Authentication Failed'));
     }
 
     function logout()

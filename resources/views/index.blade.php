@@ -27,18 +27,28 @@
 
                 </div>
                 <div class = "col-md-4">
-                    <form class="form-horizontal" action="/" method="post">
+                    <form class="form-horizontal" action="{{ url('login') }}" method="post">
                         <br/>
                         <div class="card pull-right" style="width: 330px;">
                             <div class="card-block">
                                 <h2 class="card-title">Sign In</h2>
                             </div>
                             <div class="card-block">
-                                {!! $error !!}
+                                
+                                @if(Session::has('message'))
+                                    {!! Session::get('message') !!}
+                                @endif
+                                
+                                @if($errors->any())
+                                    @foreach($errors->all() as $error)
+                                        {!! htmlAlert($error) !!}
+                                    @endforeach
+                                @endif
+                                
                                 {!! csrf_field() !!}
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control floating-label" name="username" id="username" autofocus placeholder="Username" value="{{ request('username') }}" required>
+                                        <input type="text" class="form-control floating-label" name="username" id="username" autofocus placeholder="Username" value="{{ old('username') }}" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
