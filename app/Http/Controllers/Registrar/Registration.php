@@ -20,7 +20,7 @@ class Registration extends Controller
     public $system;
 
     // status for registration
-    // P = Pending
+    // E = Pending
     // A = Approved
     // D = Disapprove
 
