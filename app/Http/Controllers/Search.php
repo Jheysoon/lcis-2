@@ -64,7 +64,7 @@ class Search extends Controller
 
             return redirect("$request->redirect/$party->id");
         } else
-            return back();
+            return back()->with('message', htmlAlert('Student Not Found'));
             // TODO: return back with error
     }
 }
