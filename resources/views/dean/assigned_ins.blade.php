@@ -49,7 +49,9 @@
 								<?php $party = App\Party::find($class->instructor) ?>
 
 								@if( !$party instanceof ModelNotFoundException)
-									<option value="{{ $class->instructor }}" selected> {{ $party->firstname.', '.$party->lastname }}</option>
+									<option value="{{ $class->instructor }}" selected>
+										{{ $party->firstname.', '.$party->lastname }}
+									</option>
 								@endif
 
 	    						@foreach ($instruc as $i)
@@ -70,7 +72,12 @@
 
 	    					</select>
 	    				</td>
-	                    <td><a href="#" data-param="{{ $class->cid }}" data-toggle="modal" data-target="#myModalIns" class="btn btn-primary btn-sm cl_id_other">Choose</a></td>
+	                    <td>
+							<a href="#" data-param="{{ $class->cid }}" data-toggle="modal" data-target="#myModalIns"
+							   class="btn btn-primary btn-sm cl_id_other">
+								Choose
+							</a>
+						</td>
 	                    <td>
 	                        <button type="submit" class="btn btn-primary btn-sm" name="button">Save</button>
 	                    </td>

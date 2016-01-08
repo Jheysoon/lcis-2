@@ -29,7 +29,9 @@
                 </div>
                 <div class="col-md-12 pad-bottom-10">
                     <div class="col-md-2">Name</div>
-                    <div class="col-md-10 text-main-16">{{ $user->firstname.' '.$user->middlename.' '.$user->lastname }}</div>
+                    <div class="col-md-10 text-main-16">
+                        {{ $user->firstname.' '.$user->middlename.' '.$user->lastname }}
+                    </div>
                 </div>
                 <span class="clearfix"></span>
             </div>

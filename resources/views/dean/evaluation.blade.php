@@ -87,7 +87,9 @@
             <tr class="main-table-header">
 				<th  style="background: #2F5836" colspan="8">
 					<h4 style="float: left">Additional Subject</h4>
-					<button type="button" class="btn btn-warning pull-right" data-toggle="modal" data-target="#addEvalSub">Add Subject</button>
+					<button type="button" class="btn btn-warning pull-right" data-toggle="modal" data-target="#addEvalSub">
+						Add Subject
+					</button>
 				</th>
 			</tr>
 			<tr>
@@ -125,8 +127,10 @@
                         <td>{{ $class->reserved }}</td>
                         <td>{{ $class->enrolled }}</td>
                         <td>
-                            <a type="button" class="a-table label label-danger remove"  data-param="{{ $sub->code }}">Remove
-		                    <span class="glyphicon glyphicon-trash"></span></a>
+                            <a type="button" class="a-table label label-danger remove"  data-param="{{ $sub->code }}">
+								Remove
+		                    	<span class="glyphicon glyphicon-trash"></span>
+							</a>
                         </td>
                     </tr>
                 @endforeach
@@ -148,7 +152,9 @@
 	<div class="modal-dialog modal-lg" role="document">
     	<div class="modal-content">
     		<div class="modal-header panel-heading ">
-        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
         		<h4 class="modal-title" id="myModalLabel">Add subject</h4>
     		</div>
     		<div class="modal-body col-md-12"  style="background-color: #fff;">
@@ -157,7 +163,8 @@
 	            	<input type="hidden" name="student" value="{{ $registration->student }}">
 	            	<input type="hidden" name="course" value="{{ $registration->coursemajor }}">
 	                <div class="form-group">
-	                    <input type="text" type="text" name="subject" id="inputdata" class="form-control" required autocomplete="off" placeholder="Subject">
+	                    <input type="text" type="text" name="subject" id="inputdata" class="form-control"
+							   required autocomplete="off" placeholder="Subject">
 	                </div>
 	                <button type="submit" class="btn btn-primary">
 	                    <span class="glyphicon glyphicon-search"></span>
@@ -171,9 +178,10 @@
 	            </div>
 				<form id="modal-table" class="form" role="form" onsubmit="return false">
 					<div class="progress" id="prog">
-					  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-					    <span >Please wait while loading subjects.</span>
-					  </div>
+						<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100"
+						   aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+					    	<span >Please wait while loading subjects.</span>
+					  	</div>
 					</div>
 	            	<div id="div_eval">
 		            <?php
@@ -187,10 +195,10 @@
 		            ?>
                     @include('dean.modal_evaluation', $param)
 	            	</div>
-			    		<div class="pull-right">
-			        		<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-			        		<button type="submit" class="btn btn-primary">Save</button>
-			        	</div>
+					<div class="pull-right">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
 		        </form>
     		</div>
     	</div>
