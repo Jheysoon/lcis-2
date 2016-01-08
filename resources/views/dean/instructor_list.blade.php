@@ -20,7 +20,7 @@
                 </tr>
                 {{--  TODO: header for academiterm --}}
                 @foreach($instruc as $instructor)
-                    <?php $p = App\Party::find($instructor->id)  ?>
+                    <?php $p = App\Party::findOrFail($instructor->id)  ?>
 
                     @if( !$p instanceof ModelNotFoundException)
                     <tr>
