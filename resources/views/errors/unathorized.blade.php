@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Unathorized Access.</title>s
+        <title>Unauthorized Access.</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -40,7 +40,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Unathorized Access.</div>
+                <div class="title">Unauthorized Access.</div>
                 <a href="{{ url('/') }}" style="text-decoration:none;">Back to Home</a>
             </div>
         </div>
