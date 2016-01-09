@@ -100,9 +100,7 @@ class Registration extends Controller
 
         });
 
-        Session::put('message', htmlAlert('Successfully Registered', 'success'));
-
-        return back();
+        return back()->with('message', htmlAlert('Successfully Registered', 'success'));
     }
 
     public function setLastStudentId()
