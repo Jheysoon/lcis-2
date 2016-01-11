@@ -34,16 +34,8 @@
                                 <h2 class="card-title">Sign In</h2>
                             </div>
                             <div class="card-block">
-                                
-                                @if(Session::has('message'))
-                                    {!! Session::get('message') !!}
-                                @endif
-                                
-                                @if($errors->any())
-                                    @foreach($errors->all() as $error)
-                                        {!! htmlAlert($error) !!}
-                                    @endforeach
-                                @endif
+
+                                @include('errors.notify')
                                 
                                 {!! csrf_field() !!}
                                 <div class="form-group">
