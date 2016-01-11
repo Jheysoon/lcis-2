@@ -85,7 +85,11 @@
                             <td class="tbl-header" colspan="2">Units</td>
                             <td class="tbl-header">Action</td>
                         </tr>
-                        <?php $cur_d = DB::table('tbl_curriculumdetail')->whereCurriculumAndYearlevelAndTerm($id, $curriculum_detail->yearlevel, $curriculum_detail->term )->get() ?>
+                        <?php
+                            $cur_d = DB::table('tbl_curriculumdetail')
+                                    ->whereCurriculumAndYearlevelAndTerm($id, $curriculum_detail->yearlevel, $curriculum_detail->term )
+                                    ->get();
+                        ?>
 
                         @foreach($cur_d as $detail)
                             <?php $subject = App\Subject::findOrFail($detail->subject); ?>
@@ -96,7 +100,12 @@
                                     <td>{{ $subject->descriptivetitle }}</td>
                                     <td colspan="2">{{ $subject->units }}</td>
                                     <td>
-                                        <a class="a-table label label-danger" href="/delete_subject_cur/{{ $curriculum_detail->id }}" onclick="return confirm('Are you sure?')">Delete &nbsp;<span class="glyphicon glyphicon-trash"></span></a>
+                                        <a class="a-table label label-danger"
+                                           href="/delete_subject_cur/{{ $curriculum_detail->id }}"
+                                           onclick="return confirm('Are you sure?')">
+                                            Delete &nbsp;
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
                                     </td>
                                 </tr>
                             @endif
