@@ -82,8 +82,8 @@
                         <tr>
                             <td class="tbl-header">Code</td>
                             <td class="tbl-header">Descriptive Title</td>
-                            <td class="tbl-header" colspan="2">Units</th>
-                            <td class="tbl-header">Action</th>
+                            <td class="tbl-header" colspan="2">Units</td>
+                            <td class="tbl-header">Action</td>
                         </tr>
                         <?php $cur_d = DB::table('tbl_curriculumdetail')->whereCurriculumAndYearlevelAndTerm($id, $curriculum_detail->yearlevel, $curriculum_detail->term )->get() ?>
 
