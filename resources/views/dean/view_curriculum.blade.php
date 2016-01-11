@@ -101,7 +101,7 @@
                                     <td colspan="2">{{ $subject->units }}</td>
                                     <td>
                                         <a class="a-table label label-danger"
-                                           href="/delete_subject_cur/{{ $curriculum_detail->id }}"
+                                           href="{{ url('delete_subject_cur/'.$curriculum_detail->id)  }}"
                                            onclick="return confirm('Are you sure?')">
                                             Delete &nbsp;
                                             <span class="glyphicon glyphicon-trash"></span>
