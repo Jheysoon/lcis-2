@@ -4,6 +4,6 @@
 
 @if($errors->any())
     @foreach($errors->all() as $error)
-        {!! htmlAlert($error) !!}
+        {!! htmlAlert($error, 'danger') !!}
     @endforeach
 @endif
