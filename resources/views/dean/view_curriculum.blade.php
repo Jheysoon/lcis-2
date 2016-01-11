@@ -12,17 +12,7 @@
             </div>
         </div>
 
-        @if(Session::has('message'))
-            {!! Session::get('message') !!}
-        @endif
-
-        @if($errors->any())
-            @foreach($errors->all() as $error)
-                <div class="alert alert-danger text-center">
-                    {{ $error }}
-                </div>
-            @endforeach
-        @endif
+        @include('errors.notify')
 
         <form action="{{ url('curriculum/insert_subject') }}" method="post">
             <div class="panel-body">
