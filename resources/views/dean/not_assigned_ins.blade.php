@@ -1,6 +1,10 @@
 <table class="table table-striped">
 	<tr>
-        <td class="tbl-header" style="text-align: center;" colspan="8"><strong>Assigned Subjects</strong></td>
+        <td class="tbl-header" style="text-align: center;" colspan="8">
+        	<h3>
+				<strong>Unassigned Subjects</strong>
+			</h3>
+		</td>
     </tr>
     <tr>
         <th>Subject</th>
@@ -60,14 +64,12 @@
 		    						<?php $conflict = App\Library\Api::checkInstructor($i->id, $time, $day) ?>
 
 		    						@if ($conflict == false)
-		    							<option value="{{ $i->id }}">
-		    								<?php $party = App\Party::findOrFail($i->id) ?>
-
-											@if( !$party instanceof ModelNotFoundException)
+										<?php $party = App\Party::findOrFail($i->id) ?>
+										@if( !$party instanceof ModelNotFoundException)
+											<option value="{{ $i->id }}">
 												{{  $party->lastname.', '.$party->firstname }}
-											@endif
-
-		    							</option>
+											</option>
+										@endif
 		    						@endif
 
 		    					@endforeach
