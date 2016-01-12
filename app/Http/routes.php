@@ -31,6 +31,7 @@ Route::get('evaluate/{id}',             'Dean\Evaluation@index');
 Route::post('copy_curriculum',          'Dean\Curriculum@copy');
 Route::post('curriculum/insert_subject','Dean\Curriculum@insert');
 Route::post('save_instructor',          'Dean\AssignInstructor@save_instructor');
+Route::post('change_sy',                'Dean\AssignInstructor@changeSy');
 
 Route::get('stat',						'Edp\Stat@index');
 Route::get('initClassallocation', 		'Edp\ClassAlloc@init');

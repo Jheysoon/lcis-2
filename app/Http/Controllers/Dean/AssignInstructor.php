@@ -119,4 +119,10 @@ class AssignInstructor extends Controller
 
         return view('dean.instructor_list', $data);
     }
+
+    public function changeSy(Request $request)
+    {
+        Session::put('phaseterm', $request->sy);
+        return back();
+    }
 }
