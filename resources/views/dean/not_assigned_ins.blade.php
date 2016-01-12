@@ -31,7 +31,7 @@
 	    				<td> {{ $class->code }} </td>
 	    				<td>
 							@if($class->coursemajor != 0)
-								<?php $course = App\Course::find($class->coursemajor) ?>
+								<?php $course = App\Course::findOrFail($class->coursemajor) ?>
 
 								@if( !$course instanceof ModelNotFoundException)
 									{{ $course->description }}
@@ -53,7 +53,7 @@
 
 		    						@if ($conflict == false)
 		    							<option value="{{ $i->id }}">
-		    								<?php $party = App\Party::find($i->id) ?>
+		    								<?php $party = App\Party::findOrFail($i->id) ?>
 
 											@if( !$party instanceof ModelNotFoundException)
 												{{  $party->lastname.', '.$party->firstname }}
