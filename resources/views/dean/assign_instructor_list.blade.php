@@ -129,7 +129,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('.save_instructor').submit(function(e){
-			$.post('/save_instructor', $(this).serialize(),function(data){
+			$.post('{{ url('save_instructor') }}', $(this).serialize(),function(data){
 				if (data == 'conflict') {
 					alert('Instructor Conflict');
 				} else if(data == 'no') {
@@ -142,7 +142,7 @@
 		});
 		$('#sorting').change(function(){
 			v = $(this).val();
-			$.post('/dean/sorts',{sort:v},function(data){
+			$.post('{{ url('dean/sorts') }}',{sort:v},function(data){
 				$('#table-body').html(data);
 			});
 		});
