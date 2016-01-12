@@ -14,6 +14,7 @@
     </tr>
 	<tbody>
 
+	<?php $cid = 0; ?>
     @foreach ($classes as $class)
 
     	@if ($class->instructor == 0)
@@ -24,6 +25,13 @@
     		 ?>
 
     		@if (!empty($room) AND !empty($time))
+
+    			@if($cid != 0 AND $class->subject != $cid)
+    				<tr>
+						<td class="success" colspan="8">&nbsp;</td>
+					</tr>
+    			@endif
+    			<?php $cid = $class->subject; ?>
     			<form class="save_instructor" method="post" data-alloc = "{{ $class->cid }}">
 					<input type="hidden" name="ajax" value="1">
 	    			<tr>
