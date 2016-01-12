@@ -11,8 +11,8 @@
         <th>Course</th>
         <th>Room</th>
         <th>Day</th>
-        <th>Period</th>
-        <th style="width:200px;">Instructor</th>
+        <th class="text-center">Period</th>
+        <th style="width:200px;" class="text-center">Instructor</th>
         <th>Other Instructors</th>
         <th>Action</th>
     </tr>
