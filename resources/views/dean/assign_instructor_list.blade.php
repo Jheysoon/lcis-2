@@ -27,6 +27,7 @@
 				</div>
 				<div class="col-md-4">
 					<form class="form" action="{{ url('change_sy') }}" method="post">
+						{!! csrf_field() !!}
 						<div class="form-group">
 						<label class="control-label">School Year : </label>
 						<div class="input-group">
