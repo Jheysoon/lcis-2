@@ -30,7 +30,7 @@ class Registration extends Controller
         $this->system = Api::systemValue();
     }
 
-    public function new_student()
+    public function newStudent()
     {
         $data['courses']    = Course::all();
         $data['majors']     = DB::table('tbl_major')->get();
@@ -40,7 +40,7 @@ class Registration extends Controller
 
     }
 
-    public function register_new_student(NewStudentRegRequest $request)
+    public function registerNewStudent(NewStudentRegRequest $request)
     {
         DB::transaction(function () {
             $party                  = new Party;

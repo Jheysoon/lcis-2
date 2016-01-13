@@ -16,7 +16,7 @@ use App\Http\Requests\InsertSubjectCurriculumRequest;
 
 class Curriculum extends Controller
 {
-    function manage_curriculum()
+    function manageCurriculum()
     {
         $c      = DB::table('tbl_coursemajor')->get();
         $acam   = Academicterm::all();
@@ -29,7 +29,7 @@ class Curriculum extends Controller
         return view(Api::getView(), ['c' => $c, 'acam' => $acam, 'cur' => $cur]);
     }
 
-    function view_curriculum($id)
+    function viewCurriculum($id)
     {
         $get_cur    = DB::select("SELECT `id`,code, descriptivetitle FROM tbl_subject
                     WHERE tbl_subject.id NOT IN (SELECT subject FROM tbl_curriculumdetail WHERE curriculum = '$id')

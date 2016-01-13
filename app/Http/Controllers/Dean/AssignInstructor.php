@@ -68,7 +68,7 @@ class AssignInstructor extends Controller
         return array_merge($academic, $administration);
     }
 
-    function save_instructor(Request $request)
+    function saveInstructor(Request $request)
     {
         $acam       = Session::get('phaseterm');
         $instructor = $request->instructor;
@@ -112,7 +112,7 @@ class AssignInstructor extends Controller
         }
     }
 
-    function instructor_sched_list()
+    function instructorSchedList()
     {
         $data['instruc'] = $this->instructors();
         $data['system'] = $this->system;

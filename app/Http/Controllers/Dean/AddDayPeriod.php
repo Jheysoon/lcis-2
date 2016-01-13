@@ -31,7 +31,7 @@ class AddDayPeriod extends Controller
         $this->system   = Api::systemValue();
     }
 
-    function dayPeriod_list()
+    function dayPeriodList()
     {
         $data['owner'] = $this->owner;
         $data['system'] = $this->system;
@@ -78,7 +78,7 @@ class AddDayPeriod extends Controller
         return view('dean.add_day_period', $data);
     }
 
-    function add_day_period(Request $request, $id)
+    function addDayPeriod(Request $request, $id)
     {
         if ($request->has('day')) {
             $valid = $this->assign($request);
